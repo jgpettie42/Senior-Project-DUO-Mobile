@@ -20,8 +20,9 @@
             <div class="vh-100">
                 <div class="mx-auto col-12 col-sm-6 col-lg-6 vh-50">
                     <form>
+                        <button id="btnCheckInBack" class="btn btn-secondary btn-lg col-12" type="button">Back</button>
                         <button id="btnExistingUser" class="btn btn-primary btn-lg col-12 mt-4" type="button">Existing User</button>
-                        <button id="btnNewUser" class="btn btn-outline-secondary btn-lg col-12  mt-5" type="button">New User</button>
+                        <button id="btnNewUser" class="btn btn-outline-secondary btn-lg col-12  mt-4" type="button">New User</button>
                     </form>
                 </div>
             </div>
@@ -29,6 +30,7 @@
 
         
         <div id="divNewUser" class="card mx-auto col-9" style="display: none;">
+            <button id="btnNewUserBack" class="btn btn-secondary col-12">Back</button>
             <div class="card-header text-center">
                 <h3>Please Enter New Users Information</h3>
             </div>
@@ -47,8 +49,9 @@
                         <input id="txtBirthDate" class="form-control" placeholder="08/04/2000" type ="date" aria-label="Enter Birth Data">
                     </div>
                     <button id="btnNewUserCreate" class="btn btn-primary col-12 mt-2" type="button">Create New Account</button> 
-                    <button class="btn btn-secondary col-12 mt-2 btnCancelNewUserToggle" type="button">Cancel</button> 
+                    <button class="btn btn-secondary col-12 mt-2" id="btnCancelNewUserInfo" type="button">Cancel</button> 
                 </form>
+            <div class="mt-5"></div>
             </div>
         </div>
     
@@ -56,9 +59,11 @@
 
     <div id="checkOut" class="vh-100" style="display: none;">
         <div class="d-flex justify-content-center align-items-center ">
+
             <div class=" mx-auto col-12 col-sm-6 col-lg-6 vh-50"> 
                 <div class=" text-center">
                     <form>
+                        <button class="btn btn-secondary btn-lg col-12 mt-3" id="btnCheckoutBack" type="button" aria-label="Back button">Back</button>
                         <button class="btn btn-primary btn-lg col-12 mt-3" id="btnCheckout" type="button" aria-label="Check out button">Check Out</button>
                     </form>
                 </div>
@@ -77,13 +82,33 @@
         $('#checkIn').slideToggle('fast');
     })
 
+    $('#btnCheckInBack').click(function(){
+        $('#frontPage').slideToggle('fast');
+        $('#checkIn').slideToggle('fast');
+    })
+
     $('#btnCheck-out').click(function(){
         $('#frontPage').slideToggle('fast');
         $('#checkOut').slideToggle('fast');
     })
 
     $('#btnNewUser').click(function(){
+        $('#divLogin').slideToggle('fast');
         $('#divNewUser').slideToggle('fast');
+    })
+    $('#btnNewUserBack').click(function(){
+        $('#divLogin').slideToggle('fast');
+        $('#divNewUser').slideToggle('fast');
+    })
+    $('#btnCheckoutBack').click(function(){
+        $('#frontPage').slideToggle('fast');
+        $('#checkOut').slideToggle('fast');
+    })
+
+    $('#btnCancelNewUserInfo').click(function(){
+        $('#txtNewUserFirstName').val('')
+        $('#txtNewUserLastName').val('')
+        $('#txtBirthDate').val('')
     })
 
     </script>
