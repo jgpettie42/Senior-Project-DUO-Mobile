@@ -30,7 +30,6 @@
 
         
         <div id="divNewUser" class="mx-auto col-9" style="display: none;">
-            <button id="btnNewUserBack" class="btn btn-secondary col-12">Back</button>
             <div class="text-center mt-2">
                 <h3>Please Enter New Users Information</h3>
             </div>
@@ -81,10 +80,6 @@
         $('#btnNewUser').click(function(){
             $('#divLogin').hide('fast');
             $('#divNewUser').show('fast');
-        })
-        $('#btnNewUserBack').click(function(){
-            $('#divLogin').show('fast');
-            $('#divNewUser').hide('fast');
         })
         $('#btnCheckoutBack').click(function(){
             $('#frontPage').show('fast');
