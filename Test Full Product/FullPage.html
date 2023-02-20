@@ -36,9 +36,11 @@
             <div class="mt-2" >
                 <label for="txtNewUserFirstName" class="form-label">First Name</label>
                 <input id="txtNewUserFirstName" class="form-control" placeholder="John" aria-label="Enter First Name">
-                <label for="txtNewUserLastName" class="form-label">Last Name</label>
+                <label for="txtNewUserMiddleName" class="form-label mt-2">Middle Name</label>
+                <input id="txtNewUserMiddleName" class="form-control" placeholder="DeAngelo" aria-label="Enter Middle Name">
+                <label for="txtNewUserLastName" class="form-label mt-2">Last Name</label>
                 <input id="txtNewUserLastName" class="form-control" placeholder="Doe" aria-label="Enter Last Name">
-                <label for="txtBirthDate" class="form-label">Date of Birth</label>
+                <label for="txtBirthDate" class="form-label mt-2">Date of Birth</label>
                 <input id="txtBirthDate" class="form-control" placeholder="08/04/2000" type ="date" aria-label="Enter Birth Data">
                 <button id="btnNewUserCreate" class="btn btn-primary col-12 mt-2" type="button">Create New Account</button> 
                 <button class="btn btn-secondary col-12 mt-2" id="btnCancelNewUserInfo" type="button">Cancel</button> 
@@ -87,6 +89,7 @@
         })
         $('#btnCancelNewUserInfo').click(function(){
             $('#txtNewUserFirstName').val('')
+            $('#txtNewUserMiddleName').val('')
             $('#txtNewUserLastName').val('')
             $('#txtBirthDate').val('')
             $('#divLogin').show('fast');
