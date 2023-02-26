@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUO Mobile Registration</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+</head>
+<body class="register-page">
+    <style>
+        body {
+          background-image: url("phase1/images/DuoPicture.jpeg");
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+          background-position: center;
+        }
+    </style>
+    <div id="divFirstRegister">
+        <div class="register-box">
+            <div class="card card-outline card-primary">
+                <div class="card-header text-center">
+                    <h1>DUO MOBILE</h1>
+                </div>
+                <div class="card-body">
+                        <h5 class="login-box-msg">Confirm an Existing Visitor</h5>
+                        <div class="form-floating mb-3">
+                            <label for="txtFirstName">First Name *</label>
+                            <input class="form-control" placeholder="John" id="txtFirstName">
+                        </div>
+                        <div class="form-floating mb-2">
+                            <label for="txtMiddleInitial">Middle Initial *</label>
+                            <input id="txtMiddleInitial" type="text" class="form-control" placeholder="G">
+                        </div>
+                        <div class="form-floating mb-2">
+                            <label for="txtLastName">Last Name *</label>
+                            <input id="txtLastName" type="text" class="form-control" placeholder="Doe">
+                        </div>
+                        <div class="form-floating mb-2">
+                            <label for="selectSex">Sex (Gender) *</label>
+                            <select id="selectSex" class="form-control col-12" aria-label="Select Sex (as in Gender)">
+                                <option selected>Open This Select Menu</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <label for="txtDateOfBirth">Date of Birth *</label>
+                            <input id="txtDateOfBirth" type="date" class="form-control" >
+                        </div>
+                        <div class="text-center">
+                            <button id="btnConfirmVisitor" type="button" class="btn btn-primary btn-block">Confirm Visitor</button>
+                            <button class="btn btn-link">Back to Start</button>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <h3>DOING UNTO OTHERS</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>         
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>        
+        <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+        <script>
+            $('#btnConfirmVisitor').on('click', function(){
+                blnError = false;
+                strHTML = '';
+                if($('#txtFirstName').val().length < 1){
+                    blnError = true;
+                    strHTML += '<p>You must enter First Name</p>'
+                }
+                if($('#txtLastName').val().length < 1){
+                    blnError = true;
+                    strHTML += '<p>You must enter Last Name</p>'
+                }
+                if($('#txtMiddleInitial').val().length < 1){
+                    blnError = true;
+                    strHTML += '<p>You must enter Middle Initial</p>'
+                }
+                if($('#selectSex').val() == 'Open This Select Menu'){
+                    blnError = true;
+                    strHTML += '<p>You must select a Sex</p>'
+                }
+                if($('#txtDateOfBirth').val().length < 1){
+                    blnError = true;
+                    strHTML += '<p>You must enter Date of Birth</p>'
+                }
+                if(blnError == true){
+                    swal.fire({
+                        html: strHTML,
+                        icon: 'error',
+                    })
+                }
+                else{
+                } 
+            })
+        </script>
+        
+</body>
+</html>
