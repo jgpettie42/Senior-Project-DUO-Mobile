@@ -29,32 +29,50 @@
                         <h5 class="login-box-msg">Register a New Visitor</h5>
                             <div class="form-floating mb-3">
                                 <label for="txtFirstName">First Name *</label>
-                                <input class="form-control" placeholder="John" id="txtRegFirstName">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="John" id="txtRegFirstName">
+                                    <span class="input-group-text bg-success"><i class="bi bi-person-circle"></i></span>
+                                </div>
                             </div>
                             <div class="form-floating mb-2">
                                 <label for="txtMiddleInitial">Middle Initial *</label>
-                                <input id="txtRegMiddleInitial" type="text" class="form-control" placeholder="G">
+                                <div class="input-group">
+                                    <input id="txtRegMiddleInitial" type="text" class="form-control" placeholder="G">
+                                    <span class="input-group-text bg-success"><i class="bi bi-person-circle"></i></span>
+                                </div>
                             </div>
                             <div class="form-floating mb-2">
                                 <label for="txtLastName">Last Name *</label>
-                                <input id="txtRegLastName" type="text" class="form-control" placeholder="Doe">
+                                <div class="input-group">
+                                    <input id="txtRegLastName" type="text" class="form-control" placeholder="Doe">
+                                    <span class="input-group-text bg-success"><i class="bi bi-person-circle"></i></span>
+                                </div>
                             </div>
                             <div class="form-floating mb-2">
                                 <label for="selectSex">Sex (Gender) *</label>
-                                <select id="selectRegSex" class="form-control col-12" aria-label="Select Sex (as in Gender)">
-                                    <option selected>Open This Select Menu</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
+                                <div class="input-group">
+                                    <select id="selectRegSex" class="form-control col-12" aria-label="Select Sex (as in Gender)">
+                                        <option selected>Open This Select Menu</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <span class="input-group-text bg-success"><i class="bi bi-gender-trans"></i></span>
+                                </div>                   
                             </div>
                             <div class="form-floating mb-2">
                                 <label for="txtDateOfBirth">Date of Birth *</label>
-                                <input id="txtRegDateOfBirth" type="date" class="form-control" >
+                                <div class="input-group">
+                                    <input id="txtRegDateOfBirth" type="date" class="form-control" >
+                                    <span class="input-group-text bg-success"><i class="bi bi-calendar-event-fill"></i></span>
+                                </div>
                             </div>
                             <div class="form-floating mb-2">
                                 <label for="txtPhoneNumber">Phone Number</label>
-                                <input id="txtPhoneNumber" type="text" name="phone" class="form-control" placeholder="(123)456-7890">
+                                <div class="input-group">
+                                    <input id="txtPhoneNumber" type="text" name="phone" class="form-control" placeholder="(123)456-7890">
+                                    <span class="input-group-text bg-success"><i class="bi bi-telephone-fill"></i></span>
+                                </div>
                             </div>
                         <div class="text-center">
                             <button id="btnNextToRegistration" type="button" class="btn btn-primary btn-block">Move to Next Page</button>
@@ -77,79 +95,97 @@
                             <h5 class="login-box-msg">Register a New Visitor</h5>
                             <div class="mb-2">
                                 <label for="txtStreetName1" class="text-black form-label">Street Name 1</label>
-                                <input id="txtStreetName1" class="form-control" placeholder="123 Good Name Street" aria-label="Street Name 1">
+                                <div class="input-group">
+                                    <input id="txtStreetName1" class="form-control" placeholder="123 Good Name Street" aria-label="Street Name 1">
+                                    <span class="input-group-text bg-success"><i class="bi bi-signpost-fill"></i></span>
+                                </div>
                             </div>
                             <div class="mb-2">
                                 <label for="txtStreetName2" class="text-black form-label">Street Name 2</label>
-                                <input id="txtStreetName2" class="form-control" placeholder="apt, PO box, building" aria-label="Street Name 2">
+                                <div class="input-group">
+                                    <input id="txtStreetName2" class="form-control" placeholder="apt, PO box, building" aria-label="Street Name 2">
+                                    <span class="input-group-text bg-success"><i class="bi bi-signpost-fill"></i></span>
+                                </div>
                             </div>
                             <div class="mb-2">
                                 <label for="txtCity" class="text-black form-label">City</label>
-                                <input id="txtCity" class="form-control" placeholder="Applesville" aria-label="City">
+                                <div class="input-group">
+                                    <input id="txtCity" class="form-control" placeholder="Applesville" aria-label="City">
+                                    <span class="input-group-text bg-success"><i class="bi bi-align-start"></i></span>
+                                </div>
                             </div>
                             <div class="mb-2">
                                 <label for="txtState" class="text-black form-label">State</label>
-                                <select id="selectState" class="form-control">
-                                    <option selected>Please Select a State</option>
-                                    <option value="Alabama">Alabama</option>
-                                    <option value="Alaska">Alaska</option>
-                                    <option value="Arizona">Arizona</option>
-                                    <option value="Arkansas">Arkansas</option>
-                                    <option value="California">California</option>
-                                    <option value="Colorado">Colorado</option>
-                                    <option value="Connecticut">Connecticut</option>
-                                    <option value="Delaware">Delaware</option>
-                                    <option value="Florida">Florida</option>
-                                    <option value="Georgia">Georgia</option>
-                                    <option value="Hawaii">Hawaii</option>
-                                    <option value="Idaho">Idaho</option>
-                                    <option value="Illinois">Illinois</option>
-                                    <option value="Indiana">Indiana</option>
-                                    <option value="Iowa">Iowa</option>
-                                    <option value="Kansas">Kansas</option>
-                                    <option value="Kentucky">Kentucky</option>
-                                    <option value="Louisiana">Louisiana</option>
-                                    <option value="Maine">Maine</option>
-                                    <option value="Maryland">Maryland</option>
-                                    <option value="Massachusetts">Massachusetts</option>
-                                    <option value="Michigan">Michigan</option>
-                                    <option value="Minnesota">Minnesota</option>
-                                    <option value="Mississippi">Mississippi</option>
-                                    <option value="Missouri">Missouri</option>
-                                    <option value="Montanta">Montanta</option>
-                                    <option value="Nebraska">Nebraska</option>
-                                    <option value="Nevada">Nevada</option>
-                                    <option value="New Hampshire">New Hampshire</option>
-                                    <option value="New Jersery">New Jersey</option>
-                                    <option value="New Mexico">New Mexico</option>
-                                    <option value="New York">New York</option>
-                                    <option value="North Carolina">North Carolina</option>
-                                    <option value="North Dakota">North Dakota</option>
-                                    <option value="Ohio">Ohio</option>
-                                    <option value="Oklahoma">Oklahoma</option>
-                                    <option value="Oregon">Oregon</option>
-                                    <option value="Pennsylvania">Pennsylvania</option>
-                                    <option value="Rhode Island">Rhode Island</option>
-                                    <option value="South Carolina">South Carolina</option>
-                                    <option value="South Dakota">South Dakota</option>
-                                    <option value="Tennessee">Tennessee</option>
-                                    <option value="Texas">Texas</option>
-                                    <option value="Utah">Utah</option>
-                                    <option value="Vermont">Vermond</option>
-                                    <option value="Virginia">Virginia</option>
-                                    <option value="Washington">Washington</option>
-                                    <option value="West Virginia">West Virginia</option>
-                                    <option value="Wisconsin">Wisconsin</option>
-                                    <option value="Wyoming">Wyoming</option>
-                                </select>
+                                <div class="input-group">
+                                    <select id="selectState" class="form-control">
+                                        <option selected>Please Select a State</option>
+                                        <option value="Alabama">Alabama</option>
+                                        <option value="Alaska">Alaska</option>
+                                        <option value="Arizona">Arizona</option>
+                                        <option value="Arkansas">Arkansas</option>
+                                        <option value="California">California</option>
+                                        <option value="Colorado">Colorado</option>
+                                        <option value="Connecticut">Connecticut</option>
+                                        <option value="Delaware">Delaware</option>
+                                        <option value="Florida">Florida</option>
+                                        <option value="Georgia">Georgia</option>
+                                        <option value="Hawaii">Hawaii</option>
+                                        <option value="Idaho">Idaho</option>
+                                        <option value="Illinois">Illinois</option>
+                                        <option value="Indiana">Indiana</option>
+                                        <option value="Iowa">Iowa</option>
+                                        <option value="Kansas">Kansas</option>
+                                        <option value="Kentucky">Kentucky</option>
+                                        <option value="Louisiana">Louisiana</option>
+                                        <option value="Maine">Maine</option>
+                                        <option value="Maryland">Maryland</option>
+                                        <option value="Massachusetts">Massachusetts</option>
+                                        <option value="Michigan">Michigan</option>
+                                        <option value="Minnesota">Minnesota</option>
+                                        <option value="Mississippi">Mississippi</option>
+                                        <option value="Missouri">Missouri</option>
+                                        <option value="Montanta">Montanta</option>
+                                        <option value="Nebraska">Nebraska</option>
+                                        <option value="Nevada">Nevada</option>
+                                        <option value="New Hampshire">New Hampshire</option>
+                                        <option value="New Jersery">New Jersey</option>
+                                        <option value="New Mexico">New Mexico</option>
+                                        <option value="New York">New York</option>
+                                        <option value="North Carolina">North Carolina</option>
+                                        <option value="North Dakota">North Dakota</option>
+                                        <option value="Ohio">Ohio</option>
+                                        <option value="Oklahoma">Oklahoma</option>
+                                        <option value="Oregon">Oregon</option>
+                                        <option value="Pennsylvania">Pennsylvania</option>
+                                        <option value="Rhode Island">Rhode Island</option>
+                                        <option value="South Carolina">South Carolina</option>
+                                        <option value="South Dakota">South Dakota</option>
+                                        <option value="Tennessee">Tennessee</option>
+                                        <option value="Texas">Texas</option>
+                                        <option value="Utah">Utah</option>
+                                        <option value="Vermont">Vermond</option>
+                                        <option value="Virginia">Virginia</option>
+                                        <option value="Washington">Washington</option>
+                                        <option value="West Virginia">West Virginia</option>
+                                        <option value="Wisconsin">Wisconsin</option>
+                                        <option value="Wyoming">Wyoming</option>
+                                    </select>
+                                    <span class="input-group-text bg-success"><i class="bi bi-flag-fill"></i></span>
+                                </div>
                             </div>
                             <div class="mb-2">
                                 <label for="txtCounty" class="text-black form-label">County</label>
-                                <input id="txtCounty" class="form-control" placeholder="Putnam County" aria-label="County">
+                                <div class="input-group">
+                                    <input id="txtCounty" class="form-control" placeholder="Putnam County" aria-label="County">
+                                    <span class="input-group-text bg-success"><i class="bi bi-flag-fill"></i></span>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="txtZip" class="text-black form-label">Zip Code</label>
-                                <input id="txtZip" class="form-control" placeholder="12345" aria-label="Zip Code">
+                                <div class="input-group">
+                                    <input id="txtZip" class="form-control" placeholder="12345" aria-label="Zip Code">
+                                    <span class="input-group-text bg-success"><i class="bi bi-flag-fill"></i></span>
+                                </div>
                             </div>
                             <div class="mb-2">
                                 <input id="txtCheckbox" type="checkbox" aria-label="Other">
@@ -178,15 +214,24 @@
                             <h5 class="login-box-msg">Register a New Visitor</h5>
                             <div class="form-floating mb-3">
                                 <label for="txtFirstName">First Name</label>
-                                <input class="form-control" placeholder="Jimmy" id="txtFirstName">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Jimmy" id="txtFirstName">
+                                    <span class="input-group-text bg-success"><i class="bi bi-person-circle"></i></span>
+                                </div>
                             </div>
                             <div class="form-floating mb-3">
                                 <label for="txtLastName">Last Name</label>
-                                <input id="txtLastName" type="text" class="form-control" placeholder="John">
+                                <div class="input-group">
+                                    <input id="txtLastName" type="text" class="form-control" placeholder="John">
+                                    <span class="input-group-text bg-success"><i class="bi bi-person-circle"></i></span>
+                                </div>
                             </div>
                             <div class="form-floating mb-3">
                                 <label for="txtPhoneNumber">Phone Number</label>
-                                <input id="txtPhoneNumber" type="text" name="phone" class="form-control" placeholder="(123)456-7890">
+                                <div class="input-group">
+                                    <input id="txtPhoneNumber" type="text" name="phone" class="form-control" placeholder="(123)456-7890">
+                                    <span class="input-group-text bg-success"><i class="bi bi-telephone-fill"></i></span>
+                                </div>
                             </div>
                             <div class="text-center mb-2">
                                 <button id="btnNextToLoginInfo" type="button" class="btn btn-primary btn-block">Next To Login Info</button>
@@ -211,15 +256,21 @@
                             <h5 class="login-box-msg">Register a New Visitor</h5>
                             <div class="mt-1">
                                 <label for="txtRegistrationEmail" class="text-black form-label">Email</label>
-                                <input id="txtRegistrationEmail" type="email" class="form-control" placeholder="jdoe@gmail.com" aria-label="Email">
-                            </div>
-                            <div id="divOtherCoopAddress" class="mt-1" style="display: none;">
-                                <label class="text-black form-label">Other Coop Address</label>
-                                <input id="txtOtherCoopAddress" class="form-control" placeholder="Happy Chicken Road, Somewhere, USA, 12345" aria-label="Other Coop's Address">
+                                <div class="input-group">
+                                    <input id="txtRegistrationEmail" type="email" class="form-control" placeholder="jdoe@gmail.com" aria-label="Email">
+                                    <span class="input-group-text bg-success"><i class="bi bi-envelope-at-fill"></i></span>
+                                </div>
                             </div>
                             <div class="mt-1">
                                 <label for="txtRegistrationPassword" class="text-black form-label">Password</label>
-                                <input id="txtRegistrationPassword" type="password" class="form-control" placeholder="Must Contain: 8+ Characters, Uppercase and Lowercase Letter, Special Character" aria-label="Password">
+                                <div class="input-group">
+                                    <input id="txtRegistrationPassword" type="password" class="form-control" placeholder="Must Contain: 8+ Characters, Uppercase and Lowercase Letter, Special Character" aria-label="Password">
+                                    <span class="input-group-text bg-success"><i class="bi bi-file-lock2-fill"></i></span>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <input id="txtCheckboxPassword" type="checkbox" onclick="myFunction()" aria-label="Show Passwords">
+                                <label for="txtCheckboxPassword" >Show Passwords</label>
                             </div>
                             <button id="btnFinishRegistration" type="button" class="btn btn-primary text-white col-12 mt-3"  aria-label="Registration Button">Register Your Account</button>
                             <button id="btnBackToEmergencyContact" type="button" class="btn btn-success text-white col-12 mt-3"  aria-label="Cancel Registration">Back</button>
@@ -289,9 +340,43 @@
             })
 
             $('#btnNextToEmergencyContact').on('click', function(){
-                $('#divEmergencyContactRegister').slideToggle();
-                $('#divSecondRegister').slideToggle();
-            })
+                blnError = false;
+                if($('#txtStreetName1').val().length > 1){
+                    blnError = true;
+                }
+                if($('#txtCity').val().length > 1){
+                    blnError = true;
+                }
+                if($('#txtState').val() == 'Please Select a State'){
+                    blnError = true;
+                }
+                if($('#txtCounty').val().length < 1){
+                    blnError = true;
+                }
+                if($('#txtZip').val().length < 1){
+                    blnError = true;
+                }
+                if(blnError == true){
+                    Swal.fire({
+                    icon: 'warning',
+                    title: 'Are you sure you want to continue without filling out these fields?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: `Yes`,
+                    denyButtonText: `No`,
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#divEmergencyContactRegister').slideToggle();
+                        $('#divSecondRegister').slideToggle();
+                    } else if (result.isDenied) {
+                        
+                    }
+                    })
+                } else {
+                    $('#divEmergencyContactRegister').slideToggle();
+                    $('#divSecondRegister').slideToggle();
+                }
+            }) 
 
             $('#btnNextToLoginInfo').on('click', function(){
                 $('#divEmergencyContactRegister').slideToggle();
@@ -302,6 +387,16 @@
                 $('#divLoginInfo').slideToggle();
                 $('#divEmergencyContactRegister').slideToggle();
             })
+
+            function myFunction() {
+                var x = document.getElementById("txtRegistrationPassword");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+
         </script>
         
 </body>
