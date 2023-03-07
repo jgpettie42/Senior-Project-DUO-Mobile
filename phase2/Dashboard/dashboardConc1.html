@@ -82,6 +82,12 @@
                             <input id="txtAdminPassword" type="password" class="form-control" aria-label="Password">
                         </div>
                     </div>
+                    <div class="mt-1">
+                      <label for="txtRole" class="text-black form-label">Role</label>
+                      <div class="input-group">
+                          <input id="txtRole" class="form-control">
+                      </div>
+                  </div>
                     <button id="btnAdminLogin2" type="button" class="btn btn-primary text-white col-12 mt-3"  aria-label="Login Button">Login As Admin</button>
                     <button id="btnBackToDash2" type="button" class="btn btn-danger text-white col-12 mt-3"  aria-label="Cancel Login">Back</button>
             </div>
@@ -600,7 +606,7 @@ Delete
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
       $('#btnAdminLogin2').on('click',function(){
-        if($('#txtAdminLogin').val() == 'DUOADMIN' && $('#txtAdminPassword').val() == '123'){
+        if($('#txtAdminLogin').val() == 'DUOADMIN' && $('#txtAdminPassword').val() == '123' && $('#txtRole').val() == 'Dentist'){
           $('#divLoginAd').slideUp('slow');
           $('#divAdminInfo').slideDown('slow');
           $('#btnAdminLogin2').on('click',function(){
@@ -608,10 +614,11 @@ Delete
           }else{
             Swal.fire({
               icon:'error',
-              html:'<p>Wrong username or password!</p>',
+              html:'<p>Wrong username or password! Or not authorized!</p>',
           })
           }
           })
+      
 
 
 
