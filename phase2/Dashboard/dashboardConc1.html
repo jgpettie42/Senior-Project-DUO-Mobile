@@ -23,22 +23,15 @@
           <!-- /.card-header -->
           
           <div class="card-body">
-            <div class="d-grid gap-2 d-flex justify-content-center">
-              <div class="info-box bg-gradient-warning col-3">
-                  <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+            <div class="d-grid gap-2 p-2 d-flex justify-content-center">
+              <div class="small-box bg-gradient-warning col-2 btnHaircutFromDash" type="button">
+                  <span class="info-box-icon"></span>
                   <div class="info-box-content">
-                    <span class="info-box-text">Events</span>
-                    <span class="info-box-number">41,410</span>
-                    <div class="progress">
-                      <div class="progress-bar" style="width: 70%"></div>
-                    </div>
-                    <span class="progress-description">
-                      70% Increase in 30 Days
-                    </span>
+                    <label class="fw-3 fs-2">Haircut Bus</label>
                   </div>
                 </div>
       
-                <div class="small-box bg-gradient-info col-3 btnAdminFromDash" type="button">
+                <div class="small-box bg-gradient-info col-2 btnAdminFromDash" type="button">
                   <div class="inner">
                     <h3>Admin</h3>
                     <p>Visitor Health Tracker</p>
@@ -47,7 +40,7 @@
                     <i class="fas fa-user-plus"></i>
                   </div>
                 </div>
-                <div class="small-box bg-gradient-dark col-3">
+                <div class="small-box bg-gradient-dark col-2">
                   <div class="inner">
                     <h3>DUO Website</h3>
                   </div>
@@ -93,6 +86,27 @@
             </div>
         </div>
     </div>
+</div>
+<div id="divHaircut" style="display: none;">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <h1>DUO Haircut</h1>
+      </div>
+      <div class="card-body">
+        <label class="form-label">Select Haircut</label>
+        <select>
+          <option value="Buzz Cut">Buzz Cut</option>
+          <option value="Trim">Trim</option>
+        </select>
+      <div class="mt-1">
+        <label for="txtHaircutStyle" class="form-label">Input Haircut</label>
+        <input class="form-control col-12" id="txtHaircutStyle" placeholder="Optional">
+        <button class="btn btn-primary col-12 mt-2" id="btnSubmitHaircut" type="button">Submit</button>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="wrapper">
@@ -619,9 +633,17 @@ Delete
           }
           })
       
+      $('#btnSubmitHaircut').on('click',function(){
+        Swal.fire({
+              icon:'success',
+              html:'<p>Nice it worked</p>',
+          })
+      }) 
 
-
-
+      $(document).on('click','.btnHaircutFromDash',function(){
+      $('#divDashboard').slideToggle();
+      $('#divHaircut').slideToggle();
+      })
       $(document).on('click','.btnAdminFromDash',function(){
         $('#divDashboard').slideToggle();
         $('#divLoginAd').slideToggle();
