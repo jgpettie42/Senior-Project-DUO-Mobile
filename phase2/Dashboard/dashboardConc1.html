@@ -30,6 +30,12 @@
                     <label class="fw-3 fs-2">Haircut Bus</label>
                   </div>
                 </div>
+                <div class="small-box bg-gradient-primary col-2 btnFoodFromDash" type="button">
+                  <span class="info-box-icon"></span>
+                  <div class="info-box-content">
+                    <label class="fw-3 fs-2">DUO Food Truck</label>
+                  </div>
+                </div>
       
                 <div class="small-box bg-gradient-info col-2 btnAdminFromDash" type="button">
                   <div class="inner">
@@ -93,16 +99,39 @@
       <div class="card-header text-center">
         <h1>DUO Haircut</h1>
       </div>
-      <div class="card-body">
+      <div class="card-body text-center">
         <label class="form-label">Select Haircut</label>
-        <select>
+        <select class="form-control col-12" id="selectHaircut">
+          <option value=""></option>
           <option value="Buzz Cut">Buzz Cut</option>
           <option value="Trim">Trim</option>
         </select>
-      <div class="mt-1">
-        <label for="txtHaircutStyle" class="form-label">Input Haircut</label>
+      <div class="mt-1 text-center">
+        <label for="txtHaircutStyle" class="form-label">Prayer Requests</label>
         <input class="form-control col-12" id="txtHaircutStyle" placeholder="Optional">
         <button class="btn btn-primary col-12 mt-2" id="btnSubmitHaircut" type="button">Submit</button>
+        <button class="btn btn-danger btn-sm mt-2 text-center" type="button" id="btnBackHaircut">Back</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="divFoodTruck" style="display: none;">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <h1>DUO Food Truck</h1>
+      </div>
+      <div class="card-body text-center">
+        <label class="form-label">Select Food</label>
+        <select class="form-control col-12">
+          <option value=""></option>
+          <option value="Hot Dog">Hot Dog</option>
+          <option value="Hamburger">Hamburger</option>
+        </select>
+      <div class="mt-1 text-center">
+        <button class="btn btn-primary col-12 mt-2" id="btnSubmitFood" type="button">Submit</button>
+        <button class="btn btn-danger btn-sm mt-2" type="button" id="btnBackFood">Back</button>
       </div>
       </div>
     </div>
@@ -633,12 +662,25 @@ Delete
           }
           })
       
-      $('#btnSubmitHaircut').on('click',function(){
+      $('#btnSubmitHaircut').on('click',function(){ //fix me plz
+        if($('#selectHaircut')=''){
+        Swal.fire({
+              icon:'error',
+              html:'<p>You must select a haircut...</p>',
+          })
+      }else{
+        Swal.fire({
+        icon:'success',
+        html:'<p>Haircut submitted!</p>',
+          })
+        }
+      }) 
+      $('#btnSubmitFood').on('click',function(){
         Swal.fire({
               icon:'success',
-              html:'<p>Nice it worked</p>',
+              html:'<p>Reciept printed!</p>',
           })
-      }) 
+      })
 
       $(document).on('click','.btnHaircutFromDash',function(){
       $('#divDashboard').slideToggle();
@@ -663,6 +705,18 @@ Delete
       $(document).on('click','.btnBackFromV',function(){
         $('#divView').slideToggle();
         $('#divAdminInfo').slideToggle();
+      })
+      $(document).on('click','.btnFoodFromDash',function(){
+        $('#divFoodTruck').slideToggle();
+        $('#divDashboard').slideToggle();
+      })
+      $('#btnBackFood').on('click',function(){
+        $('#divFoodTruck').slideToggle();
+        $('#divDashboard').slideToggle();
+      })
+      $('#btnBackHaircut').on('click',function(){
+        $('#divHaircut').slideToggle();
+        $('#divDashboard').slideToggle();
       })
     </script>
 </body>
