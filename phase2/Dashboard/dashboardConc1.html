@@ -663,7 +663,7 @@ Delete
           })
       
       $('#btnSubmitHaircut').on('click',function(){ //fix me plz
-        if($('#selectHaircut')=''){
+        if($('#selectHaircut').val()==''){
         Swal.fire({
               icon:'error',
               html:'<p>You must select a haircut...</p>',
