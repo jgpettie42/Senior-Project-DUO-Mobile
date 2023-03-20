@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <link rel="icon" type="image/png" href="duologoblack01.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body style="background-color: chartreuse;">
   <div class="col-12">
@@ -24,31 +25,33 @@
           
           <div class="card-body">
             <div class="d-grid gap-2 p-2 d-flex justify-content-center">
-              <div class="small-box bg-gradient-warning col-2 btnHaircutFromDash" type="button">
+              <div class="small-box col-2 btnHaircutFromDash text-white" type="button"style="background-color: blueviolet;">
                   <span class="info-box-icon"></span>
                   <div class="info-box-content">
-                    <label class="fw-3 fs-2">Haircut Bus</label>
+                    <h3><i class="bi bi-scissors"></i></h3>
+                    <p>DUO Haircut</p>
                   </div>
                 </div>
                 <div class="small-box bg-gradient-primary col-2 btnFoodFromDash" type="button">
                   <span class="info-box-icon"></span>
                   <div class="info-box-content">
-                    <label class="fw-3 fs-2">DUO Food Truck</label>
+                    <h3><i class="bi bi-truck"></i></h3>
+                    <p>DUO Food Truck</p>
                   </div>
                 </div>
       
                 <div class="small-box bg-gradient-info col-2 btnAdminFromDash" type="button">
                   <div class="inner">
-                    <h3>Admin</h3>
+                    <h3> <i class="bi bi-activity"></i></h3>
                     <p>Visitor Health Tracker</p>
                   </div>
                   <div class="icon">
                     <i class="fas fa-user-plus"></i>
                   </div>
                 </div>
-                <div class="small-box bg-gradient-dark col-2">
+                <div class="small-box col-2" style="background-color: deeppink;">
                   <div class="inner">
-                    <h3>DUO Website</h3>
+                    <h3><i class="bi bi-globe-americas text-white"></i></h3>
                   </div>
                   <div class="icon">
                     <i class="fas fa-user-plus"></i>
@@ -638,20 +641,74 @@ Delete
         </div>
     </div>
 </div>
- 
+
+<div id="divResults" style="display: none; background-color: white;">
+  <table class="col-12 table" id="tblResults">
+    <thead>
+        <tr>
+            <th class="bg-warning">PID</th>
+            <th>First Name</th>
+            <th class="bg-warning">Last Name</th>
+            <th>Results</th>
+            <th class="bg-warning">Image</th>
+            <th><button class="btn btn-primary" type="button" id="btnAdminResults">Results</button></th>
+            <th><button id="btnBackFromP" type="button" class="btn btn-danger">Back</button></th>
+        </tr>
+    </thead>
+    <tbody>
+  
+    </tbody>
+  </table>
+</div>
+
+<div id="divResultsPerP" style="display: none;">
+  <table class="col-12 table" id="tblResults">
+    <thead>
+        <tr>
+          <th>PID</th>
+
+          <th><button type="button" id="btnBackFromPResults" class="btn btn-danger">Back</button></th>
+        </tr>
+    </thead>
+    <tbody>
+  
+    </tbody>
+  </table>
+</div>
 
 
-      
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
+      $('#btnBackFromP').on('click',function(){
+        $('#divResults').slideToggle();
+        $('#divDashboard').slideToggle();
+      })
+      $('#btnAdminResults').on('click',function(){
+        $('#divResults').slideToggle();
+        $('#divResultsPerP').slideToggle();
+      })
+      $('#btnBackFromPResults').on('click',function(){
+        $('#divResultsPerP').slideToggle();
+        $('#divResults').slideToggle();
+      })
+
+      //$.getJSON('url',{apistuff:moreapistuff},function(result){
+
+      //})
+      //$.each(result,function(index,patientInfo){
+        //let strHTML = '';
+
+        //$('#tblResults tbody').append(strHTML);
+      //})
       $('#btnAdminLogin2').on('click',function(){
         if($('#txtAdminLogin').val() == 'DUOADMIN' && $('#txtAdminPassword').val() == '123' && $('#txtRole').val() == 'Dentist'){
           $('#divLoginAd').slideUp('slow');
-          $('#divAdminInfo').slideDown('slow');
+          $('#divResults').slideDown('slow');
+
           $('#btnAdminLogin2').on('click',function(){
         })
           }else{
@@ -662,7 +719,7 @@ Delete
           }
           })
       
-      $('#btnSubmitHaircut').on('click',function(){ //fix me plz
+      $('#btnSubmitHaircut').on('click',function(){ 
         if($('#selectHaircut').val()==''){
         Swal.fire({
               icon:'error',
