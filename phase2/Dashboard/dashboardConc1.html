@@ -28,30 +28,33 @@
               <div class="small-box col-2 btnHaircutFromDash text-white" type="button"style="background-color: blueviolet;">
                   <span class="info-box-icon"></span>
                   <div class="info-box-content">
-                    <h3><i class="bi bi-scissors"></i></h3>
+                    <h1><i class="bi bi-scissors"></i></h1>
                     <p>DUO Haircut</p>
                   </div>
                 </div>
+
                 <div class="small-box bg-gradient-primary col-2 btnFoodFromDash" type="button">
                   <span class="info-box-icon"></span>
                   <div class="info-box-content">
-                    <h3><i class="bi bi-truck"></i></h3>
+                    <h1><i class="bi bi-truck"></i></h1>
                     <p>DUO Food Truck</p>
                   </div>
                 </div>
       
                 <div class="small-box bg-gradient-info col-2 btnAdminFromDash" type="button">
-                  <div class="inner">
-                    <h3> <i class="bi bi-activity"></i></h3>
-                    <p>Visitor Health Tracker</p>
-                  </div>
+                    <span class="info-box-icon"></span>
+                    <div class="info-box-content">
+                      <h1> <i class="bi bi-activity"></i></h1>
+                      <p>Visitor Health Tracker</p>
+                    </div>
                   <div class="icon">
                     <i class="fas fa-user-plus"></i>
                   </div>
                 </div>
+
                 <div class="small-box col-2" style="background-color: deeppink;">
                   <div class="inner">
-                    <h3><i class="bi bi-globe-americas text-white"></i></h3>
+                    <h1><i class="bi bi-globe-americas text-white"></i></h1>
                   </div>
                   <div class="icon">
                     <i class="fas fa-user-plus"></i>
@@ -105,7 +108,7 @@
       <div class="card-body text-center">
         <label class="form-label">Select Haircut</label>
         <select class="form-control col-12" id="selectHaircut">
-          <option value=""></option>
+          <option value=""> </option>
           <option value="Buzz Cut">Buzz Cut</option>
           <option value="Trim">Trim</option>
         </select>
@@ -114,6 +117,7 @@
         <input class="form-control col-12" id="txtHaircutStyle" placeholder="Optional">
         <button class="btn btn-primary col-12 mt-2" id="btnSubmitHaircut" type="button">Submit</button>
         <button class="btn btn-danger btn-sm mt-2 text-center" type="button" id="btnBackHaircut">Back</button>
+        <label class="form-label col-12" id="txtHairCount"> </label>
       </div>
       </div>
     </div>
@@ -651,6 +655,7 @@ Delete
             <th class="bg-warning">Last Name</th>
             <th>Results</th>
             <th class="bg-warning">Image</th>
+            <th>Services</th>
             <th><button class="btn btn-primary" type="button" id="btnAdminResults">Results</button></th>
             <th><button id="btnBackFromP" type="button" class="btn btn-danger">Back</button></th>
         </tr>
@@ -683,6 +688,7 @@ Delete
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
+      let intHair = 0;
       $('#btnBackFromP').on('click',function(){
         $('#divResults').slideToggle();
         $('#divDashboard').slideToggle();
@@ -726,11 +732,13 @@ Delete
               html:'<p>You must select a haircut...</p>',
           })
       }else{
+        intHair ++ ;
         Swal.fire({
         icon:'success',
         html:'<p>Haircut submitted!</p>',
           })
-        }
+          $('#txtHairCount').append(intHair);       
+       }
       }) 
       $('#btnSubmitFood').on('click',function(){
         Swal.fire({
