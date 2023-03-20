@@ -31,7 +31,7 @@
             <label class="form-label mb-0" for="txtEmail-en">Email Address</label>
             <input class="form-control txtEmail mb-2" type="email" id="txtEmail-en">
             <label class="form-label mb-0" for="txtPhone-en">Phone Number</label>
-            <input class="form-control txtPhone mb-2" type="telephone" id="txtPhone-en">
+            <input class="form-control txtPhone mb-2" name="phone" type="telephone" id="txtPhone-en">
             <label class="form-label mb-0" for="selServices-en">Services Interested In</label>
             <div class="form-group" id="selServices-en">
                 <div class="form-check">
@@ -52,6 +52,7 @@
                 </div>
             </div>
             <button class="btn btn-primary col-12 btnRegistar mb-3" data-lang="en" type="button">Submit</button> 
+            <button id="btnBack" class="btn btn-primary col-12 mb-3" data-lang="en" type="button">Back</button> 
         </form>
         <div class="card bg-success col-11 card-primary" style="display:none;" id="divComplete-en">
             <div class="card-body">
@@ -72,7 +73,7 @@
             <label class="form-label mb-0" for="txtEmail-es">Dirección de correo electrónico</label>
             <input class="form-control txtEmail mb-2" type="email" id="txtEmail-es">
             <label class="form-label mb-0" for="txtPhone-es">Número de teléfono</label>
-            <input class="form-control txtPhone mb-2" type="telephone" id="txtPhone-es">
+            <input class="form-control txtPhone mb-2" name="phone" type="telephone" id="txtPhone-es">
             <label class="form-label mb-0" for="selServices-es">Servicios en los que está interesado</label>
             <div class="form-group" id="selServices-es">
                 <div class="form-check">
@@ -93,6 +94,7 @@
                 </div>
             </div>
             <button class="btn btn-primary col-12 btnRegistar mb-3" data-lang="es" type="button">Submit</button> 
+            <button id="btnBack" class="btn btn-primary col-12 mb-3" data-lang="es" type="button">Back</button> 
         </form>
         <div class="card bg-success col-11 card-primary" style="display:none;" id="divComplete-es">
             <div class="card-body">
@@ -100,11 +102,16 @@
             </div>
         </div>
     </div>
-        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
     <script src="js/lib/jquery-3.6.3.min.js"></script>
     <script src="js/lib/bootstrap.bundle.min.js"></script>
     <script src="js/lib/adminlte.min.js"></script>
     <script src="js/lib/sweetalert2.min.js"></script>
     <script src="js/registration.js"></script>
+    <script>
+         $("input[name='phone']").keyup(function() {
+                $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d+)$/, "($1)$2-$3"));
+            });
+    </script>
 </body>
 </html>

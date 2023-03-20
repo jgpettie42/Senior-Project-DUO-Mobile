@@ -1,4 +1,5 @@
 var strLang;
+let blnError = false;
 $('.btnLang').on('click',function(){
     let strLang = $(this).attr('data-lang');
     $('#divContent').removeClass('align-items-center').removeClass('vh-100').addClass('align-items-top').addClass('pt-4');
@@ -17,8 +18,8 @@ $('.btnRegistar').on('click',function(){
     let strDOB = $('#divReg-' + strLang + ' .txtDOB').val();
     let arrServicesInputs = $('.selServices-' + strLang + ' input');
     var arrServices = $('.selServices-en').map((i, e) => e.value).get();
+    var arrServices = '';
     console.log(arrServices);
-    let blError = false;
     let strError = '';
     if(strLang == 'en'){
         if(strFirstName.length < 1){
@@ -33,8 +34,7 @@ $('.btnRegistar').on('click',function(){
             blnError = true;
             strError += '<p class="mb-0">Date of Birth Cannot Be Blank</p>'
         }
-    }
-    if(strLang == 'es'){
+    } else {
         if(strFirstName.length < 1){
             blnError = true;
             strError += '<p class="mb-0">El nombre no puede estar en blanco</p>'
@@ -48,7 +48,6 @@ $('.btnRegistar').on('click',function(){
             strError += '<p class="mb-0">La fecha de nacimiento no puede estar en blanco</p>'
         }
     }
-    
     if(blnError == true){
         Swal.fire({
             icon:'error',
@@ -57,9 +56,16 @@ $('.btnRegistar').on('click',function(){
         })
     } else {
         $('#divReg-' + strLang).slideUp(function(){
-            $('#divComplete-' + strLang).slideDown();
+        $('#divComplete-' + strLang).slideDown();
         })
     }
     
+})
+
+$('#btnBack').on('click',function(){
+    let strLang = $(this).attr('data-lang');
+    $('#divContent').addClass('align-items-center').addClass('vh-100').addClass('align-items-top').addClass('pt-4');
+    $('#divPickLang').show('slow');
+    $('#divReg-' + strLang).hide('slow');
 })
 
