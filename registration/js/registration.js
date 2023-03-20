@@ -62,7 +62,7 @@ $('.btnRegistar').on('click',function(){
     
 })
 
-$('#btnBack').on('click',function(){
+$('.btnBack').on('click',function(){
     let strLang = $(this).attr('data-lang');
     $('#divContent').addClass('align-items-center').addClass('vh-100').addClass('align-items-top').addClass('pt-4');
     $('#divPickLang').show('slow');
