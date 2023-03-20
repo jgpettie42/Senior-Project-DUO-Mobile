@@ -102,8 +102,9 @@
 <div id="divHaircut" style="display: none;">
   <div class="d-flex justify-content-center align-items-center">
     <div class="card card-outline card-primary">
-      <div class="card-header text-center">
-        <h1>DUO Haircut</h1>
+      <div class="card-header text-center d-flex justify-content-between">
+        <h1 class="me-5">DUO Haircut</h1>
+        <button class="btn btn-danger ms-5" type="button" id="btnBackHaircut">Back</button>
       </div>
       <div class="card-body text-center">
         <label class="form-label">Select Haircut</label>
@@ -116,7 +117,7 @@
         <label for="txtHaircutStyle" class="form-label">Prayer Requests</label>
         <input class="form-control col-12" id="txtHaircutStyle" placeholder="Optional">
         <button class="btn btn-primary col-12 mt-2" id="btnSubmitHaircut" type="button">Submit</button>
-        <button class="btn btn-danger btn-sm mt-2 text-center" type="button" id="btnBackHaircut">Back</button>
+        <label class="form-label col-12" id="txtHair">Haircut Daily Counter: </label>
         <label class="form-label col-12" id="txtHairCount"> </label>
       </div>
       </div>
@@ -126,19 +127,20 @@
 <div id="divFoodTruck" style="display: none;">
   <div class="d-flex justify-content-center align-items-center">
     <div class="card card-outline card-primary">
-      <div class="card-header text-center">
-        <h1>DUO Food Truck</h1>
+      <div class="card-header text-center d-flex justify-content-between">
+        <h1 class="me-5">DUO Food Truck</h1>
+        <button class="btn btn-danger ms-5" type="button" id="btnBackFood">Back</button>
       </div>
       <div class="card-body text-center">
         <label class="form-label">Select Food</label>
-        <select class="form-control col-12">
+        <select class="form-control col-12" id="selectFood">
           <option value=""></option>
           <option value="Hot Dog">Hot Dog</option>
           <option value="Hamburger">Hamburger</option>
         </select>
       <div class="mt-1 text-center">
         <button class="btn btn-primary col-12 mt-2" id="btnSubmitFood" type="button">Submit</button>
-        <button class="btn btn-danger btn-sm mt-2" type="button" id="btnBackFood">Back</button>
+        <label class="form-label col-12" id="txtFoodCount"> </label>
       </div>
       </div>
     </div>
@@ -689,6 +691,7 @@ Delete
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
       let intHair = 0;
+      let intFood = 0;
       $('#btnBackFromP').on('click',function(){
         $('#divResults').slideToggle();
         $('#divDashboard').slideToggle();
@@ -714,8 +717,8 @@ Delete
         if($('#txtAdminLogin').val() == 'DUOADMIN' && $('#txtAdminPassword').val() == '123' && $('#txtRole').val() == 'Dentist'){
           $('#divLoginAd').slideUp('slow');
           $('#divResults').slideDown('slow');
-
-          $('#btnAdminLogin2').on('click',function(){
+          
+        $('#btnAdminLogin2').on('click',function(){
         })
           }else{
             Swal.fire({
@@ -733,18 +736,27 @@ Delete
           })
       }else{
         intHair ++ ;
+        $('#txtHairCount').append(intHair);
         Swal.fire({
         icon:'success',
         html:'<p>Haircut submitted!</p>',
           })
-          $('#txtHairCount').append(intHair);       
        }
       }) 
       $('#btnSubmitFood').on('click',function(){
+        if($('#selectFood').val()!=''){
+          newNumber = intFood + 1 ;
+          $('#txtFoodCount').text(newNumber);
         Swal.fire({
               icon:'success',
               html:'<p>Reciept printed!</p>',
           })
+        }else{
+          Swal.fire({
+              icon:'error',
+              html:'<p>Reciept not printed!</p>',
+          })
+        }
       })
 
       $(document).on('click','.btnHaircutFromDash',function(){
