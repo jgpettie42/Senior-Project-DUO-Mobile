@@ -1,0 +1,15 @@
+{
+    "background-color": "blue",
+    "description": "DUO Registration Interface",
+    "display": "fullscreen",
+    "icons":[
+        {
+            "src": "images/DUOReg.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ],
+    "name": "DUO Registration",
+    "short_name": "DUO Reg",
+    "start_url": "index.html"
+}

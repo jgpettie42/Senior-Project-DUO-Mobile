@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUO | Registration</title>
+    <link href="css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap-icons-1.10.3/bootstrap-icons.css" rel="stylesheet">
+    <link href="manifest.webmanifest" rel="manifest">
+    <link rel="apple-touch-icon" href="images/DUOReg.png">
+
+</head>
+<body class="bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="navMain" style="display:none;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><div class="h-100 d-flex align-items-center"><img src="images/DUOReg.png" alt="DUO Dashboard Logo" style="max-height: 35px;" ><span>DUO</span></div></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" id="linkCheckIn" href="#">CheckIn</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="linkCheckOut" href="#">CheckOut</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="linkSchedules" href="#">Schedules</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="linkLogout" href="#">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="row vh-100 col-12 mt-1 gx-2" id="divContent">
+        <div id="divLogin" class="col-12">
+            <div class="d-flex vh-100 col-12 justify-content-center align-items-center flex-wrap">
+                <div class="d-block col-12">
+                    <div class="col-12 d-flex justify-content-center align-items-center mb-4">
+                        <img src="images/DUOReg.png" alt="DUO Dashboard Logo">
+                    </div>
+                    <form class="col-4 offset-4">
+                        <input class="form-control mb-1" id="txtUsername" placeholder="johndoe@gmail.com" aria-label="Email Address/Username">
+                        <input class="form-control" id="txtPassword" type="password" placeholder="Password" aria-label="Password">
+                        <button class="btn btn-primary col-12 mt-3" type="button" id="btnLogin">Login</button>
+                        <button class="btn btn-outline-primary col-12 mt-1" type="button" id="btnRegister">Register Device</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        <div id="divCheckIn" style="display:none;">
+            <div class="col-12 d-flex justify-content-center align-items-center vh-100">
+              <div class="col-12 col-lg-5 card">
+                <form class="card-body">
+                  <h3 class="col-12 text-center">Select a Preregistered Participant or Register New Participant</h3>
+                    <select class="form-control mt-3">
+                      <option value=""></option>
+                      <option value="8f73bc3f-34f5-4835-98d1-980751faf08a">John Doeling</option>
+                      <option value="9f73bc3f-34f5-48a5-98d1-980751faf08a">Nicholas Sparks</option>
+                      <option value="3r73bc3f-34f5-0120-98d1-980751faf08a">Jane Smith</option>
+                      <option value="6t73bc3f-34f5-4835-98d1-980751fbg08a">Markie Whithers</option>
+                    </select>
+                  <div class="col-12 d-flex justify-content-center align-items-center flex-wrap mt-1">
+                    <button class="btn btn-primary col-12" type="button" id="btnCheckInPreReg">CheckIn Selected</button>
+                    <hr>  
+                    <button class="btn btn-outline-primary col-12 mt-3" type="button" id="btnCheckInNew">Register New</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+        <div id="divCheckOut" style="display:none;">
+          <div class="col-12 d-flex justify-content-center align-items-center vh-100">
+            <div class="col-12 col-lg-5 card">
+              <form class="card-body">
+                <h3 class="col-12 text-center">Select a Participantt</h3>
+                  <select class="form-control mt-3">
+                    <option value=""></option>
+                    <option value="8f73bc3f-34f5-4835-98d1-980751faf08a">John Doeling</option>
+                    <option value="9f73bc3f-34f5-48a5-98d1-980751faf08a">Nicholas Sparks</option>
+                    <option value="3r73bc3f-34f5-0120-98d1-980751faf08a">Jane Smith</option>
+                    <option value="6t73bc3f-34f5-4835-98d1-980751fbg08a">Markie Whithers</option>
+                  </select>
+                <div class="col-12 d-flex justify-content-center align-items-center flex-wrap mt-1">
+                  <button class="btn btn-primary col-12" type="button" id="btnCheckInPreReg">CheckOut Selected</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div id="divSchedules" style="display:none;">
+            
+        </div>
+        <div id="divDashboard" style="display:none;">
+            
+        </div>
+    </div>
+    <div id="modals">
+        <div class="modal modal-lg fade" tabindex="-1" role="dialog" id="modalAddNote">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Add Note</h5>
+                  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <label class="form-label" for="cboNoteType">Note Type</label>
+                    <select class="form-control" id="cboNoteType">
+                        <option value="General">General</option>
+                        <option value="Safety">Safety</option>
+                    </select>
+                    <label class="form-label" for="txtNoteContent">Content</label>
+                    <textarea class="form-control" rows="6"></textarea>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/lib/jquery-3.6.3.min.js"></script>
+    <script src="js/lib/bootstrap.bundle.min.js"></script>
+    <script src="js/lib/adminlte.min.js"></script>
+    <script src="js/lib/sweetalert2.min.js"></script>
+    <script src="js/registration.js"></script>
+</body>
+</html>

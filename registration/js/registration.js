@@ -55,6 +55,10 @@ $('.btnRegistar').on('click',function(){
             html:strError
         })
     } else {
+        swal.fire({
+            icon: 'success',
+            html: '<p>Congrats you are Pre-Registered!</p>'
+        })
         $('#divReg-' + strLang).slideUp(function(){
         $('#divComplete-' + strLang).slideDown();
         })
