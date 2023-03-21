@@ -81,7 +81,7 @@
                             <div class="form-floating mb-2">
                                 <label for="selectSex">Sex (Gender) *</label>
                                 <div class="input-group">
-                                    <select id="selectRegSex" class="form-control col-12" aria-label="Select Sex (as in Gender)">
+                                    <select id="selectRegSex" type="select" class="form-control col-12" aria-label="Select Sex (as in Gender)">
                                         <option selected>Open This Select Menu</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
@@ -147,7 +147,7 @@
                             <div class="mb-2">
                                 <label for="txtState" class="text-black form-label">State</label>
                                 <div class="input-group">
-                                    <select id="selectState" class="form-control">
+                                    <select id="selectState" type="select" class="form-control">
                                         <option selected>Please Select a State</option>
                                         <option value="Alabama">Alabama</option>
                                         <option value="Alaska">Alaska</option>
@@ -204,9 +204,9 @@
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <label for="txtCounty" class="text-black form-label">County</label>
+                                <label for="txtCountry" class="text-black form-label">Country</label>
                                 <div class="input-group">
-                                    <input id="txtCounty" class="form-control" placeholder="Putnam County" aria-label="County">
+                                    <input id="txtCountry" class="form-control" placeholder="United States" aria-label="Country">
                                     <span class="input-group-text bg-success"><i class="bi bi-flag-fill"></i></span>
                                 </div>
                             </div>
@@ -218,8 +218,8 @@
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <input id="txtCheckbox" type="checkbox" aria-label="Other">
-                                <label for="txtCheckbox" >Other: (homeless,...etc)</label>
+                                <input id="Checkbox" type="checkbox" aria-label="Other">
+                                <label for="Checkbox" >Other: (homeless,...etc)</label>
                             </div>
                             <div class="text-center mb-2">
                                 <button id="btnNextToEmergencyContact" type="button" class="btn btn-primary btn-block">Next To Emergency Contact</button>
@@ -243,23 +243,23 @@
                     <div class="card-body">
                             <h5 class="login-box-msg">Register an Emergency Contact</h5>
                             <div class="form-floating mb-3">
-                                <label for="txtFirstName">First Name</label>
+                                <label for="txtEmergencyFirstName">First Name</label>
                                 <div class="input-group">
-                                    <input class="form-control" placeholder="Jimmy" id="txtFirstName">
+                                    <input class="form-control" placeholder="Jimmy" id="txtEmergencyFirstName">
                                     <span class="input-group-text bg-success"><i class="bi bi-person-circle"></i></span>
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <label for="txtLastName">Last Name</label>
+                                <label for="txtEmergencyLastName">Last Name</label>
                                 <div class="input-group">
-                                    <input id="txtLastName" type="text" class="form-control" placeholder="John">
+                                    <input id="txtEmergencyLastName" type="text" class="form-control" placeholder="John">
                                     <span class="input-group-text bg-success"><i class="bi bi-person-circle"></i></span>
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <label for="txtPhoneNumber">Phone Number</label>
+                                <label for="txtEmergencyPhoneNumber">Phone Number</label>
                                 <div class="input-group">
-                                    <input id="txtPhoneNumber" type="text" name="phone" class="form-control" placeholder="(123)456-7890">
+                                    <input id="txtEmergencyPhoneNumber" type="text" name="phone" class="form-control" placeholder="(123)456-7890">
                                     <span class="input-group-text bg-success"><i class="bi bi-telephone-fill"></i></span>
                                 </div>
                             </div>
@@ -346,7 +346,7 @@
                             <div class="form-floating mb-2">
                                 <label for="selectSex">Sex (Gender) *</label>
                                 <div class="input-group">
-                                    <select id="selectSex" class="form-control col-12" aria-label="Select Sex (as in Gender)">
+                                    <select id="selectSex" type="select" class="form-control col-12" aria-label="Select Sex (as in Gender)">
                                         <option selected>Open This Select Menu</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
@@ -464,58 +464,58 @@
 
             $('#btnNextToEmergencyContact').on('click', function(){
                 blnError = false;
-                if($('#txtStreetName1').val().length > 1){
-                    blnError = true;
-                }
-                if($('#txtCity').val().length > 1){
-                    blnError = true;
-                }
-                if($('#txtState').val() == 'Please Select a State'){
-                    blnError = true;
-                }
-                if($('#txtCounty').val().length < 1){
-                    blnError = true;
-                }
-                if($('#txtZip').val().length < 1){
-                    blnError = true;
-                }
-                if(blnError == true){
-                    Swal.fire({
-                    icon: 'warning',
-                    title: 'Are you sure you want to continue without filling out these fields?',
-                    showDenyButton: true,
-                    showCancelButton: true,
-                    confirmButtonText: `Yes`,
-                    denyButtonText: `No`,
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        $('#divEmergencyContactRegister').slideToggle();
-                        $('#divSecondRegister').slideToggle();
-                    } else if (result.isDenied) {
-                        
-                    }
-                    })
-                } else {
+                if($('#Checkbox').is(':checked')){
                     $('#divEmergencyContactRegister').slideToggle();
                     $('#divSecondRegister').slideToggle();
+                } else{
+                    if($('#txtStreetName1').val().length < 1){
+                    blnError = true;
+                    }
+                    if($('#txtCity').val().length < 1){
+                        blnError = true;
+                    }
+                    if($('#txtState').val() == 'Please Select a State'){
+                        blnError = true;
+                    }
+                    if($('#txtCountry').val().length < 1){
+                        blnError = true;
+                    }
+                    if($('#txtZip').val().length < 1){
+                        blnError = true;
+                    }
+                    if(blnError == true){
+                        Swal.fire({
+                        icon: 'warning',
+                        title: 'Are you sure you want to continue without filling out these fields?',
+                        showDenyButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: `Yes`,
+                        denyButtonText: `No`,
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            $('#divEmergencyContactRegister').slideToggle();
+                            $('#divSecondRegister').slideToggle();
+                        } else if (result.isDenied) {
+                            
+                        }
+                        })
+                    } else {
+                        $('#divEmergencyContactRegister').slideToggle();
+                        $('#divSecondRegister').slideToggle();
+                    }
                 }
+                
             }) 
 
             $('#btnNextToLoginInfo').on('click', function(){
                 blnError = false;
-                if($('#txtStreetName1').val().length > 1){
+                if($('#txtEmergencyFirstName').val().length < 1){
                     blnError = true;
                 }
-                if($('#txtCity').val().length > 1){
+                if($('#txtEmergencyLastName').val().length < 1){
                     blnError = true;
                 }
-                if($('#txtState').val() == 'Please Select a State'){
-                    blnError = true;
-                }
-                if($('#txtCounty').val().length < 1){
-                    blnError = true;
-                }
-                if($('#txtZip').val().length < 1){
+                if($('#txtEmergencyPhoneNumber').val().length < 1){
                     blnError = true;
                 }
                 if(blnError == true){
@@ -546,6 +546,50 @@
                 $('#divEmergencyContactRegister').slideToggle();
             })
 
+            $('#btnFinishRegistration').on('click', function(){
+                blnError = false;
+                strHTML = '';
+                if(isValidEmail() == false){
+                    blnError = true;
+                    strHTML += '<p>The entered email must be a valid email address</p>'
+                }
+                if(isValidPassword() == false){
+                    blnError = true;
+                    strHTML += '<p>Your password must be at least 8 characters long and contain and uppercase, lowercase, and special character.</p>'
+                }
+                if(blnError == true){
+                    swal.fire({
+                            html: strHTML,
+                            icon: 'error',
+                        })
+                } else {
+                    swal.fire({
+                        icon: 'success',
+                        html: '<p>User Successfully Registered</p>',
+                        confirmButtonText: 'OK' 
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#divFrontPage').slideToggle();
+                        $('#divLoginInfo').slideToggle();
+                    }
+                    })
+                    var inputElements = document.getElementsByTagName('input');
+                    for (var i=0; i < inputElements.length; i++) {
+                        if (inputElements[i].type == 'text') {
+                            inputElements[i].value = '';
+                        }
+                        if (inputElements[i].type == 'date'){
+                            inputElements[i].value = '';
+                        }
+                        if (inputElements[i].type == 'select'){
+                            inputElements[i].value = '';
+                        }
+                        
+                    }
+                }
+
+            })
+
             function myFunction() {
                 var x = document.getElementById("txtRegistrationPassword");
                 if (x.type === "password") {
@@ -553,6 +597,18 @@
                 } else {
                     x.type = "password";
                 }
+            }
+
+            function isValidEmail(strEmailAddress){
+                var strEmailAddress = $('#txtRegistrationEmail').val();
+                let regEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+                return regEmail.test(strEmailAddress);
+            }
+
+            function isValidPassword(strPassword){
+                var strPassword = $('#txtRegistrationPassword').val()
+                let regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,64}$/;
+                return regPassword.test(strPassword);
             }
 
         </script>
