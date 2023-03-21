@@ -181,23 +181,22 @@
     </div>
 </div>
 <!--Building the dashboard like professors here. Feel free to try stuff-->
-<div id="divResults" style="display: none; background-color: white;">
-  <div class="col-12 card">
+<div id="divResults" style="display: none;">
+  <div class="col-12 card vh-100 d-flex flex-wrap">
     <div class="card-head">
       <button class="btn btn-primary" id="btnPLS">results</button>
     </div>
     <div class="card-body">
-      <div class="col-12 d-flex justify-content-between flex-wrap">
+      <div class="col-12 ">
         <div class="card col-3">
           <div class="card-header">
             <h3>Vitals</h3>
           </div>
-          <div class="card-body d-flex col-12 flex-wrap">
+          <div class="card-body col-3">
             <label class="form-label">Heart Rate</label>
             <label class="form-label">BMI</label>
             <label class="form-label">Temp</label>
           </div>
-
         </div>
       </div>
       <div class="card col-3 d-flex flex-wrap">
@@ -218,39 +217,31 @@
       </div>
     </div>
   </div>
-  <table class="col-12 table" id="tblResults" style="display: none;">
-    <thead>
-        <tr>
-            <th class="bg-warning">PID</th>
-            <th>First Name</th>
-            <th class="bg-warning">Last Name</th>
-            <th>Results</th>
-            <th class="bg-warning">Image</th>
-            <th>Services</th>
-            <th><button class="btn btn-primary" type="button" id="btnAdminResults">Results</button></th>
-            <th><button id="btnBackFromP" type="button" class="btn btn-danger">Back</button></th>
-            <th><button></button></th>
-        </tr>
-    </thead>
-    <tbody>
-  
-    </tbody>
-  </table>
+
+
 </div>
 
 <div id="divResultsPerP" style="display: none;">
-  <table class="col-12 table" id="tblResults">
-    <thead>
-        <tr>
-          <th>PID</th>
-
-          <th><button type="button" id="btnBackFromPResults" class="btn btn-danger">Back</button></th>
-        </tr>
-    </thead>
-    <tbody>
-  
-    </tbody>
-  </table>
+  <div class="card d-flex align-items-center justify-content-center">
+    <div class="card-header text-center">
+      <h3 class="form-label">Results</h3>
+      <button type="button" id="btnBackFromPResults" class="btn btn-danger">Back</button>
+    <div class="card-body">
+      <table class="col-12 table" id="tblResults">
+        <thead>
+            <tr>
+              <th style="background-color: aquamarine;">PID</th>
+              <th style="background-color: aquamarine;">Lipid Panel</th>
+              <th style="background-color: aquamarine;">Blood Work</th>
+            </tr>
+        </thead>
+        <tbody>
+      
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
 </div>
 
 
@@ -262,6 +253,11 @@
     <script>
       let intHair = 0;
       let intFood = 0;
+      $('#btnPLS').on('click',function(){
+        $('#divResultsPerP').slideToggle();
+        $('#divResults').slideToggle();
+      })
+
       $('#btnBackFromP').on('click',function(){
         $('#divResults').slideToggle();
         $('#divDashboard').slideToggle();
@@ -284,7 +280,7 @@
         //$('#tblResults tbody').append(strHTML);
       //})
       $('#btnAdminLogin2').on('click',function(){
-        if($('#txtAdminLogin').val() == 'DUOADMIN' && $('#txtAdminPassword').val() == '123' && $('#txtRole').val() == 'Dentist'){
+        if($('#txtAdminLogin').val() == '' && $('#txtAdminPassword').val() == '' && $('#txtRole').val() == ''){
           $('#divLoginAd').slideUp('slow');
           $('#divResults').slideDown('slow');
           
