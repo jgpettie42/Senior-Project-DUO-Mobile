@@ -15,6 +15,36 @@ $('.btnDashboardHeader').on('click',function(){
     $(this).siblings('.card-body').slideToggle();
 })
 
+$('#btnCheckInPreReg').on('click', function(){
+    if($('#selectParticipant').val() == ''){
+        Swal.fire({
+            icon:'error',
+            html:'<p>Please select a preregistered participant or register a new one!</p>'
+        })
+    } else {
+        //show user information that was selected in the prereg
+    }
+})
+
+$('#btnCheckInNew').on('click', function(){
+    $('#divFirstRegister').slideToggle();
+    $('#divCheckIn').slideToggle();
+})
+
+$('#btnNextToRegistration').on('click', function(){
+    $('#divFirstRegister').slideToggle();
+    $('#divSecondRegister').slideToggle();
+})
+$('#btnNextToEmergencyContact').on('click', function(){
+    $('#divEmergencyContactRegister').slideToggle();
+    $('#divSecondRegister').slideToggle();
+})
+$('#btnNextToLoginInfo').on('click', function(){
+    $('#divEmergencyContactRegister').slideToggle();
+    $('#divLoginInfo').slideToggle();
+})
+
+
 $('.btnCheck').on('click',function(){
     let strButtonText = $(this).text();
     if(strButtonText != 'Check Out'){
@@ -107,3 +137,15 @@ $('.nav-link').on('click',function(){
     $('.nav-link').removeClass('active');
     $(this).addClass('active');
 })
+
+function isValidEmail(strEmailAddress){
+    var strEmailAddress = $('#txtRegistrationEmail').val();
+    let regEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    return regEmail.test(strEmailAddress);
+}
+
+function isValidPassword(strPassword){
+    var strPassword = $('#txtRegistrationPassword').val()
+    let regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,64}$/;
+    return regPassword.test(strPassword);
+}
