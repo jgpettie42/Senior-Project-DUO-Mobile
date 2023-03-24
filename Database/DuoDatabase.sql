@@ -36,24 +36,20 @@ CREATE TABLE `tblServices` (
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`ServiceID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-CREATE TABLE `tblRelationships` (
-  `RelationshipID` varchar(50) NOT NULL,
-  `Description` longblob,
-  `Status` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`RelationshipID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblEmailTypes` (
   `EmailTypeID` varchar(50) NOT NULL,
   `Description` longblob,
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`EmailTypeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-CREATE TABLE `tblServices` (
-  `ServiceID` varchar(50) NOT NULL,
-  `Description` longblob,
-  `ExpMinutes` int DEFAULT NULL,
+CREATE TABLE `tblEmails` (
+  `EmailID` varchar(50) NOT NULL,
+  `EmailTypeID` varchar(50) DEFAULT NULL,
+  `EmailAddress` varchar(250) DEFAULT NULL,
   `Status` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`ServiceID`)
+  PRIMARY KEY (`EmailID`),
+  KEY `EmailTypeID_idx` (`EmailTypeID`),
+  CONSTRAINT `EmailTypeID` FOREIGN KEY (`EmailTypeID`) REFERENCES `tblEmailTypes` (`EmailTypeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblShifts` (
   `ShiftID` varchar(50) NOT NULL,
