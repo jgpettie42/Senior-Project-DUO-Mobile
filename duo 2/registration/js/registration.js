@@ -29,16 +29,22 @@ $('#btnCheckInPreReg').on('click', function(){
 
 $('#linkCheckIn').on('click', function(){
     $('#divCheckIn').show();
+    $('#divCheckOut').hide();
+    $('#divSchedules').hide();
     //hide all other divs
 })
 
 $('#linkCheckOut').on('click', function(){
     $('#divCheckOut').show();
+    $('#divCheckIn').hide();
+    $('#divSchedules').hide();
     //hide all other divs ask burchfield
 })
 
 $('#linkSchedules').on('click', function(){
     $('#divSchedules').show();
+    $('#divCheckIn').hide();
+    $('#divCheckOut').hide();
     //hide all other divs ask burchfield
 })
 
@@ -205,6 +211,7 @@ $('#btnFinishRegistration').on('click', function(){
         if (result.isConfirmed) {
             $('#divFrontPage').slideToggle();
             $('#divLoginInfo').slideToggle();
+            $('#divCheckIn').show();
         }
         })
         var inputElements = document.getElementsByTagName('input');
@@ -251,6 +258,9 @@ $('#linkLogout').on('click',function(){
     $('#divCheckIn').slideUp(function(){
         $('#divLogin').slideDown(function(){
             $('#navMain').slideUp();
+            $('#divCheckIn').slideUp();
+            $('#divCheckOut').slideUp();
+            $('#divSchedules').slideUp();
         });
     })
 })
