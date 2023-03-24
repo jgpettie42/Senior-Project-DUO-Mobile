@@ -22,6 +22,17 @@ CREATE TABLE `tblAddressTypes` (
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`AddressTypeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tblContactInfo` (
+  `UserID` varchar(250) NOT NULL,
+  `EmailID` varchar(50) DEFAULT NULL,
+  `PhoneID` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`UserID`),
+  KEY `EmailID_idx` (`EmailID`),
+  KEY `PhoneID_idx` (`PhoneID`),
+  CONSTRAINT `EmailID` FOREIGN KEY (`EmailID`) REFERENCES `tblEmails` (`EmailID`),
+  CONSTRAINT `PhoneID` FOREIGN KEY (`PhoneID`) REFERENCES `tblPhone` (`PhoneID`),
+  CONSTRAINT `UserID_8` FOREIGN KEY (`UserID`) REFERENCES `tblUsers` (`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblEmails` (
   `EmailID` varchar(50) NOT NULL,
   `EmailTypeID` varchar(50) DEFAULT NULL,
@@ -100,16 +111,14 @@ CREATE TABLE `tblEventVolunteers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblPhone` (
   `PhoneID` varchar(50) NOT NULL,
-  `UserID` varchar(250) DEFAULT NULL,
   `PhoneTypeID` varchar(50) DEFAULT NULL,
+  `PhoneNumber` varchar(15) DEFAULT NULL,
   `NationCode` varchar(2) DEFAULT NULL,
   `AreaCode` varchar(3) DEFAULT NULL,
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`PhoneID`),
   KEY `PhoneTypeID_idx` (`PhoneTypeID`),
-  KEY `UserID_8_idx` (`UserID`),
-  CONSTRAINT `PhoneTypeID` FOREIGN KEY (`PhoneTypeID`) REFERENCES `tblPhoneTypes` (`PhoneTypeID`),
-  CONSTRAINT `UserID_8` FOREIGN KEY (`UserID`) REFERENCES `tblUsers` (`UserID`)
+  CONSTRAINT `PhoneTypeID` FOREIGN KEY (`PhoneTypeID`) REFERENCES `tblPhoneTypes` (`PhoneTypeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblPhoneTypes` (
   `PhoneTypeID` varchar(50) NOT NULL,
@@ -209,7 +218,6 @@ CREATE TABLE `tblUsers` (
   `LastName` varchar(60) DEFAULT NULL,
   `PreferredName` varchar(60) DEFAULT NULL,
   `DOB` date DEFAULT NULL,
-  `PhoneNumber` varchar(30) DEFAULT NULL,
   `Sex` varchar(10) DEFAULT NULL,
   `Gender` varchar(60) DEFAULT NULL,
   `Pronouns` varchar(60) DEFAULT NULL,
