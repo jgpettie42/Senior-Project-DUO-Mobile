@@ -380,12 +380,60 @@
   </div>
 </div>
 
+<div id="divPreregisteredFill" style="display: none;">
+  <div class="col-12 d-flex justify-content-center align-items-center vh-100">
+    <div class="col-12 col-lg-5 card">
+      <div class="card-header text-center">
+        <h1>DUO MOBILE</h1>
+      </div>
+      <form class="card-body">
+        <h5 class="login-box-msg">Confirm an Existing Visitor</h5>
+            <label for="txtFirstName">First Name *</label>
+            <div class="input-group">
+                <input class="form-control" placeholder="John" id="txtFirstName">
+                <span class="input-group-text bg-light"><i class="bi bi-person-circle"></i></span>
+            </div>
+            <label for="txtMiddleInitial">Middle Initial *</label>
+            <div class="input-group">
+                <input id="txtMiddleInitial" type="text" class="form-control" placeholder="G">
+                <span class="input-group-text bg-light"><i class="bi bi-person-circle"></i></span>
+            </div>
+            <label for="txtLastName">Last Name *</label>
+            <div class="input-group">
+                <input id="txtLastName" type="text" class="form-control" placeholder="Doe">
+                <span class="input-group-text bg-light"><i class="bi bi-person-circle"></i></span>
+            </div>
+            <label for="selectSex">Sex (Gender) *</label>
+            <div class="input-group">
+                <select id="selectSex" type="select" class="form-control col-12" aria-label="Select Sex (as in Gender)">
+                    <option selected>Open This Select Menu</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span class="input-group-text bg-light"><i class="bi bi-gender-trans"></i></span>
+            </div>
+            <label for="txtDateOfBirth">Date of Birth *</label>
+            <div class="input-group">
+                <input id="txtDateOfBirth" type="date" class="form-control" >
+                <span class="input-group-text bg-light"><i class="bi bi-calendar-event-fill"></i></span>
+            </div>
+        <div class="text-center">
+            <button id="btnConfirmVisitor" type="button" class="btn btn-primary btn-block">Confirm Visitor</button>
+            <button id="btnBackToExisting-New" class="btn btn-link">Back to Start</button>
+        </div>
+        <hr>
+      </form>
+    </div>
+  </div>
+</div>
+
   
 
     
 
     
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/lib/jquery-3.6.3.min.js"></script>
     <script src="js/lib/bootstrap.bundle.min.js"></script>
     <script src="js/lib/adminlte.min.js"></script>

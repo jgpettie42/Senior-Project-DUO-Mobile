@@ -22,7 +22,9 @@ $('#btnCheckInPreReg').on('click', function(){
             html:'<p>Please select a preregistered participant or register a new one!</p>'
         })
     } else {
-        //show user information that was selected in the prereg
+        $('#divPreregisteredFill').slideToggle();
+        $('#divCheckIn').slideToggle();
+        $('#divContent').slideToggle();
     }
 })
 
@@ -305,4 +307,17 @@ function isValidPassword(strPassword){
     var strPassword = $('#txtRegistrationPassword').val()
     let regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,64}$/;
     return regPassword.test(strPassword);
+}
+
+$("input[name='phone']").keyup(function() {
+    $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d+)$/, "($1)$2-$3"));
+});
+
+function myFunction() {
+    var x = document.getElementById("txtRegistrationPassword");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
 }
