@@ -184,7 +184,7 @@ CREATE TABLE `tblRegistrationServices` (
   `RegistrationID` varchar(50) DEFAULT NULL,
   `ServiceID` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`RegServiceID`),
-  KEY `RegistrationID_idx` (`RegtblEventServicesistrationID`),
+  KEY `RegistrationID_idx` (`RegistrationID`),
   KEY `ServiceID_idx` (`ServiceID`),
   CONSTRAINT `RegistrationID` FOREIGN KEY (`RegistrationID`) REFERENCES `tblRegistrations` (`RegistrationID`),
   CONSTRAINT `ServiceID` FOREIGN KEY (`ServiceID`) REFERENCES `tblServices` (`ServiceID`)
@@ -205,14 +205,12 @@ CREATE TABLE `tblEmergencyContacts` (
   `ContactID` varchar(50) NOT NULL,
   `FirstName` varchar(60) DEFAULT NULL,
   `LastName` varchar(60) DEFAULT NULL,
+  `Description` longblob,
   `Phone` varchar(10) DEFAULT NULL,
   `UserID` varchar(250) DEFAULT NULL,
   `Status` varchar(10) DEFAULT NULL,
-  `RelationshipID` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ContactID`),
   KEY `UserID_idx` (`UserID`),
-  KEY `RelationshipID_idx` (`RelationshipID`),
-  CONSTRAINT `RelationshipID` FOREIGN KEY (`RelationshipID`) REFERENCES `tblRelationships` (`RelationshipID`),
   CONSTRAINT `UserID_3` FOREIGN KEY (`UserID`) REFERENCES `tblUsers` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblContactInfo` (
