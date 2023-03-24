@@ -205,15 +205,32 @@ $('#btnFinishRegistration').on('click', function(){
                 icon: 'error',
             })
     } else {
+        $('#divLoginInfo').slideToggle();
+        $('#divAssignUserID').slideToggle();
+    }
+
+})
+
+$('#btnBackToLoginInfo').on('click', function(){
+    $('#divLoginInfo').slideToggle();
+    $('#divAssignUserID').slideToggle();
+})
+
+$('#btnAssignUserID').on('click', function(){
+    if($('#txtAssignUserID').val().length < 4){
+        swal.fire({
+            icon:'error',
+            html:'<p>User ID must be at least 4 Characters long! Please reference the ID tags for the number!</p>'
+        })
+    } else {
         swal.fire({
             icon: 'success',
-            html: '<p>User Successfully Registered</p>',
+            html: "<p>User Successfully Registered for Today's Event!</p>",
             confirmButtonText: 'OK' 
         }).then((result) => {
         if (result.isConfirmed) {
-            $('#divFrontPage').slideToggle();
-            $('#divLoginInfo').slideToggle();
-            $('#divCheckIn').show();
+            $('#divAssignUserID').slideToggle();
+            $('#divCheckIn').slideToggle();
         }
         })
         var inputElements = document.getElementsByTagName('input');
@@ -229,9 +246,8 @@ $('#btnFinishRegistration').on('click', function(){
             }
             
         }
-        //also need to slide toggle to dashboard
+        //also need to toggle dashboard
     }
-
 })
 
 
@@ -317,7 +333,7 @@ $('#btnRegister').on('click',function(){
                 }).then((result)=> {
                     $('#divLogin').slideUp(function(){
                         $('#divCheckIn').slideDown(function(){
-                            $('#navMain').slideDown();
+                        $('#navMain').slideDown();
                         });
                     })
                 })
