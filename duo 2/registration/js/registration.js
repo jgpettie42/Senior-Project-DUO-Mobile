@@ -24,14 +24,27 @@ $('#btnCheckInPreReg').on('click', function(){
     } else {
         $('#divPreregisteredFill').slideToggle();
         $('#divCheckIn').slideToggle();
-        $('#divContent').slideToggle();
     }
+})
+
+$('#linkCheckIn').on('click', function(){
+    $('#divCheckIn').show();
+    //hide all other divs
+})
+
+$('#linkCheckOut').on('click', function(){
+    $('#divCheckOut').show();
+    //hide all other divs ask burchfield
+})
+
+$('#linkSchedules').on('click', function(){
+    $('#divSchedules').show();
+    //hide all other divs ask burchfield
 })
 
 $('#btnCheckInNew').on('click', function(){
     $('#divFirstRegister').slideToggle();
     $('#divCheckIn').slideToggle();
-    $('#divContent').slideToggle();
 })
 
 $('#btnNextToRegistration').on('click', function(){
@@ -67,6 +80,16 @@ $('#btnNextToRegistration').on('click', function(){
         $('#divFirstRegister').slideToggle();
         $('#divSecondRegister').slideToggle();
     } 
+})
+
+$('#btnBackToAddressInfo').on('click', function(){
+    $('#divSecondRegister').slideToggle();
+    $('#divEmergencyContactRegister').slideToggle();
+})
+
+$('#btnAlreadyRegistered').on('click', function(){
+    $('#divFirstRegister').slideToggle();
+    $('#divCheckIn').slideToggle();
 })
 
 $('#btnBackToFirstRegistration').on('click', function(){
