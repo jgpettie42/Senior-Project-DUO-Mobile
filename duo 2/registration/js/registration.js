@@ -31,21 +31,18 @@ $('#linkCheckIn').on('click', function(){
     $('#divCheckIn').show();
     $('#divCheckOut').hide();
     $('#divSchedules').hide();
-    //hide all other divs
 })
 
 $('#linkCheckOut').on('click', function(){
     $('#divCheckOut').show();
     $('#divCheckIn').hide();
     $('#divSchedules').hide();
-    //hide all other divs ask burchfield
 })
 
 $('#linkSchedules').on('click', function(){
     $('#divSchedules').show();
     $('#divCheckIn').hide();
     $('#divCheckOut').hide();
-    //hide all other divs ask burchfield
 })
 
 $('#btnCheckInNew').on('click', function(){
@@ -91,6 +88,11 @@ $('#btnNextToRegistration').on('click', function(){
 $('#btnBackToAddressInfo').on('click', function(){
     $('#divSecondRegister').slideToggle();
     $('#divEmergencyContactRegister').slideToggle();
+})
+
+$('#btnBackToCheckIn').on('click', function(){
+    $('#divPreregisteredFill').slideToggle();
+    $('#divCheckIn').slideToggle();
 })
 
 $('#btnAlreadyRegistered').on('click', function(){
