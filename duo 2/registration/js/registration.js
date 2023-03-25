@@ -27,6 +27,22 @@ $('#btnCheckInPreReg').on('click', function(){
     }
 })
 
+$('#btnConfirmVisitor').on('click', function(){
+    $('#divPreregisteredFill').slideToggle();
+    $('#divAssignUserID').slideToggle();
+})
+
+$('#btnCheckVisitor').on('click', function(){
+    $('#divExistingUser').slideToggle();
+    //show user profile here
+    //then after confirming them we will want to assign a ID for the day
+})
+
+$('#btnCheckInExistingUser').on('click', function(){
+    $('#divExistingUser').slideToggle();
+    $('#divCheckIn').slideToggle();
+})
+
 $('#linkCheckIn').on('click', function(){
     $('#divCheckIn').show();
     $('#divCheckOut').hide();
