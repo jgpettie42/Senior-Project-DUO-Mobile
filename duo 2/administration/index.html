@@ -53,6 +53,7 @@
                         <input class="form-control mb-1" id="txtUsername" placeholder="johndoe@gmail.com" aria-label="Email Address/Username">
                         <input class="form-control" id="txtPassword" type="password" placeholder="Password" aria-label="Password">
                         <button class="btn btn-primary col-12 mt-3" type="button" id="btnLogin">Login</button>
+                        <button class="btn btn-outline-primary col-12 mt-1" type="button" id="btnRegister">Register Device</button>
                     </form>
                 </div>
                 
@@ -76,12 +77,22 @@
             </div>
         </div>
         <div id="divFeatures" style="display:none;">
-          <div class="row vh-100 col-12 mt-1 gx-2">
-              <div id="divWorkflows">
-
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between">
+                <h2>Volunteers</h2>
+                <button class="btn btn-outline-danger btnBACK" type="button">Back</button>
               </div>
+              <div class="card-body">
+                <button class="btn btn-success mt-1" type="button" id="btnFood">Food Truck</button>
+                <button class="btn btn-success mt-1" type="button" id="btnHair">Haircut</button>
+              </div>
+            </div>
           </div>
       </div>
+      <div id="divWorkflows">
+
+    </div>
       <div id="divUsers" style="display:none;">
         <div class="row vh-100 col-12 mt-1 gx-2">
             <table>
