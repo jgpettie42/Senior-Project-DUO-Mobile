@@ -77,7 +77,7 @@ $('#btnNextToRegistration').on('click', function(){
         blnError = true;
         strHTML += '<p>You must enter Last Name</p>'
     }
-    if($('#txtRegMiddleInitial').val().length < 1){
+    if($('#txtRegMiddleName').val().length < 1){
         blnError = true;
         strHTML += '<p>You must enter Middle Initial</p>'
     }
@@ -212,13 +212,9 @@ $('#btnBackToEmergencyContact').on('click', function(){
 $('#btnFinishRegistration').on('click', function(){
     blnError = false;
     strHTML = '';
-    if(isValidEmail() == false){
+    if($('#selectPreferredLang').val() == 'Open This Select Menu'){
         blnError = true;
-        strHTML += '<p>The entered email must be a valid email address</p>'
-    }
-    if(isValidPassword() == false){
-        blnError = true;
-        strHTML += '<p>Your password must be at least 8 characters long and contain and uppercase, lowercase, and special character.</p>'
+        strHTML += '<p>You must enter a preferred language</p>'
     }
     if(blnError == true){
         swal.fire({
@@ -369,27 +365,6 @@ $('.nav-link').on('click',function(){
     $(this).addClass('active');
 })
 
-function isValidEmail(strEmailAddress){
-    var strEmailAddress = $('#txtRegistrationEmail').val();
-    let regEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    return regEmail.test(strEmailAddress);
-}
-
-function isValidPassword(strPassword){
-    var strPassword = $('#txtRegistrationPassword').val()
-    let regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,64}$/;
-    return regPassword.test(strPassword);
-}
-
 $("input[name='phone']").keyup(function() {
     $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d+)$/, "($1)$2-$3"));
 });
-
-function myFunction() {
-    var x = document.getElementById("txtRegistrationPassword");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
-}

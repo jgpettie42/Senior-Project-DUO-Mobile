@@ -112,9 +112,9 @@
                         <input class="form-control" placeholder="John" id="txtRegFirstName">
                         <span class="input-group-text bg-light "><i class="bi bi-person-circle"></i></span>
                     </div>
-                    <label for="txtMiddleInitial">Middle Initial *</label>
+                    <label for="txtMiddleName">Middle Name *</label>
                     <div class="input-group">
-                        <input id="txtRegMiddleInitial" type="text" class="form-control" placeholder="G">
+                        <input id="txtRegMiddleName" type="text" class="form-control" placeholder="Greg">
                         <span class="input-group-text bg-light"><i class="bi bi-person-circle"></i></span>
                     </div>
                     <label for="txtLastName">Last Name *</label>
@@ -132,9 +132,9 @@
                         </select>
                         <span class="input-group-text bg-light"><i class="bi bi-gender-trans"></i></span>
                     </div> 
-                    <label for="txtPronouns">Pronouns</label>
+                    <label for="txtPreferredName">Preferred Name</label>
                     <div class="input-group">
-                      <input id="txtPronouns" type="text" class="form-control" placeholder="He/Him">
+                      <input id="txtPreferredName" type="text" class="form-control" placeholder="John">
                       <span class="input-group-text bg-light"><i class="bi bi-gender-trans"></i></span>
                   </div>                   
                     <label for="txtDateOfBirth">Date of Birth *</label>
@@ -322,22 +322,35 @@
           <form class="card-body">
             <h5 class="login-box-msg">Register New User's Login Information</h5>
             <div class="mt-1">
-                <label for="txtRegistrationEmail" class="text-black form-label">Email</label>
+                <label for="selectPreferredLang" class="text-black form-label">Email</label>
                 <div class="input-group">
-                    <input id="txtRegistrationEmail" type="email" class="form-control" placeholder="jdoe@gmail.com" aria-label="Email">
-                    <span class="input-group-text bg-light"><i class="bi bi-envelope-at-fill"></i></span>
+                  <select id="selectPreferredLang" type="select" class="form-control col-12" aria-label="Select Language">
+                    <option selected>Open This Select Menu</option>
+                    <option value="English">English</option>
+                    <option value="Spanish">Spanish</option>
+                  </select>
                 </div>
             </div>
             <div class="mt-1">
-                <label for="txtRegistrationPassword" class="text-black form-label">Password</label>
-                <div class="input-group">
-                    <input id="txtRegistrationPassword" type="password" class="form-control" placeholder="Must Contain: 8+ Characters, Uppercase and Lowercase Letter, Special Character" aria-label="Password">
-                    <span class="input-group-text bg-light"><i class="bi bi-file-lock2-fill"></i></span>
-                </div>
-            </div>
-            <div class="mb-2">
-                <input id="txtCheckboxPassword" type="checkbox" onclick="myFunction()" aria-label="Show Passwords">
-                <label for="txtCheckboxPassword" >Show Passwords</label>
+                <label for="chkServices" class="text-black form-label">Services</label>
+                <div class="form-group" id="selServices-es">
+                  <div class="form-check">
+                      <input class="form-check-input selServices-es" type="checkbox" value="dental">
+                      <label class="form-check-label">Dental</label>
+                  </div>
+                  <div class="form-check">
+                      <input class="form-check-input selServices-es" type="checkbox" value="haircut">
+                      <label class="form-check-label">Corte de pelo</label>
+                  </div>
+                  <div class="form-check">
+                      <input class="form-check-input selServices-es" type="checkbox" value="health">
+                      <label class="form-check-label">Servicios de Salud</label>
+                  </div>
+                  <div class="form-check">
+                      <input class="form-check-input selServices-es" type="checkbox" value="vision">
+                      <label class="form-check-label">Visión</label>
+                  </div>
+              </div>
             </div>
             <button id="btnFinishRegistration" type="button" class="btn btn-primary text-white col-12 mt-3"  aria-label="Registration Button">Register Your Account</button>
             <button id="btnBackToEmergencyContact" type="button" class="btn btn-outline-primary col-12 mt-3"  aria-label="Cancel Registration">Back</button>
