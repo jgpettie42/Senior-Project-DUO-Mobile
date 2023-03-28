@@ -17,6 +17,12 @@ CREATE TABLE `tblUsers` (
   `PreferredLanguage` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tblSession` (
+  `SessionID` varchar(50) NOT NULL,
+  `UserID` varchar(250) DEFAULT NULL,
+  `StartDateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`SessionID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblAddressTypes` (
   `AddressTypeID` varchar(50) NOT NULL,
   `Description` longblob,
