@@ -111,6 +111,11 @@ $('#btnBackToCheckIn').on('click', function(){
     $('#divCheckIn').slideToggle();
 })
 
+$('#btnBackToCheckIn2').on('click', function(){
+    $('#divExistingUser').slideToggle();
+    $('#divCheckIn').slideToggle();
+})
+
 $('#btnAlreadyRegistered').on('click', function(){
     $('#divFirstRegister').slideToggle();
     $('#divCheckIn').slideToggle();
