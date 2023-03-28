@@ -1,21 +1,27 @@
 CREATE DATABASE `DuoDatabase` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 CREATE TABLE `tblUsers` (
   `UserID` varchar(50) NOT NULL,
-  `FirstName` varchar(60) DEFAULT NULL,
-  `MiddleName` varchar(60) DEFAULT NULL,
-  `LastName` varchar(60) DEFAULT NULL,
+  `FirstName` varchar(60) NOT NULL,
+  `MiddleName` varchar(60) NOT NULL,
+  `LastName` varchar(60) NOT NULL,
   `PreferredName` varchar(60) DEFAULT NULL,
-  `DOB` date DEFAULT NULL,
-  `Sex` varchar(10) DEFAULT NULL,
+  `DOB` date NOT NULL,
+  `Sex` varchar(10) NOT NULL,
   `Gender` varchar(60) DEFAULT NULL,
   `Pronouns` varchar(60) DEFAULT NULL,
   `CreateDateTime` datetime DEFAULT NULL,
   `LastUsedDateTime` datetime DEFAULT NULL,
-  `Password` varchar(50) DEFAULT NULL,
+  `Password` varchar(50) NOT NULL,
   `OpenEMRID` varchar(50) DEFAULT NULL,
   `MFAInfo` varchar(50) DEFAULT NULL,
   `PreferredLanguage` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tblSession` (
+  `SessionID` varchar(50) NOT NULL,
+  `UserID` varchar(250) DEFAULT NULL,
+  `StartDateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`SessionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblAddressTypes` (
   `AddressTypeID` varchar(50) NOT NULL,
