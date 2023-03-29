@@ -68,7 +68,7 @@ CREATE TABLE `tblEmailTypes` (
   PRIMARY KEY (`EmailTypeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblEmails` (
-  `EmailID` varchar(50) NOT NULL,
+  `EmailID` varchar(250) NOT NULL,
   `EmailTypeID` varchar(50) DEFAULT NULL,
   `EmailAddress` varchar(250) DEFAULT NULL,
   `Status` varchar(10) DEFAULT NULL,
