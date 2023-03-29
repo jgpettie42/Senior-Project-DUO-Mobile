@@ -4,11 +4,12 @@ const crypto = require('crypto');
 const cors = require('cors'); 
 const bodyParser = require('body-parser'); 
 const bcrypt = require("bcrypt"); 
+
 const pool = mysql.createPool({ 
     host: 'localhost', 
     user:'root', 
     password:'alvinandthechipmunks', 
-    database:'duo_database'
+    database:'duodatabase'
 }); 
 
 const HTTP_PORT = 8000; 
@@ -176,6 +177,26 @@ app.get("/users/:userid",(req,res,next)=> {
     })
 })
 
+app.get("/test",(req,res,next)=> {
+    pool.query('SELECT * FROM tblUsers',function(error,result){
+        if(!error){
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
+    })
+})
+
+app.get("/testnotes",(req,res,next)=> {
+    pool.query('SELECT * FROM tblDashboardNotes',function(error,result){
+        if(!error){
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
+    })
+})
+
 app.post("/users", (req,res,next)=>{
     let strFirstName = req.query.firstname || req.body.firstname;
     let strMiddleName = req.query.middleinit || req.body.middleinit;
@@ -185,12 +206,16 @@ app.post("/users", (req,res,next)=>{
     let strSex = req.query.sex || req.body.sex;
     let strDOB = req.query.dob || req.body.dob;
     let strPassword = req.query.password || req.body.password;
+
+    console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword)
+
     if(strPassword == null){
         strPassword = uuidv4();
     }
     if(strEmail == null){
         strEmail = uuidv4();
     }
+
     bcrypt.hash(strPassword,10).then(hash => {
         strPassword = hash;
         pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password) VALUES (?,?,?,?,?,?,?,?)',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
@@ -230,9 +255,10 @@ app.post("/notes",(req,res,next)=>{
 
     let strNoteID = req.query.noteid || req.body.noteid;
     let strUserID = req.query.userid || req.body.userid;
-    let Note = query.note || req.body.note;
+    let strNote = req.query.note || req.body.note;
 
-    pool.query('INSERT INTO tblDashboardNotes (NotesID,UserID,Note,CreateDateTime) VALUES (?,?,?,SYSDATE)',[strNoteID,strUserID,strNote],function(error,result){
+    console.log(strNote,strNoteID,strUserID)
+    pool.query('INSERT INTO tblDashboardNotes (NotesID,UserID,Note,CreateDateTime) VALUES (?,?,?,SYSDATE())',[strNoteID,strUserID,strNote],function(error,result){
         if(!error){
             res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
         } else {
