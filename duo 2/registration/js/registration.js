@@ -233,7 +233,7 @@ $('#btnFinishRegistration').on('click', function(){
                 icon: 'error',
             })
     } else {
-        /*$.post('http://localhost: 8000/regisration', {'enter KVPs': $('#txtFirstNameRegister')}, function(result){
+        /*$.post('http://localhost:8000/regisration', {'enter KVPs': $('#txtFirstNameRegister')}, function(result){
 
         })*/
         $('#divLoginInfo').slideToggle();
@@ -254,7 +254,7 @@ $('#btnAssignUserID').on('click', function(){
             html:'<p>User ID must be at least 4 Characters long! Please reference the ID tags for the number!</p>'
         })
     } else {
-        /*$.post('http://localhost: 8000/userID',{'KVPs': $('#txtAssignUserID').val()},function(result){
+        /*$.post('http://localhost:8000/userID',{'KVPs': $('#txtAssignUserID').val()},function(result){
             console.log(result);
         })*/
         swal.fire({
