@@ -30,7 +30,7 @@ $('#btnLogin').on('click',function(){
     if(strUsername.length && strPassword.length > 1){
         $('#divLogin').slideToggle();
         $('#divDashboard').slideToggle();
-        //if username is valid
+        //if username and password are valid
     }else{
 
         Swal.fire({
@@ -102,8 +102,24 @@ $('#btnData').on('click',function(){
     $('#divInputData').slideToggle();
     $('#divDashboard').slideToggle();
 })
+
+let BMI = $('#txtBMI').val();
+let GripStrength = $('#txtGripStrength').val();
+let Height = $('#txtHeight').val();
+let Weight = $('#txtWeight').val();
+let BP = $('#txtBP').val();
+let HR = $('#txtHR').val();
+let O2Sat = $('#txtO2Sat').val();
+let Temp = $('#txtTemp').val();
+let HealthID = $('#txtHealthID').val();
+let ExtraInfo = $('#txtExtraInfo').val();
+let Condition = $('#txtCondition').val();
+
+
+
 $('#btnSubmitData').on('click',function(){
-   /* $.post('http://localhost:8000/users',{APIKey:apikey},function(result){
+    
+   /* $.post('http://localhost:8000/dashboard',{strBMI:BMI,strGripStrength:GripStrength,strHeight:Height,strWeight:Weight,strBP:BP,strHR:HR,strO2Sat:O2Sat,strTemp:Temp,strHealthID:HealthID,strExtraInfo:ExtraInfo,strCondition:Condition},function(result){
         objResult = JSON.parse(result);
         if(objResult.Outcome){
             Swal.fire({
@@ -112,10 +128,14 @@ $('#btnSubmitData').on('click',function(){
             text: 'Data Entered',
             })
         }else{
-            handle error
+            Swal.fire({
+            icon:'error',
+            title:'oops..',
+            text: 'Data Not Entered',
+            })
         }
     })*/
-    Swal.fire({                     //remove this when post is done
+    Swal.fire({             //deleter when post is written
         icon:'success',
         title:'Good to go!',
         text: 'Data Entered',
@@ -129,7 +149,7 @@ $('.nav-link').on('click',function(){
     $(this).addClass('active');
 })
 
-/*$.getJSON('http://localhost:8000/users',{APIkeys:apiKeys},function(result){
+/*$.getJSON('http://localhost:8000/dashboard',{APIkeys:apiKeys},function(result){
     $.each(result,function(index, curInfo){
         let strHTML = '';
         strHtml +='<h3>' + curInfo.APIKEY + '</h3>';
@@ -138,24 +158,45 @@ $('.nav-link').on('click',function(){
     })    
 })*/
 
-/*$.post('http://localhost:8000/users',{APIkeys:apikeys},functions(result){
+/*$.post('http://localhost:8000/users',{APIkeys:apikeys},function(result){
     let objResult = JSON.parse(result);
-    if(error){
-        handle error
-    }else{
+    if(result.Outcome){
         handle success
+    }else{
+        handle error
     }
 })
 */
 /*$('#btnSaveNote').on('click',function(){
-    //write post here
-    Swal.fire({
+    let note = $('#txtNote').val();
+    let noteType = $('#cboNoteType).val();
+    *$.post('http://localhost:8000/notes',{strNote:note,strNoteType:noteType,USERIDHELP},function(result){
+    let objResult = JSON.parse(result);
+    if(objResult.Outcome){
+        Swal.fire({
         icon:'success',
         title:'Good to go!',
         text: 'Note Entered',
         })
         $('#modalAddNote').hide();
         $('#divDashboard').slideDown();
-    })*/
-
+    } else{
+        Swal.fire({
+        icon:'error',
+        title:'oops...',
+        text: 'Note Not Entered',
+        })
+    }
+ })*/
+    
+    
+    
+    //load users for the day
+ /*$.getJSON('http://localhost:8000/users',{APPKey:apikey},function(result){
+    $.each(result,function(index,curUsers){
+        let strHTML = '';
+        strHTML += '<p>' + curUsers.SOMETHING + '</p>'
+        $('#divPEOPLE card-something').append();
+    })
+ })*/
 
