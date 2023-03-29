@@ -13,6 +13,11 @@ const pool = mysql.createPool({
 
 const HTTP_PORT = 8000; 
 
+
+// const host = 'http://localhost:8000' //
+
+
+
 var app = express(); 
 app.use(cors()); 
 app.use(express.json()); 
@@ -160,9 +165,9 @@ app.post("/preregistration",(req,res,next)=>{
 })
 
 app.get("/users/:userid",(req,res,next)=> {
-    let strUserId = req.param.userid;
+    let strUserID = req.param.userid;
     let strSessionID = req.query.sessionid || req.body.sessionid;
-    pool.query('SELECT SELECT FirstName,LastName,MiddleName,PreferredName,DOB,Sex,PreferredLanguage FROM tblUsers WHERE UserID = ? AND (SELECT COUNT(*) FROM tblSessions WHERE SessionID = ?) > 0',[strUserId,strSessionID],function(error,result){
+    pool.query('SELECT FirstName,LastName,MiddleName,PreferredName,DOB,Sex,PreferredLanguage FROM tblUsers WHERE UserID = ? AND (SELECT COUNT(*) FROM tblSessions WHERE SessionID = ?) > 0',[strUserID,strSessionID],function(error,result){
         if(!error){
             res.status(200).send(result);
         } else {
@@ -197,3 +202,69 @@ app.post("/users", (req,res,next)=>{
         })
     })
 })
+
+app.post("/dashboard", (req,res,next)=>{
+
+    let UserID = req.query.userid || req.body.userid;
+    let strHealthID = uuidv4()
+    let strHeight = req.query.height || req.body.height;
+    let strWeight = req.query.weight || req.body.weight;
+    let strBMI = req.query.bmi || req.body.bmi;
+    let strHR = req.query.hr || req.body.hr;
+    let strBloodType = req.query.bloodtype || req.body.bloodtype;
+    let strExtraInfo = req.query.extrainfo || req.body.extrainfo;
+    let strO2 = req.query.o2 || req.body.o2;
+
+
+    pool.query('INSERT INTO tblUserHealthInfo (HealthID,Height,Weight,BMI,HeartRate,BloodType,O2,ExtraInfo,UserID) VALUES (?,?,?,?,?,?,?,?)',[strHealthID,strHeight,strWeight,strBMI,strHR,strBloodType,strExtraInfo,stro2,strUserID],function(error,result){
+        if(!error){
+            res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
+        } else {
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
+    })
+
+})
+
+app.post("/notes",(req,res,next)=>{
+
+    let strNoteID = req.query.noteid || req.body.noteid;
+    let strUserID = req.query.userid || req.body.userid;
+    let Note = query.note || req.body.note;
+
+    pool.query('INSERT INTO tblDashboardNotes (NotesID,UserID,Note,CreateDateTime) VALUES (?,?,?,SYSDATE)',[strNoteID,strUserID,strNote],function(error,result){
+        if(!error){
+            res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
+        } else {
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
+    })
+
+})
+
+
+app.get("/dashboard/:userid",(req,res,next)=> {
+    let strUserID = req.param.userid;
+    let strSessionID = req.query.sessionid || req.body.sessionid;
+    pool.query('SELECT * FROM tblDashboardNotes WHERE UserID = ? AND (SELECT COUNT(*) FROM tblSessions WHERE SessionID = ?) > 0',[strUserID,strSessionID],function(error,result){
+        if(!error){
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
+    })
+})
+
+
+app.get("/dashboard/:userid",(req,res,next)=> {
+    let strUserID = req.param.userid;
+    let strSessionID = req.query.sessionid || req.body.sessionid;
+    pool.query('SELECT HealthID,Height,Weight,BMI,HeartRate,BloodType,O2,ExtraInfo,UserID FROM tblUserHealthInfo WHERE UserID = ? AND (SELECT COUNT(*) FROM tblSessions WHERE SessionID = ?) > 0',[strUserID,strSessionID],function(error,result){
+        if(!error){
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
+    })
+})
+

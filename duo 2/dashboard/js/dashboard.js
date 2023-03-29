@@ -23,10 +23,22 @@ $('.btnCheck').on('click',function(){
     
 })
 
+
 $('#btnLogin').on('click',function(){
-    $('#divLogin').slideUp(function(){
-        $('#divDashboard').slideDown();
-    })
+    let strUsername = $('#txtUsername').val();
+    let strPassword = $('#txtPassword').val();
+    if(strUsername.length && strPassword.length > 1){
+        $('#divLogin').slideToggle();
+        $('#divDashboard').slideToggle();
+        //if username is valid
+    }else{
+
+        Swal.fire({
+            icon: 'error',
+            title: 'oops...',
+            text: 'Email and password incorrect'
+        })
+    }
 })
 
 $('#btnLogout').on('click',function(){
@@ -86,8 +98,64 @@ $('#btnRegister').on('click',function(){
     }
     
 })
+$('#btnData').on('click',function(){
+    $('#divInputData').slideToggle();
+    $('#divDashboard').slideToggle();
+})
+$('#btnSubmitData').on('click',function(){
+   /* $.post('http://localhost:8000/users',{APIKey:apikey},function(result){
+        objResult = JSON.parse(result);
+        if(objResult.Outcome){
+            Swal.fire({
+            icon:'success',
+            title:'Good to go!',
+            text: 'Data Entered',
+            })
+        }else{
+            handle error
+        }
+    })*/
+    Swal.fire({                     //remove this when post is done
+        icon:'success',
+        title:'Good to go!',
+        text: 'Data Entered',
+        })
+    $('#divInputData').slideToggle();
+    $('#divDashboard').slideToggle();
+})
 
 $('.nav-link').on('click',function(){
     $('.nav-link').removeClass('active');
     $(this).addClass('active');
 })
+
+/*$.getJSON('http://localhost:8000/users',{APIkeys:apiKeys},function(result){
+    $.each(result,function(index, curInfo){
+        let strHTML = '';
+        strHtml +='<h3>' + curInfo.APIKEY + '</h3>';
+        //etc
+        $('#divCard card-body').append(strHTML);
+    })    
+})*/
+
+/*$.post('http://localhost:8000/users',{APIkeys:apikeys},functions(result){
+    let objResult = JSON.parse(result);
+    if(error){
+        handle error
+    }else{
+        handle success
+    }
+})
+*/
+/*$('#btnSaveNote').on('click',function(){
+    //write post here
+    Swal.fire({
+        icon:'success',
+        title:'Good to go!',
+        text: 'Note Entered',
+        })
+        $('#modalAddNote').hide();
+        $('#divDashboard').slideDown();
+    })*/
+
+

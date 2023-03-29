@@ -17,6 +17,25 @@ CREATE TABLE `tblUsers` (
   `PreferredLanguage` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tblUserHealthInfo` (
+  `HealthID` varchar(50) NOT NULL,
+  `Height` varchar(50) DEFAULT NULL,
+  `Weight` varchar(50) DEFAULT NULL,
+  `BMI` varchar(50) DEFAULT NULL,
+  `BloodType` varchar(50) DEFAULT NULL,
+  `O2` varchar(50) DEFAULT NULL,
+  `ExtraInfo` varchar(250) DEFAULT NULL,
+  `UserID` varchar(250) DEFAULT NULL,
+  `HeartRate` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`HealthID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tblDashboardNotes` (
+  `NotesID` varchar(50) NOT NULL,
+  `UserID` varchar(250) DEFAULT NULL,
+  `Note` longblob,
+  `CreateDateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`NotesID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblSession` (
   `SessionID` varchar(50) NOT NULL,
   `UserID` varchar(250) DEFAULT NULL,
