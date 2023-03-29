@@ -22,6 +22,12 @@ $('#btnCheckInPreReg').on('click', function(){
             html:'<p>Please select a preregistered participant or register a new one!</p>'
         })
     } else {
+        //get preregistration data and fill the text boxes for the person to confirm user
+        $.getJSON('localhost: 8000/preregisration',{'enter KVPs': $('#txtFirstNameRegister')}, function(result){
+            $.each(result, function(i, field){
+                $('#divPreregisteredFill').append(field + '');
+            })
+        })
         $('#divPreregisteredFill').slideToggle();
         $('#divCheckIn').slideToggle();
     }
@@ -222,6 +228,9 @@ $('#btnFinishRegistration').on('click', function(){
                 icon: 'error',
             })
     } else {
+        $.post('localhost: 8000/regisration', {'enter KVPs': $('#txtFirstNameRegister')}, function(result){
+
+        })
         $('#divLoginInfo').slideToggle();
         $('#divAssignUserID').slideToggle();
     }
@@ -240,6 +249,9 @@ $('#btnAssignUserID').on('click', function(){
             html:'<p>User ID must be at least 4 Characters long! Please reference the ID tags for the number!</p>'
         })
     } else {
+        $.post('localhost: 8000/userID',{'KVPs': $('#txtAssignUserID').val()},function(result){
+            console.log(result);
+        })
         swal.fire({
             icon: 'success',
             html: "<p>User Successfully Registered for Today's Event!</p>",
@@ -282,11 +294,20 @@ $('.btnCheck').on('click',function(){
 })
 
 $('#btnLogin').on('click',function(){
-    $('#divLogin').slideUp(function(){
-        $('#divCheckIn').slideDown(function(){
-            $('#navMain').slideDown();
-        });
-    })
+    $.post('localhost:8000/sessions', {strEmail: $('#txtUsername').val()}, function(){
+        if(Outcome == 'Bad Username or Password'){
+            swal.fire({
+                icon: 'error',
+                html: '<p>Incorrect Username or Password!</p>'
+            })
+        } else {
+            $('#divLogin').slideUp(function(){
+                $('#divCheckIn').slideDown(function(){
+                    $('#navMain').slideDown();
+                });
+            })
+        }
+    }) 
 })
 
 $('#linkLogout').on('click',function(){
