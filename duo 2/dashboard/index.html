@@ -28,6 +28,116 @@
                 
             </div>
         </div>
+
+
+
+
+
+        <div id="divInputData" style="display:none;">
+            <div class="col-12 card">
+                <div class="card-body participant-profile">
+                    <div class="col-12 d-flex justify-content-between flex-wrap">
+                        <div class="col-4 card">
+                            <div class="card-header">
+                                <h3 class="col-12 text-center ">Measurements</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-rulers me-2 text-primary"></i>BMI
+                                        <input class="form-control" id="txtBMI">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-hand-index me-2 text-primary"></i>Grip Strength
+                                        <input class="form-control" id="txtGripStrength">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 card">
+                            <div class="card-header">
+                                <h3 class="col-12 text-center ">Vitals</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-heart me-2 text-primary"></i>BP</div>
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-activity me-2 text-primary"></i>HR</div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtBP"></div>
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtHR"></div>
+                                </div>
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-lungs me-2 text-primary"></i>O2 Sat</div>
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-thermometer-half me-2 text-primary"></i>Temp</div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtO2Sat"></div>
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtTemp"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 card">
+                            <div class="card-header">
+                                <h3 class="col-12 text-center ">Labs</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-bag-heart me-2 text-primary"></i><input class="form-control" id=txtCondition" placeholder="input condition"></div>
+                                </div> 
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-list-ul me-2 text-primary"></i>Lipid Panel</div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <button class="col-12 btn btn-outline-primary mt-2" data-toggle="modal" data-target="#modalLipid">View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-between flex-wrap mt-3 align-items-stretch">
+                            <div class="col-6 card mb-3">
+                                <div class="card-header">
+                                    <h3 class="col-12 text-center">Previous Visits</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="col-12 list-unstyled">
+                                        <li><button class="btn btn-outline-secondary col-12 mb-1">Health on 6 Jan 2023</i></button></li>
+                                        <li><button class="btn btn-outline-secondary col-12 mb-1">Dental on 6 Dec 2022</i></button></li>
+                                        <li><button class="btn btn-outline-warning col-12 mb-1">Dental on 26 Nov 2022 (Missed)</i></button></li>
+                                        <li><button class="btn btn-outline-primary col-12 mt-4">3 More</i></button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-6 card mb-3">
+                                <div class="card-header">
+                                    <h3 class="col-12 text-center">Appointments</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="col-12 list-unstyled">
+                                        <li><button class="btn btn-outline-secondary col-12 mb-1">Vision on 23 June 2023 at 8:30 AM</i></button></li>
+                                        <li><button class="btn btn-outline-secondary col-12 mb-1">Health on 24 June 2023 at 7:00 PM</i></button></li>
+                                        <li><button class="btn btn-outline-secondary col-12 mb-1">Dental on 8 Nov 2023 at 6:15 PM</i></button></li>
+                                        <li><button class="btn btn-outline-success col-12 mt-4">Add Appt</button></li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                            <div class="col-12 d-flex justify-content-around flex-wrap align-items-center">
+                                <button class="btn btn-success col-6" id="btnSubmitData" type="button">Submit</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
         <div id="divDashboard" style="display:none;">
             <div class="row vh-100 col-12 mt-1 gx-2">
                 <div class="col-3 h-100">
@@ -259,7 +369,7 @@
                                     <div class="col-12 d-flex justify-content-around flex-wrap align-items-center">
                                         <button class="btn btn-primary col-2">OpenEMR</button>
                                         <button class="btn btn-secondary col-2">Resources</button>
-                                        <button class="btn btn-secondary col-2">Add Entry</button>
+                                        <button class="btn btn-secondary col-2" type="button" id="btnData">Insert Data</button>
                                         <button class="btn btn-success col-2" data-toggle="modal" data-target="#modalAddNote">Add Note</button>
                                     </div>
                             </div>
@@ -318,7 +428,7 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" id="btnSaveNote">Save</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
               </div>
