@@ -294,11 +294,20 @@ $('.btnCheck').on('click',function(){
 })
 
 $('#btnLogin').on('click',function(){
-    $('#divLogin').slideUp(function(){
-        $('#divCheckIn').slideDown(function(){
-            $('#navMain').slideDown();
-        });
-    })
+    $.post('localhost:8000/sessions', {strEmail: $('#txtUsername').val()}, function(){
+        if(Outcome == 'Bad Username or Password'){
+            swal.fire({
+                icon: 'error',
+                html: '<p>Incorrect Username or Password!</p>'
+            })
+        } else {
+            $('#divLogin').slideUp(function(){
+                $('#divCheckIn').slideDown(function(){
+                    $('#navMain').slideDown();
+                });
+            })
+        }
+    }) 
 })
 
 $('#linkLogout').on('click',function(){
