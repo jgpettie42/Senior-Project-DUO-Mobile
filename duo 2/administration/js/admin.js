@@ -30,6 +30,8 @@ $('#btnLogin').on('click',function(){
         $('#divDashboard').slideDown(function(){
             $('#navMain').slideDown();
             $('#divHome').slideDown();
+        
+
            
         });
     })
@@ -40,10 +42,10 @@ $('#linkLogout').on('click',function(){
         $('#divLogin').slideDown(function(){
             $('#navMain').slideUp();
             $('#divHome').slideUp();
-            $('#divFeatures').slideDown();
-            $('#divUsers').slideDown();
-            $('#divVolunteers').slideDown();
-            $('#divInventory').slideDown();
+            $('#divFeatures').slideUp();
+            $('#divUsers').slideUp();
+            $('#divVolunteers').slideUp();
+            $('#divInventory').slideUp();
 
 
 
