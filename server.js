@@ -140,16 +140,23 @@ firstname:firstname,
 middleinit:middlename,
 lastname:lastname,
 preferredname:preferredname,
+email:email,
+sex:sex,
+dob:dob,
 
 }) */
 
 app.post("/preregistration",(req,res,next)=>{
+    console.log("Oh waddup")
     let strEvent = req.query.event || req.body.event;
     let strFirstName = req.query.firstname || req.body.firstname;
     let strMiddleName = req.query.middleinit || req.body.middleinit;
     let strLastName = req.query.lastname || req.body.lastname;
     let strPreferredName = req.query.preferredname || req.body.preferredname;
-    let strEmail = uuidv4();
+    let strEmail = req.query.email || req.body.email;
+    if(strEmail == null){
+        let strEmail = uuidv4();
+    }
     let strSex = req.query.sex || req.body.sex;
     let strDOB = req.query.dob || req.body.dob;
     let strPassword = uuidv4();
@@ -157,7 +164,7 @@ app.post("/preregistration",(req,res,next)=>{
     let strLanguage = req.query.language || req.body.language;
     bcrypt.hash(strPassword,10).then(hash => {
         strPassword = hash;
-        pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,Password,Sex,DOB,PreferredLanguage',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strSex,strDOB,strLanguage],function(error,result){
+        pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,Password,Sex,DOB,PreferredLanguage) VALUES(?,?,?,?,?,?,?,?)',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strSex,strDOB,strLanguage],function(error,result){
             if(!error){
                 let strRegistrationID = uuidv4();
                 pool.query("INSERT INTO tblRegistration VALUES (?,?,?,NOW(),'Pre')",[strRegistrationID,strEmail,strEvent],function(errors,results){
