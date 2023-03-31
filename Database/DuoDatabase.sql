@@ -29,6 +29,20 @@ CREATE TABLE `tblUserHealthInfo` (
   `HeartRate` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`HealthID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tblPreRegistration` (
+  `RegistrationID` varchar(50) NOT NULL,
+  `FirstName` varchar(60) DEFAULT NULL,
+  `MiddleName` varchar(60) DEFAULT NULL,
+  `LastName` varchar(60) DEFAULT NULL,
+  `Phone` varchar(15) DEFAULT NULL,
+  `Email` varchar(15) DEFAULT NULL,
+  `DOB` date DEFAULT NULL,
+  `Sex` varchar(10) DEFAULT NULL,
+  `PreferredLanguage` varchar(50) DEFAULT NULL,
+  `RegistrationDateTIme` datetime DEFAULT NULL,
+  `Services` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`RegistrationID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `tblDashboardNotes` (
   `NotesID` varchar(50) NOT NULL,
   `UserID` varchar(250) DEFAULT NULL,
