@@ -30,6 +30,8 @@ $('#btnLogin').on('click',function(){
         $('#divDashboard').slideDown(function(){
             $('#navMain').slideDown();
             $('#divHome').slideDown();
+        
+
            
         });
     })

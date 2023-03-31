@@ -41,9 +41,9 @@
           </div>
         </div>
     </nav>
-    <div class="row vh-100 col-12 mt-1 gx-2" id="divContent">
+  <div class=" row vh-100 col-12 mt-1 gx-2 d-flex " id="divContent">
         <div id="divLogin">
-            <div class="d-flex vh-100 col-12 justify-content-center align-items-center flex-wrap">
+            <div class="d-flex vh-100 col-12 justify-content-center align-items-center flex-wrap ">
                 <div class="d-block col-12">
                     <div class="col-12 d-flex justify-content-center align-items-center mb-4">
                         <img src="images/duologowhite01.png" width="500" height="256" alt="DUO Dashboard Logo">
@@ -61,9 +61,9 @@
         </div>
         <div id="divHome" style="display:none;">
           <div class="row vh-100 col-12 mt-1 gx-2  justify-content-center align-items-center flex-wrap">
-              <div class="col-11 h-100 card">
+              <div class="col-11 h-100 card" style="position:absolute; top: 68px;">
                   <form class="card-body">
-                    <img src="images/DUO HOMEPAFE IMAGE.png" class="justify-content-center" width="1340"  alt="DUO Homepage Image">
+                    <img src="images/DUO HOMEPAFE IMAGE.png" class="justify-content-center img-fluid" alt="DUO Homepage Image">
                     <h2 class="text-center">Welcome to the Home Page this is a test currently</h2>
                   </form>
               </div>
@@ -77,25 +77,40 @@
             </div>
         </div>
         <div id="divFeatures" style="display:none;">
-          <div class="d-flex justify-content-center align-items-center">
-            <div class="card">
+          <div class=" col d-flex justify-content-center align-items-center">
+            <div class="card"style="position:absolute; top: 68px;">
               <div class="card-header d-flex justify-content-between">
-                <h2>Volunteers</h2>
-                <button class="btn btn-outline-danger btnBACK" type="button">Back</button>
+                <h2>Account Management</h2>
               </div>
               <div class="card-body">
-                <button class="btn btn-success mt-1" type="button" id="btnFood">Food Truck</button>
-                <button class="btn btn-success mt-1" type="button" id="btnHair">Haircut</button>
+                <div class="d-flex justify-content-center align-items-center">
+                  <div class="btn-group-vertical">
+                    <div class="btn-block ">
+                      <button class="btn btn-success mt-1 " type="button" id="btnFood">Add a new Volunteer</button>
+                      <button class="btn btn-danger mt-1 " type="button" id="btnFood">Delete a Volunteer</button>
+                    </div>
+                    <div class="btn-block text-center ">
+                      <button class="btn btn-success mt-1 " type="button" id="btnFood">Add a new User</button>
+                      <button class="btn btn-danger mt-1 " type="button" id="btnFood">Delete a User</button>
+                    </div>
+                  </div>
+                </div>
+               
               </div>
             </div>
+          
           </div>
       </div>
-      <div id="divWorkflows">
-
-    </div>
       <div id="divUsers" style="display:none;">
         <div class="row vh-100 col-12 mt-1 gx-2">
-            <table>
+          <div class="col-12 d-flex justify-content-center align-items-center vh-100">
+            <div class="col-12 col-lg-5 card bg-dark border:none;" style="position:absolute; top: 68px;">
+                  <form class="col-4 offset-4">
+                    <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">USER AND DEVICE SEARCH</h2>
+                    <input class="form-control mb-1" id="txtSearch" placeholder="ex. John Doe" aria-label="User or Device Search">
+                    <button class="btn btn-primary col-12 mt-3" type="button" id="btnLogin">SEARCH</button>
+                  </form>
+            <table class="col-12 table" id="tblResultsUsers">
               <thead>
                 <tr>
                   <th><!-- Reserved for Profile Image --></th>
@@ -112,15 +127,29 @@
               </tbody>
         </div>
       </div>
+
       <div id="divVolunteers" style="display:none;">
         <div class="row vh-100 col-12 mt-1 gx-2">
-            <div class="col-9 h-100">
+          <div class="col-12 d-flex justify-content-center align-items-center vh-100">
+            <div class="col-12 col-lg-5 card"style="position:absolute; top: 68px;">
+                  <form class="col-4 offset-4">
+                    <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>VOLUNTEER SEARCH</b></h2>
+                    <input class="form-control mb-1" id="txtSearch" placeholder="John Doe" aria-label="User or Device Search">
+                    <button class="btn btn-primary col-12 mt-3" type="button" id="btnLogin">SEARCH</button>
+                  </form>
+            <table class="col-12 table" id="tblResultsVolunteers">
             </div>
         </div>
       </div>
+      </div>
       <div id="divInventory" style="display:none;">
         <div class="row vh-100 col-12 mt-1 gx-2">
-            <div class="col-9 h-100">
+            <div class="col-9 h-100 card"style="position:absolute; top: 68px;">
+              <form class="col-4 offset-4">
+                <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">USER AND DEVICE SEARCH</h2>
+                <input class="form-control mb-1" id="txtSearch" placeholder="ex. John Doe" aria-label="User or Device Search">
+                <button class="btn btn-primary col-12 mt-3" type="button" id="btnLogin">SEARCH</button>
+              </form>
               <table>
                 <thead>
                   <tr> <!-- This is just here for when we add the database to get the inventory they have, but don't know what to put yet...-->
