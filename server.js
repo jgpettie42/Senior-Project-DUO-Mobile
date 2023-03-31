@@ -134,6 +134,15 @@ app.get("/preregistration/:registrationid",(req,res,next)=>{
     }
 })
 
+/* $.post("http://localhost:8000/preregistration",{
+event:eventid,
+firstname:firstname,
+middleinit:middlename,
+lastname:lastname,
+preferredname:preferredname,
+
+}) */
+
 app.post("/preregistration",(req,res,next)=>{
     let strEvent = req.query.event || req.body.event;
     let strFirstName = req.query.firstname || req.body.firstname;
