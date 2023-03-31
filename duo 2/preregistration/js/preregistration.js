@@ -55,6 +55,11 @@ $('.btnRegistar').on('click',function(){
             html:strError
         })
     } else {
+        $.post('http://localhost:8000/preregisration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone})
+        .done(function(result){
+            let objResult = JSON.parse(result);
+            //this is success
+        })
         swal.fire({
             icon: 'success',
             html: '<p>Congrats you are Pre-Registered!</p>'

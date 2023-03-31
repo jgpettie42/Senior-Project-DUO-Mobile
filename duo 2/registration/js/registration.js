@@ -1,13 +1,22 @@
+//const { json } = require("express/lib/response");
+
 var strLang;
+
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
-        // call web service to verify ID and get role
-        $('#divLogin').slideUp(function(){
-            $('#divCheckIn').slideDown(function(){
-                $('#navMain').slideDown();
-            });
-            
-        })
+        if(sessionStorage.getItem('SimpleSession')){
+            $.getJSON('https://localhost: 8000/sessions',{SessionID:sessionStorage.getItem('SimpleSession')},function(result){
+                if(result){
+                    $('#divLogin').slideUp(function(){
+                        $('#divCheckIn').slideDown(function(){
+                            $('#navMain').slideDown();
+                        });
+                    })
+                } else {
+                    sessionStorage.removeItem('SimpleSession');
+                }
+            })
+        }
     }
 })
 
@@ -23,18 +32,13 @@ $('#btnCheckInPreReg').on('click', function(){
         })
     } else {
         //get preregistration data and fill the text boxes for the person to confirm user
-        /*$.getJSON('http://localhost: 8000/preregisration',{'enter KVPs': $('#txtFirstNameRegister')}, function(result){
+        $.getJSON('http://localhost: 8000/preregisration',{'enter KVPs': $('#txtFirstNameRegister')}, function(result){
             $.each(result, function(i, field){
                 $('#divPreregisteredFill').append(field + '');
             })
-        })*/
+        })
         $('#divPreregisteredFill').slideToggle();
         $('#divCheckIn').slideToggle();
-        $('#txtFirstName').val("John");
-        $('#txtMiddleName').val("Gregory");
-        $('#txtLastName').val("Doeling");
-        $('#selectSex').val("Male");
-        $('#txtDateOfBirth').val("12/15/1989");
     }
 })
 
@@ -233,9 +237,11 @@ $('#btnFinishRegistration').on('click', function(){
                 icon: 'error',
             })
     } else {
-        /*$.post('http://localhost:8000/regisration', {'enter KVPs': $('#txtFirstNameRegister')}, function(result){
-
-        })*/
+        $.post('http://localhost:8000/regisration', {firstname: $('#txtRegFirstName'), middleinit: $('#txtRegMiddleName'), lastname: $('#txtRegLastName'), preferredname: $('#txtPreferredName'), sex: $('#selectSex'), dob: $('#txtRegDateOfBirth')})
+        .done(function(result){
+            let objResult = JSON.parse(result);
+            //this is success
+        })
         $('#divLoginInfo').slideToggle();
         $('#divAssignUserID').slideToggle();
     }
@@ -254,9 +260,9 @@ $('#btnAssignUserID').on('click', function(){
             html:'<p>User ID must be at least 4 Characters long! Please reference the ID tags for the number!</p>'
         })
     } else {
-        /*$.post('http://localhost:8000/userID',{'KVPs': $('#txtAssignUserID').val()},function(result){
+        $.post('http://localhost:8000',{'KVPs': $('#txtAssignUserID').val()},function(result){
             console.log(result);
-        })*/
+        })
         swal.fire({
             icon: 'success',
             html: "<p>User Successfully Registered for Today's Event!</p>",
@@ -299,25 +305,39 @@ $('.btnCheck').on('click',function(){
 })
 
 $('#btnLogin').on('click',function(){
-    $('#divLogin').slideUp(function(){
-        $('#divCheckIn').slideDown(function(){
-            $('#navMain').slideDown();
-        });
-    })
-    /*$.post('http://localhost:8000/sessions', {strEmail: $('#txtUsername').val()}, function(){
+    $.post('https://localhost:8000/sessions',{Email:$('#txtCreateEmail').val()})
+    .done(function(sessionData){
         if(Outcome == 'Bad Username or Password'){
             swal.fire({
                 icon: 'error',
                 html: '<p>Incorrect Username or Password!</p>'
             })
         } else {
+            sessionStorage.setItem('SimpleSession',objSession.SessionID);
             $('#divLogin').slideUp(function(){
                 $('#divCheckIn').slideDown(function(){
                     $('#navMain').slideDown();
                 });
             })
+            let strSessionID = sessionStorage.getItem('SimpleSession'); 
+                $.getJSON('https:localhost: 8000/users',{SessionID:strSessionID,AnimalType:strAnimalType},function(animals){
+                    $.ajax({
+                        type: "PUT",
+                        contentType:"applicaiton/json; charset=utf-8",
+                        url: "https:localhost: 8000/sessions",
+                        data: { SessionID:strSessionID },
+                        success:function(result){
+                            // Completea your logout
+                        },
+                        error: function(resultError){
+                            // Handle any errors here
+                        }
+                    })
+                    $('#selectParticipant').empty();
+                    // want to get preregistered users and put them into the selectParticipant list for registration
+                })
         }
-    }) */
+    })
 })
 
 $('#linkLogout').on('click',function(){
