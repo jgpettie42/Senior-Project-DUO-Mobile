@@ -164,7 +164,7 @@ app.post("/preregistration",(req,res,next)=>{
     let strLanguage = req.query.language || req.body.language;
     bcrypt.hash(strPassword,10).then(hash => {
         strPassword = hash;
-        pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,Password,Sex,DOB,PreferredLanguage) VALUES(?,?,?,?,?,?,?,?)',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strSex,strDOB,strLanguage],function(error,result){
+        pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage) VALUES(?,?,?,?,?,?,?,?)',[strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage],function(error,result){
             if(!error){
                 let strRegistrationID = uuidv4();
                 pool.query("INSERT INTO tblRegistration VALUES (?,?,?,NOW(),'Pre')",[strRegistrationID,strEmail,strEvent],function(errors,results){
