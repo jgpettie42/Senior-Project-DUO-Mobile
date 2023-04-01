@@ -5,7 +5,7 @@ var strLang;
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         if(sessionStorage.getItem('SimpleSession')){
-            $.getJSON('https://localhost: 8000/sessions',{SessionID:sessionStorage.getItem('SimpleSession')},function(result){
+            $.getJSON('http://localhost: 8000/sessions',{SessionID:sessionStorage.getItem('SimpleSession')},function(result){
                 if(result){
                     $('#divLogin').slideUp(function(){
                         $('#divCheckIn').slideDown(function(){
@@ -237,13 +237,21 @@ $('#btnFinishRegistration').on('click', function(){
                 icon: 'error',
             })
     } else {
-        $.post('http://localhost:8000/regisration', {firstname: $('#txtRegFirstName'), middleinit: $('#txtRegMiddleName'), lastname: $('#txtRegLastName'), preferredname: $('#txtPreferredName'), sex: $('#selectSex'), dob: $('#txtRegDateOfBirth')})
+        $.post('http://localhost:8000/users', {firstname: $('#txtRegFirstName').val(), middleinit: $('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), preferredname: $('#txtPreferredName').val(), sex: $('#selectSex').val(), dob: $('#txtRegDateOfBirth').val()})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success
+            if(objResult.Outcome){
+                $('#divLoginInfo').slideToggle();
+                $('#divAssignUserID').slideToggle();
+            } else {
+                swal.fire({
+                    icon:'error',
+                    html:'<p>New User Not Registered!</p>'
+                })
+            }
         })
-        $('#divLoginInfo').slideToggle();
-        $('#divAssignUserID').slideToggle();
+       
     }
 
 })
@@ -260,32 +268,41 @@ $('#btnAssignUserID').on('click', function(){
             html:'<p>User ID must be at least 4 Characters long! Please reference the ID tags for the number!</p>'
         })
     } else {
-        $.post('http://localhost:8000',{'KVPs': $('#txtAssignUserID').val()},function(result){
+        $.post('http://localhost:8000/badgenum',{firstname: $('#txtRegFirstName').val(), middleinit:$('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), dob: $('#txtRegDateOfBirth').val(), badgenum: $('#txtAssignUserID').val()},function(result){
             console.log(result);
+            let objResult = JSON.parse(result);
+            if(objResult.Outcome){
+                swal.fire({
+                    icon: 'success',
+                    html: "<p>User Successfully Registered for Today's Event!</p>",
+                    confirmButtonText: 'OK' 
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#divAssignUserID').slideToggle();
+                    $('#divCheckIn').slideToggle();
+                }
+                })
+                var inputElements = document.getElementsByTagName('input');
+                for (var i=0; i < inputElements.length; i++) {
+                    if (inputElements[i].type == 'text') {
+                        inputElements[i].value = '';
+                    }
+                    if (inputElements[i].type == 'date'){
+                        inputElements[i].value = '';
+                    }
+                    if (inputElements[i].type == 'select'){
+                        inputElements[i].value = '';
+                    }
+                    
+                }
+            } else {
+                swal.fire({
+                    icon:'error',
+                    html:'<p>User ID not assigned!</p>'
+                })
+            }
         })
-        swal.fire({
-            icon: 'success',
-            html: "<p>User Successfully Registered for Today's Event!</p>",
-            confirmButtonText: 'OK' 
-        }).then((result) => {
-        if (result.isConfirmed) {
-            $('#divAssignUserID').slideToggle();
-            $('#divCheckIn').slideToggle();
-        }
-        })
-        var inputElements = document.getElementsByTagName('input');
-        for (var i=0; i < inputElements.length; i++) {
-            if (inputElements[i].type == 'text') {
-                inputElements[i].value = '';
-            }
-            if (inputElements[i].type == 'date'){
-                inputElements[i].value = '';
-            }
-            if (inputElements[i].type == 'select'){
-                inputElements[i].value = '';
-            }
-            
-        }
+        
         //also need to toggle dashboard
     }
 })
@@ -305,9 +322,10 @@ $('.btnCheck').on('click',function(){
 })
 
 $('#btnLogin').on('click',function(){
-    $.post('https://localhost:8000/sessions',{Email:$('#txtCreateEmail').val()})
+    $.post('http://localhost:8000/sessions?email=' + $('#txtUsername').val() + '&password=' + $('#txtPassword').val())
     .done(function(sessionData){
-        if(Outcome == 'Bad Username or Password'){
+        let objSession = JSON.parse(sessionData);
+        if(objSession.Outcome == 'Bad Username or Password'){
             swal.fire({
                 icon: 'error',
                 html: '<p>Incorrect Username or Password!</p>'
@@ -320,11 +338,11 @@ $('#btnLogin').on('click',function(){
                 });
             })
             let strSessionID = sessionStorage.getItem('SimpleSession'); 
-                $.getJSON('https:localhost: 8000/users',{SessionID:strSessionID,AnimalType:strAnimalType},function(animals){
+                $.getJSON('http:localhost: 8000/users',{SessionID:strSessionID,AnimalType:strAnimalType},function(animals){
                     $.ajax({
                         type: "PUT",
                         contentType:"applicaiton/json; charset=utf-8",
-                        url: "https:localhost: 8000/sessions",
+                        url: "http:localhost: 8000/sessions",
                         data: { SessionID:strSessionID },
                         success:function(result){
                             // Completea your logout
@@ -334,7 +352,7 @@ $('#btnLogin').on('click',function(){
                         }
                     })
                     $('#selectParticipant').empty();
-                    // want to get preregistered users and put them into the selectParticipant list for registration
+                    // want to get preregistered users and put them into the selectParticipant list for registration 
                 })
         }
     })

@@ -24,6 +24,7 @@ app.use(cors());
 app.use(express.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(bodyParser.text()); 
+
 function uuidv4() { 
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => 
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16) ); 
@@ -47,23 +48,32 @@ app.get("/sessions/:sessionid", (req,res,next)=>{
 app.post("/sessions", (req,res,next)=>{
     let strEmail = req.query.email || req.body.email;
     let strPassword = req.query.password || req.body.password;
-    pool.query('SELECT Password FROM tblUsers WHERE UserID =?',strEmail,function(error,results){
-        if(!error){
-            bcrypt.compare(strPassword,results[0].Password)
-            .then(outcome => {
-                if(outcome == true){
-                    let strSessionID = uuidv4();
-                    pool.query('INSERT INTO tblSessions VALUES(?, ?,SYSDATE())',[strSessionID, strEmail], function(error, results){
-                        if(!error){
-                            res.status(201).send(JSON.stringify({SessionID:strSessionID}));
-                        } else {
-                            res.status(401).send(JSON.stringify({Error:'Bad Username or Password'}));
-                        }
-                    })
-                }
-            })
-        }
-    })
+    
+    let strSessionID = uuidv4();
+    try {
+        pool.query('SELECT Password FROM tblUsers WHERE UPPER(UserID) = UPPER(?)',[strEmail],function(error,results){
+            if(results){
+                bcrypt.compare(strPassword,results[0].Password)
+                .then(outcome => {
+                    if(outcome == true){
+                        let strSessionID = uuidv4();
+                        pool.query('INSERT INTO tblSession VALUES(?, ?,SYSDATE())',[strSessionID, strEmail], function(error, results){
+                            if(!error){
+                                res.status(201).send(JSON.stringify({SessionID:strSessionID}));
+                            } else {
+                                res.status(401).send(JSON.stringify({Error:'Bad Username or Password'}));
+                            }
+                        })
+                    }
+                })
+            } else {
+                res.status(400).send(JSON.stringify({Error:error}));
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+    
 })
 app.post("/event",(req,res,next)=>{
 
@@ -122,7 +132,7 @@ app.get("/preregistration/:registrationid",(req,res,next)=>{
     strEventId = req.query.event || req.body.event;
     strSessionID = req.query.sessionid || req.body.sessionid;
     if(strRegistrationID == null){
-        pool.query('SELECT FirstName,LastName,MiddleName,PreferredName,DOB,Sex,PreferredLanguage FROM tblRegistrations LEFT JOIN tblUsers ON tblRegistrations.UserID = tblUsers.UserID WHERE tblUsers.UserID = tblRegistrations.UserID) FROM tblRegistrations WHERE EventID = ? AND (SELECT COUNT(*) FROM tblSessions WHERE SessionID =?) > 0',[strEventId,strSessionID],function(error,result){
+        pool.query('SELECT FirstName,LastName,MiddleName,PreferredName,DOB,Sex,PreferredLanguage FROM tblRegistrations LEFT JOIN tblUsers ON tblRegistrations.UserID = tblUsers.UserID WHERE tblUsers.UserID = tblRegistrations.UserID) FROM tblRegistrations WHERE EventID = 1 AND (SELECT COUNT(*) FROM tblSessions WHERE SessionID =?) > 0 and tblRegistrations.Status = "Pre"',[strEventId,strSessionID],function(error,result){
             if(!error){
                 res.status(200).send(result);
             } else {
@@ -134,20 +144,7 @@ app.get("/preregistration/:registrationid",(req,res,next)=>{
     }
 })
 
-/* $.post("http://localhost:8000/preregistration",{
-event:eventid,
-firstname:firstname,
-middleinit:middlename,
-lastname:lastname,
-preferredname:preferredname,
-email:email,
-sex:sex,
-dob:dob,
-
-}) */
-
 app.post("/preregistration",(req,res,next)=>{
-    console.log("Oh waddup")
     let strEvent = req.query.event || req.body.event;
     let strFirstName = req.query.firstname || req.body.firstname;
     let strMiddleName = req.query.middleinit || req.body.middleinit;
@@ -159,15 +156,21 @@ app.post("/preregistration",(req,res,next)=>{
     }
     let strSex = req.query.sex || req.body.sex;
     let strDOB = req.query.dob || req.body.dob;
-    let strPassword = uuidv4();
+    let strPassword = (strDOB.split("-")[0]) + strFirstName.split(0) + strLastName + "!"
     let strServices = req.query.services || req.body.services;
     let strLanguage = req.query.language || req.body.language;
+
+    console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword)
+    
+
     bcrypt.hash(strPassword,10).then(hash => {
         strPassword = hash;
+
         pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage) VALUES(?,?,?,?,?,?,?,?)',[strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage],function(error,result){
             if(!error){
                 let strRegistrationID = uuidv4();
-                pool.query("INSERT INTO tblRegistration VALUES (?,?,?,NOW(),'Pre')",[strRegistrationID,strEmail,strEvent],function(errors,results){
+                let strEvent = uuidv4();
+                pool.query("INSERT INTO tblRegistrations VALUES (?,?,1,NOW(),'Pre')",[strRegistrationID,strEmail],function(errors,results){
                     if(!errors){
                         res.status(201).send(JSON.stringify({RegistrationID:strRegistrationID}));
                     } else {
@@ -212,6 +215,27 @@ app.get("/testnotes",(req,res,next)=> {
         }
     })
 })
+
+app.post("/badgenum", (req,res,next)=>{
+    let strFirstName = req.query.firstname || req.body.firstname;
+    let strMiddleName = req.query.middleinit || req.body.middleinit;
+    let strLastName = req.query.lastname || req.body.lastname;
+
+    let strDOB = req.query.dob || req.body.dob;
+    let intBadgeNum = req.query.badgenum || req.body.badgenum;
+
+    console.log(strFirstName,strMiddleName,strLastName,strDOB,intBadgeNum)
+
+        pool.query('update tblusers set BadgeNum = (?) WHERE (FirstName,MiddleName,LastName,DOB) = (?,?,?,?)',[intBadgeNum,strFirstName,strMiddleName,strLastName,strDOB],function(error,result){
+            if(!error){
+                res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
+            } else {
+                res.status(400).send(JSON.stringify({Error:error}));
+            }
+        })
+})
+
+
 
 app.post("/users", (req,res,next)=>{
     let strFirstName = req.query.firstname || req.body.firstname;
