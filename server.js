@@ -129,7 +129,7 @@ app.get("/location/:locationid",(req,res,next)=>{
 
 app.get("/preregistration/:registrationid",(req,res,next)=>{
     strRegistrationID = req.params.registrationid;
-    strEventId = req.query.event || req.body.event;
+    strEventId = 1
     strSessionID = req.query.sessionid || req.body.sessionid;
     if(strRegistrationID == null){
         pool.query('SELECT FirstName,LastName,MiddleName,PreferredName,DOB,Sex,PreferredLanguage FROM tblRegistrations LEFT JOIN tblUsers ON tblRegistrations.UserID = tblUsers.UserID WHERE tblUsers.UserID = tblRegistrations.UserID) FROM tblRegistrations WHERE EventID = 1 AND (SELECT COUNT(*) FROM tblSessions WHERE SessionID =?) > 0 and tblRegistrations.Status = "Pre"',[strEventId,strSessionID],function(error,result){

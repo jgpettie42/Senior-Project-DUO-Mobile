@@ -32,7 +32,7 @@ $('#btnCheckInPreReg').on('click', function(){
         })
     } else {
         //get preregistration data and fill the text boxes for the person to confirm user
-        $.getJSON('http://localhost: 8000/preregisration',{'enter KVPs': $('#txtFirstNameRegister')}, function(result){
+        $.getJSON('http://localhost:8000/preregisration',{sessionid: sessionStorage.getItem('SimpleSession')}, function(result){
             $.each(result, function(i, field){
                 $('#divPreregisteredFill').append(field + '');
             })
