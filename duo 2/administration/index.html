@@ -78,37 +78,199 @@
         </div>
         <div id="divFeatures" style="display:none;">
           <div class=" col d-flex justify-content-center align-items-center">
-            <div class="card"style="position:absolute; top: 68px;">
-              <div class="card-header d-flex justify-content-between">
-                <h2>Account Management</h2>
-              </div>
-              <div class="card-body">
+
+
+
+            <div id='divVolunteerForm' class="card border-0 bg-dark col-6"style="position:absolute; top: 68px; left: -100px; px;">
+              <form>
+                <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">VOLUNTEER ACCOUNT MANAGEMENT</h2>
                 <div class="d-flex justify-content-center align-items-center">
                   <div class="btn-group-vertical">
-                    <div class="btn-block ">
-                      <button class="btn btn-success mt-1 " type="button" id="btnFood">Add a new Volunteer</button>
-                      <button class="btn btn-danger mt-1 " type="button" id="btnFood">Delete a Volunteer</button>
-                    </div>
                     <div class="btn-block text-center ">
-                      <button class="btn btn-success mt-1 " type="button" id="btnFood">Add a new User</button>
-                      <button class="btn btn-danger mt-1 " type="button" id="btnFood">Delete a User</button>
+                      <button class="btn btn-primary mt-1 " type="button" id="btnAddVolunteer">Add a new Volunteer</button>
+                      <button class="btn btn-secondary mt-1 " type="button" id="btnDelVolunteer">Delete a Volunteer</button>
+                      <button class="btn btn-info mt-1 " type="button" id="btnUpdateVolunteer">Update a Volunteer</button>
+
                     </div>
                   </div>
                 </div>
                
+              </form>
+            </div>
+
+            <div id="divAddVolunteer" style="display:none;">
+              <div class=" col d-flex justify-content-center align-items-center">
+                <div class="card border-0 bg-dark col-5"style="position:absolute; top: 68px; left:-100px; px;">
+                  <form>
+                    <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">NEW VOLUNTEER</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <div class="btn-group-vertical">
+                        <div class="btn-block text-center ">
+                          <button class="btn btn-primary mt-1 " type="button" id="btnAddVolunteerSubmit">Add the new Volunteer</button>
+                          <button class="btn btn-outline-danger mt-1 " type="button" id="btnAddVolunteerGoBack">GO BACK</button>
+                          <label for="txtFirstName">First Name *</label>
+                    <div class="input-group mt-3">
+                        <input class="form-control" placeholder="John" id="txtRegFirstName">
+                        <span class="input-group-text bg-light "><i class="bi bi-person-circle"></i></span>
+                    </div>
+                    <label for="txtMiddleName">Middle Name *</label>
+                    <div class="input-group">
+                        <input id="txtRegMiddleName" type="text" class="form-control" placeholder="Greg">
+                        <span class="input-group-text bg-light"><i class="bi bi-person-circle"></i></span>
+                    </div>
+                    <label for="txtLastName">Last Name *</label>
+                    <div class="input-group">
+                        <input id="txtRegLastName" type="text" class="form-control" placeholder="Doe">
+                        <span class="input-group-text bg-light"><i class="bi bi-person-circle"></i></span>
+                    </div>
+                    <label for="selectSex">Sex (Gender) *</label>
+                    <div class="input-group">
+                        <select id="selectRegSex" type="select" class="form-control col-12" aria-label="Select Sex (as in Gender)">
+                            <option selected>Open This Select Menu</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span class="input-group-text bg-light"><i class="bi bi-gender-trans"></i></span>
+                    </div> 
+                    <label for="txtPreferredName">Preferred Name</label>
+                    <div class="input-group">
+                      <input id="txtPreferredName" type="text" class="form-control" placeholder="John">
+                      <span class="input-group-text bg-light"><i class="bi bi-gender-trans"></i></span>
+                  </div>                   
+                    <label for="txtDateOfBirth">Date of Birth *</label>
+                    <div class="input-group">
+                        <input id="txtRegDateOfBirth" type="date" class="form-control" >
+                        <span class="input-group-text bg-light"><i class="bi bi-calendar-event-fill"></i></span>
+                    </div>
+                    <label for="txtPhoneNumber">Phone Number</label>
+                    <div class="input-group">
+                        <input id="txtPhoneNumber" type="text" name="phone" class="form-control" placeholder="(123)456-7890">
+                        <span class="input-group-text bg-light"><i class="bi bi-telephone-fill"></i></span>
+                    </div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                  </form>
+                </div>
+            </div>
+            </div>
+
+            <div id="divDelVolunteer" style="display:none;">
+              <div class=" col d-flex justify-content-center align-items-center">
+                <div class="card border-0 bg-dark col-5"style="position:absolute; top: 68px; left: -100px; px;">
+                  <form>
+                    <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">DELETE VOLUNTEER</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <div class="btn-group-vertical">
+                        <div class="btn-block text-center ">
+                          <button class="btn btn-secondary mt-1 " type="button" id="btnDelVolunteerGoBack">GO BACK</button>
+                          <form class="col-4 offset-4">
+                            <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">VOLUNTEER SEARCH</h2>
+                            <input class="form-control mb-1" id="txtSearch" placeholder="ex. John Doe" aria-label="User or Device Search">
+                            <button class="btn btn-primary col-12 mt-3" type="button" id="btnUserSearch">SEARCH</button>
+                            <button class="btn btn-primary mt-1 " type="button" id="btnDelVolunteerSubmit">Delete the Volunteer</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                   
+                  </form>
+                </div>
+
               </div>
             </div>
-          
+
+
+            <div id="divUpdateVolunteer" style="display:none;">
+              <div class=" col d-flex justify-content-center align-items-center">
+                <div class="card border-0 bg-dark col-5"style="position:absolute; top: 68px; left: -100px; px;">
+                  <form>
+                    <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">UPDATE VOLUNTEER</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <div class="btn-group-vertical">
+                        <div class="btn-block text-center ">
+                          <button class="btn btn-primary mt-1 " type="button" id="btnUpdateVolunteerSubmit">Update Volunteer</button>
+                          <button class="btn btn-secondary mt-1 " type="button" id="btnUpdateVolunteerGoBack">GO BACK</button>
+                        </div>
+                      </div>
+                    </div>
+                   
+                  </form>
+                </div>
+
+              </div>
+            </div>
+
+            <div id='divAnalytics' class="card border-0 bg-dark col-3"style="position:absolute; top: 68px;">
+              <form>
+                <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">ANALYTICS</h2>
+                <div class="d-flex justify-content-center align-items-center">
+                  <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown button
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Health & Wellness</a>
+                      <a class="dropdown-item" href="#">Dental</a>
+                      <a class="dropdown-item" href="#">Vision</a>
+                      <a class="dropdown-item" href="#">Check In</a>
+                      <a class="dropdown-item" href="#">Check Out</a>
+                      <a class="dropdown-item" href="#">Volunteers</a>
+
+
+                    </div>
+                  </div>
+                </div>
+               
+              </form>
+            </div>
+
+            <div id='divDelUser' class="card border-0 bg-dark col-3"style="position:absolute; top: 68px; right: 100px;">
+              <form>
+                <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">USER ACCOUNT MANAGEMENT</h2>
+                <div class="d-flex justify-content-center align-items-center">
+                  <div class="btn-group-vertical">
+                    <div class="btn-block text-center ">
+                      <button class="btn btn-primary  " type="button" id="btnDelUser">Delete a User</button>
+                      
+                    </div>
+                  </div>
+                </div>
+               
+              </form>
           </div>
-      </div>
+
+
+
+          <div id='divDelUserForm' class="card border-0 bg-dark col-3"style="position:absolute; top: 68px; right: 100px; display:none">
+              <form>
+                <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">DELETE A USER</h2>
+                <div class="d-flex justify-content-center align-items-center">
+                  <div class="btn-group-vertical">
+                    <div class="btn-block text-center ">
+                      <button class="btn btn-primary  " type="button" id="btnDelUserSubmit">Delete the User</button>
+                      <button class="btn btn-outline-danger " type="button" id="btnDelUserGoBack">GO BACK</button>
+                      
+                    </div>
+                  </div>
+                </div>
+               
+              </form>
+          </div>
+
+           
+        </div>
+      
       <div id="divUsers" style="display:none;">
         <div class="row vh-100 col-12 mt-1 gx-2">
           <div class="col-12 d-flex justify-content-center align-items-center vh-100">
-            <div class="col-12 col-lg-5 card bg-dark border:none;" style="position:absolute; top: 68px;">
+            <div class="col-12 col-lg-5 card border-0 bg-dark ;" style="position:absolute; top: 68px;">
                   <form class="col-4 offset-4">
-                    <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">USER AND DEVICE SEARCH</h2>
+                    <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">USER OR DEVICE SEARCH</h2>
                     <input class="form-control mb-1" id="txtSearch" placeholder="ex. John Doe" aria-label="User or Device Search">
-                    <button class="btn btn-primary col-12 mt-3" type="button" id="btnLogin">SEARCH</button>
+                    <button class="btn btn-primary col-12 mt-3" type="button" id="btnUserSearch">SEARCH</button>
                   </form>
             <table class="col-12 table" id="tblResultsUsers">
               <thead>
@@ -125,30 +287,31 @@
               <tbody>
 
               </tbody>
+              </div>
+          </div>
         </div>
       </div>
-
-      <div id="divVolunteers" style="display:none;">
+    <div id="divVolunteers" style="display:none;">
         <div class="row vh-100 col-12 mt-1 gx-2">
           <div class="col-12 d-flex justify-content-center align-items-center vh-100">
             <div class="col-12 col-lg-5 card"style="position:absolute; top: 68px;">
                   <form class="col-4 offset-4">
                     <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>VOLUNTEER SEARCH</b></h2>
                     <input class="form-control mb-1" id="txtSearch" placeholder="John Doe" aria-label="User or Device Search">
-                    <button class="btn btn-primary col-12 mt-3" type="button" id="btnLogin">SEARCH</button>
+                    <button class="btn btn-primary col-12 mt-3" type="button" id="btnVolunteerSearch">SEARCH</button>
                   </form>
-            <table class="col-12 table" id="tblResultsVolunteers">
-            </div>
+              </div>
+            <table class="col-12 table" id="tblResultsVolunteers"> 
         </div>
       </div>
-      </div>
+    </div>
       <div id="divInventory" style="display:none;">
         <div class="row vh-100 col-12 mt-1 gx-2">
             <div class="col-9 h-100 card"style="position:absolute; top: 68px;">
               <form class="col-4 offset-4">
                 <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">USER AND DEVICE SEARCH</h2>
                 <input class="form-control mb-1" id="txtSearch" placeholder="ex. John Doe" aria-label="User or Device Search">
-                <button class="btn btn-primary col-12 mt-3" type="button" id="btnLogin">SEARCH</button>
+                <button class="btn btn-primary col-12 mt-3" type="button" id="btnInventory">SEARCH</button>
               </form>
               <table>
                 <thead>

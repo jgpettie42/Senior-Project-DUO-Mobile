@@ -88,6 +88,80 @@ $('#linkInventory').on('click', function(){
     $('#divHome').hide();
 })
 
+$('#btnAddVolunteer').on('click',function(){
+    $('#divVolunteerForm').slideUp(function(){
+        $('#divAddVolunteer').slideDown(function(){
+        
+
+           
+        });
+    })
+})
+$('#btnDelVolunteer').on('click',function(){
+    $('#divVolunteerForm').slideUp(function(){
+        $('#divDelVolunteer').slideDown(function(){
+        
+
+           
+        });
+    })
+})
+$('#btnUpdateVolunteer').on('click',function(){
+    $('#divVolunteerForm').slideUp(function(){
+        $('#divUpdateVolunteer').slideDown(function(){
+        
+
+           
+        });
+    })
+})
+$('#btnAddVolunteerGoBack').on('click',function(){
+    $('#divVolunteerForm').slideDown(function(){
+        $('#divAddVolunteer').slideUp(function(){
+        
+
+           
+        });
+    })
+})
+$('#btnDelVolunteerGoBack').on('click',function(){
+    $('#divVolunteerForm').slideDown(function(){
+        $('#divDelVolunteer').slideUp(function(){
+        
+
+           
+        });
+    })
+})
+$('#btnUpdateVolunteerGoBack').on('click',function(){
+    $('#divVolunteerForm').slideDown(function(){
+        $('#divUpdateVolunteer').slideUp(function(){
+        
+
+           
+        });
+    })
+})
+
+$('#btnDelUser').on('click',function(){
+    $('#divDelUserForm').slideDown(function(){
+        $('#divDelUser').slideUp(function(){
+        
+
+           
+        });
+    })
+})
+$('#btnDelUserGoBack').on('click',function(){
+    $('#divDelUserForm').slideUp(function(){
+        $('#divDelUser').slideDown(function(){
+        
+
+           
+        });
+    })
+})
+
 $('#btnRegister').on('click',function(){
     if(localStorage.getItem('DUODeviceID')){
         // call web service to verify ID and get role
