@@ -1,11 +1,13 @@
 //const { json } = require("express/lib/response");
 
 var strLang;
+var arrPreReqParts;
 
+var strBaseURL = 'http://localhost:8000';
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         if(sessionStorage.getItem('SimpleSession')){
-            $.getJSON('http://localhost: 8000/sessions',{SessionID:sessionStorage.getItem('SimpleSession')},function(result){
+            $.getJSON(strBaseURL + '/sessions',{sessionid:sessionStorage.getItem('SimpleSession')},function(result){
                 if(result){
                     $('#divLogin').slideUp(function(){
                         $('#divCheckIn').slideDown(function(){
@@ -25,24 +27,51 @@ $('.btnDashboardHeader').on('click',function(){
 })
 
 $('#btnCheckInPreReg').on('click', function(){
-    if($('#selectParticipant').val() == ''){
+    let strPreRegID = $('#selectParticipant').val();
+    if(strPreRegID == ''){
         Swal.fire({
             icon:'error',
             html:'<p>Please select a preregistered participant or register a new one!</p>'
         })
     } else {
         //get preregistration data and fill the text boxes for the person to confirm user
-        $.getJSON('http://localhost:8000/preregisration',{sessionid: sessionStorage.getItem('SimpleSession')}, function(result){
-            $.each(result, function(i, field){
-                $('#divPreregisteredFill').append(field + '');
-            })
-        })
+        let objSelectedPart = arrPreReqParts.filter(el=> el.RegistrationID == strPreRegID)[0];
+
+        let strData = $("#selectParticipant").val()
+        let strSex = objSelectedPart.Sex
+        let strfname = objSelectedPart.FirstName
+        let strlname = objSelectedPart.LastName
+        let strdob = objSelectedPart.DOB.split('T')[0]
+        let strPhone = objSelectedPart.Phone;
+        let strEmail = objSelectedPart.Email;
+        let strLang = objSelectedPart.PreferredLanguage;
+        let strPreferredName = objSelectedPart.PreferredName;
+        let strMiddleName = objSelectedPart.MiddleName;
+        let strServices = objSelectedPart.Services;
+
+        $('#txtPreFirstName').val(strfname);
+        $('#txtPreLastName').val(strlname);
+        $('#txtPreMiddleNameName').val(strMiddleName);
+        $('#txtPreDateOfBirth').val(strdob);
+        $('#txtPrePhone').val(strPhone);
+        $('#txtPreEmail').val(strEmail);
+        $('#txtPrePreferredName').val(strPreferredName);
+        $('#txtPreServices').val(strServices);
+        $('#txtPreLanguage').val(strLang);
+
+        $("#txtPreSex").val(strSex)
+
         $('#divPreregisteredFill').slideToggle();
         $('#divCheckIn').slideToggle();
     }
 })
 
 $('#btnConfirmVisitor').on('click', function(){
+    $('#divPreregisteredFill').slideToggle();
+    $('#divAssignUserID').slideToggle();
+})
+
+$('#btnPreConfirmVisitor').on('click', function(){
     $('#divPreregisteredFill').slideToggle();
     $('#divAssignUserID').slideToggle();
 })
@@ -237,7 +266,7 @@ $('#btnFinishRegistration').on('click', function(){
                 icon: 'error',
             })
     } else {
-        $.post('http://localhost:8000/users', {firstname: $('#txtRegFirstName').val(), middleinit: $('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), preferredname: $('#txtPreferredName').val(), sex: $('#selectSex').val(), dob: $('#txtRegDateOfBirth').val()})
+        $.post(strBaseURL + '/users', {firstname: $('#txtRegFirstName').val(), middleinit: $('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), preferredname: $('#txtPreferredName').val(), sex: $('#selectSex').val(), dob: $('#txtRegDateOfBirth').val()})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success
@@ -268,7 +297,20 @@ $('#btnAssignUserID').on('click', function(){
             html:'<p>User ID must be at least 4 Characters long! Please reference the ID tags for the number!</p>'
         })
     } else {
-        $.post('http://localhost:8000/badgenum',{firstname: $('#txtRegFirstName').val(), middleinit:$('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), dob: $('#txtRegDateOfBirth').val(), badgenum: $('#txtAssignUserID').val()},function(result){
+        /*
+         $('#txtPreFirstName').val(strfname);
+        $('#txtPreLastName').val(strlname);
+        $('#txtPreMiddleNameName').val(strMiddleName);
+        $('#txtPreDateOfBirth').val(strdob);
+        $('#txtPrePhone').val(strPhone);
+        $('#txtPreEmail').val(strEmail);
+        $('#txtPrePreferredName').val(strPreferredName);
+        $('#txtPreServices').val(strServices);
+        $('#txtPreLanguage').val(strLang);
+        */
+
+
+        $.post(strBaseURL + '/badgenum',{firstname: $('#txtPreFirstName').val(), middleinit:$('#txtPreMiddleName').val(), lastname: $('#txtPreLastName').val(), dob: $('#txtPreDateOfBirth').val(), badgenum: $('#txtAssignUserID').val()},function(result){
             console.log(result);
             let objResult = JSON.parse(result);
             if(objResult.Outcome){
@@ -321,8 +363,30 @@ $('.btnCheck').on('click',function(){
     
 })
 
+function fillPreRegs(){
+    $('#selectParticipant').empty();
+    strSessionID = sessionStorage.getItem('SimpleSession');
+    let objPreRegPromise = $.getJSON(strBaseURL + '/preregistration',{sessionid:strSessionID},function(result){
+        arrPreReqParts = result;
+    })
+
+    $.when(objPreRegPromise).done(function(){
+        $.each(arrPreReqParts,function(index,participant){
+            let shortDOB = participant.DOB.split('T')[0]
+            let strHTML = '<option value="' + participant.RegistrationID + '">' + participant.FirstName + " " + participant.LastName + " | " + shortDOB + '</option>';
+            $('#selectParticipant').append(strHTML);
+        })
+    })
+        
+}
+
+setInterval(function(){
+    fillPreRegs()
+}, 30000)
+
 $('#btnLogin').on('click',function(){
-    $.post('http://localhost:8000/sessions?email=' + $('#txtUsername').val() + '&password=' + $('#txtPassword').val())
+    console.log(strBaseURL)
+    $.post(strBaseURL + '/sessions?email=' + $('#txtUsername').val() + '&password=' + $('#txtPassword').val())
     .done(function(sessionData){
         let objSession = JSON.parse(sessionData);
         if(objSession.Outcome == 'Bad Username or Password'){
@@ -338,22 +402,7 @@ $('#btnLogin').on('click',function(){
                 });
             })
             let strSessionID = sessionStorage.getItem('SimpleSession'); 
-                $.getJSON('http:localhost: 8000/users',{SessionID:strSessionID,AnimalType:strAnimalType},function(animals){
-                    $.ajax({
-                        type: "PUT",
-                        contentType:"applicaiton/json; charset=utf-8",
-                        url: "http:localhost: 8000/sessions",
-                        data: { SessionID:strSessionID },
-                        success:function(result){
-                            // Completea your logout
-                        },
-                        error: function(resultError){
-                            // Handle any errors here
-                        }
-                    })
-                    $('#selectParticipant').empty();
-                    // want to get preregistered users and put them into the selectParticipant list for registration 
-                })
+                fillPreRegs();
         }
     })
 })
