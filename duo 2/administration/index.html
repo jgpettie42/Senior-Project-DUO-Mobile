@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" href="images\duologowhite01.png">
 </head>
 <body class="bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="navMain" style="display:none;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="navMain" style="display:none;">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"><div class="h-100 d-flex align-items-center"><img src="images\duologowhite01.png"  alt="DUO Dashboard Logo" style="max-height: 35px;" ></div></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +29,7 @@
                 <a class="nav-link" id="linkUsers" href="#">Users\Devices</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="linkVolunteers" href="#">Volunteers</a>
+                <a class="nav-link" id="linkVolunteer" href="#">Volunteers</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="linkInventory" href="#">Inventory</a>
@@ -40,9 +40,9 @@
             </ul>
           </div>
         </div>
-    </nav>
+  </nav>
   <div class=" row vh-100 col-12 mt-1 gx-2 d-flex " id="divContent">
-        <div id="divLogin">
+    <div id="divLogin">
             <div class="d-flex vh-100 col-12 justify-content-center align-items-center flex-wrap ">
                 <div class="d-block col-12">
                     <div class="col-12 d-flex justify-content-center align-items-center mb-4">
@@ -58,7 +58,7 @@
                 </div>
                 
             </div>
-        </div>
+    </div>
         <div id="divHome" style="display:none;">
           <div class="row vh-100 col-12 mt-1 gx-2  justify-content-center align-items-center flex-wrap">
               <div class="col-11 h-100 card" style="position:absolute; top: 68px;">
@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <div id="divFeatures" style="display:none;">
+    <div id="divFeatures" style="display:none;">
           <div class=" col d-flex justify-content-center align-items-center">
 
 
@@ -88,7 +88,7 @@
                   <div class="btn-group-vertical">
                     <div class="btn-block text-center ">
                       <button class="btn btn-primary mt-1 " type="button" id="btnAddVolunteer">Add a new Volunteer</button>
-                      <button class="btn btn-secondary mt-1 " type="button" id="btnDelVolunteer">Delete a Volunteer</button>
+                      <button class="btn btn-danger mt-1 " type="button" id="btnDelVolunteer">Delete a Volunteer</button>
                       <button class="btn btn-info mt-1 " type="button" id="btnUpdateVolunteer">Update a Volunteer</button>
 
                     </div>
@@ -165,7 +165,7 @@
                     <div class="d-flex justify-content-center align-items-center">
                       <div class="btn-group-vertical">
                         <div class="btn-block text-center ">
-                          <button class="btn btn-secondary mt-1 " type="button" id="btnDelVolunteerGoBack">GO BACK</button>
+                          <button class="btn btn-outline-danger mt-1 " type="button" id="btnDelVolunteerGoBack">GO BACK</button>
                           <form class="col-4 offset-4">
                             <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">VOLUNTEER SEARCH</h2>
                             <input class="form-control mb-1" id="txtSearch" placeholder="ex. John Doe" aria-label="User or Device Search">
@@ -192,7 +192,7 @@
                       <div class="btn-group-vertical">
                         <div class="btn-block text-center ">
                           <button class="btn btn-primary mt-1 " type="button" id="btnUpdateVolunteerSubmit">Update Volunteer</button>
-                          <button class="btn btn-secondary mt-1 " type="button" id="btnUpdateVolunteerGoBack">GO BACK</button>
+                          <button class="btn btn-outline-danger mt-1 " type="button" id="btnUpdateVolunteerGoBack">GO BACK</button>
                         </div>
                       </div>
                     </div>
@@ -233,7 +233,7 @@
                 <div class="d-flex justify-content-center align-items-center">
                   <div class="btn-group-vertical">
                     <div class="btn-block text-center ">
-                      <button class="btn btn-primary  " type="button" id="btnDelUser">Delete a User</button>
+                      <button class="btn btn-danger  " type="button" id="btnDelUser">Delete a User</button>
                       
                     </div>
                   </div>
@@ -244,14 +244,19 @@
 
 
 
-          <div id='divDelUserForm' class="card border-0 bg-dark col-3"style="position:absolute; top: 68px; right: 100px; display:none">
+          <div id='divDelUserForm' class="card border-0 bg-dark col-3"style="position:absolute; top: 68px; right: 100px; display:none;">
               <form>
                 <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">DELETE A USER</h2>
                 <div class="d-flex justify-content-center align-items-center">
                   <div class="btn-group-vertical">
                     <div class="btn-block text-center ">
-                      <button class="btn btn-primary  " type="button" id="btnDelUserSubmit">Delete the User</button>
                       <button class="btn btn-outline-danger " type="button" id="btnDelUserGoBack">GO BACK</button>
+                      <form class="col-4 offset-4">
+                        <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">VOLUNTEER SEARCH</h2>
+                        <input class="form-control mb-1" id="txtSearch" placeholder="ex. John Doe" aria-label="User or Device Search">
+                        <button class="btn btn-primary col-12 mt-3" type="button" id="btnUserSearch">SEARCH</button>
+                        <button class="btn btn-primary mt-1 " type="button" id="btnDelUserSubmit">Delete the User</button>
+                      </form>
                       
                     </div>
                   </div>
@@ -262,8 +267,9 @@
 
            
         </div>
+    </div>
       
-      <div id="divUsers" style="display:none;">
+    <div id="divUsers" style="display:none;">
         <div class="row vh-100 col-12 mt-1 gx-2">
           <div class="col-12 d-flex justify-content-center align-items-center vh-100">
             <div class="col-12 col-lg-5 card border-0 bg-dark ;" style="position:absolute; top: 68px;">
@@ -272,7 +278,7 @@
                     <input class="form-control mb-1" id="txtSearch" placeholder="ex. John Doe" aria-label="User or Device Search">
                     <button class="btn btn-primary col-12 mt-3" type="button" id="btnUserSearch">SEARCH</button>
                   </form>
-            <table class="col-12 table" id="tblResultsUsers">
+            <table></table>
               <thead>
                 <tr>
                   <th><!-- Reserved for Profile Image --></th>
@@ -287,32 +293,34 @@
               <tbody>
 
               </tbody>
-              </div>
+            </table>
           </div>
         </div>
-      </div>
-    <div id="divVolunteers" style="display:none;">
-        <div class="row vh-100 col-12 mt-1 gx-2">
-          <div class="col-12 d-flex justify-content-center align-items-center vh-100">
-            <div class="col-12 col-lg-5 card"style="position:absolute; top: 68px;">
-                  <form class="col-4 offset-4">
-                    <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>VOLUNTEER SEARCH</b></h2>
-                    <input class="form-control mb-1" id="txtSearch" placeholder="John Doe" aria-label="User or Device Search">
-                    <button class="btn btn-primary col-12 mt-3" type="button" id="btnVolunteerSearch">SEARCH</button>
-                  </form>
-              </div>
-            <table class="col-12 table" id="tblResultsVolunteers"> 
+    </div>
+    </div>
+
+
+    <div id="divVolunteer" style="display: none;">
+      <h1>DOES THIS WORK PLEASE WOKR</h1>
+
+    </div>
+    
+    
+
+
+    <div id="divInventory" style="display:none;">
+      <div class="row vh-100 col-12 mt-1 gx-2">
+        <div class="col-12 d-flex justify-content-center align-items-center vh-100">
+          <div class="col-12 col-lg-5 card border-0 bg-dark ;" style="position:absolute; top: 68px;">
+                <form class="col-4 offset-4">
+                  <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">INVENTORY SEARCH</h2>
+                  <input class="form-control mb-1" id="txtSearch" placeholder="ex. John Doe" aria-label="User or Device Search">
+                  <button class="btn btn-primary col-12 mt-3" type="button" id="btnUserSearch">SEARCH</button>
+                </form>
+          </div> 
         </div>
       </div>
     </div>
-      <div id="divInventory" style="display:none;">
-        <div class="row vh-100 col-12 mt-1 gx-2">
-            <div class="col-9 h-100 card"style="position:absolute; top: 68px;">
-              <form class="col-4 offset-4">
-                <h2 class="text-center text-white" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">USER AND DEVICE SEARCH</h2>
-                <input class="form-control mb-1" id="txtSearch" placeholder="ex. John Doe" aria-label="User or Device Search">
-                <button class="btn btn-primary col-12 mt-3" type="button" id="btnInventory">SEARCH</button>
-              </form>
               <table>
                 <thead>
                   <tr> <!-- This is just here for when we add the database to get the inventory they have, but don't know what to put yet...-->
@@ -327,11 +335,10 @@
                 <tbody>
   
                 </tbody>
-            </div>
-        </div>
-      </div>
-        
     </div>
+  </div>
+       
+  </div>
     <div id="modals">
         <div class="modal modal-lg fade" tabindex="-1" role="dialog" id="modalAddNote">
             <div class="modal-dialog" role="document">

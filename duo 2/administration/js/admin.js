@@ -44,7 +44,7 @@ $('#linkLogout').on('click',function(){
             $('#divHome').slideUp();
             $('#divFeatures').slideUp();
             $('#divUsers').slideUp();
-            $('#divVolunteers').slideUp();
+            $('#divVolunteer').slideUp();
             $('#divInventory').slideUp();
 
 
@@ -56,25 +56,25 @@ $('#linkHome').on('click', function(){
     $('#divHome').show();
     $('#divFeatures').hide();
     $('#divUsers').hide();
-    $('#divVolunteers').hide();
+    $('#divVolunteer').hide();
     $('#divInventory').hide();
 })
 $('#linkFeatures').on('click', function(){
     $('#divFeatures').show();
     $('#divHome').hide();
     $('#divUsers').hide();
-    $('#divVolunteers').hide();
+    $('#divVolunteer').hide();
     $('#divInventory').hide();
 })
 $('#linkUsers').on('click', function(){
     $('#divUsers').show();
     $('#divFeatures').hide();
     $('#divHome').hide();
-    $('#divVolunteers').hide();
+    $('#divVolunteer').hide();
     $('#divInventory').hide();
 })
-$('#linkVolunteers').on('click', function(){
-    $('#divVolunteers').show();
+$('#linkVolunteer').on('click', function(){
+    $('#divVolunteer').show();
     $('#divFeatures').hide();
     $('#divUsers').hide();
     $('#divHome').hide();
@@ -84,7 +84,7 @@ $('#linkInventory').on('click', function(){
     $('#divInventory').show();
     $('#divFeatures').hide();
     $('#divUsers').hide();
-    $('#divVolunteers').hide();
+    $('#divVolunteer').hide();
     $('#divHome').hide();
 })
 
