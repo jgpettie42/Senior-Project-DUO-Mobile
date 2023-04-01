@@ -112,7 +112,7 @@ CREATE TABLE `tblPreRegistration` (
   `PreferredName` varchar(50) DEFAULT NULL,
   `Phone` varchar(15) DEFAULT NULL,
   `Email` varchar(100) DEFAULT NULL,
-  `DOB` date DEFAULT NULL,
+  `DOB` varchar(50) DEFAULT NULL,
   `Sex` varchar(30) DEFAULT NULL,
   `PreferredLanguage` varchar(50) DEFAULT NULL,
   `RegistrationDateTIme` datetime DEFAULT NULL,
