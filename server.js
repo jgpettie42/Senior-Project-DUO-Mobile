@@ -142,8 +142,12 @@ app.get("/location/:locationid",(req,res,next)=>{
 })
 
 app.get("/preregistration",(req,res,next)=>{
+    let strFirstName = req.query.firstname || req.body.firstname;
+    let strMiddleName = req.query.middleinit || req.body.middleinit;
+    let strLastName = req.query.lastname || req.body.lastname;
+    let strDOB = req.query.dob || req.body.dob;
         try{
-            pool.query('select * from tblUsers',function(error,result){
+            pool.query('select * from tblusers where FirstName=? and LastName =? and DOB = ?',[strFirstName,strLastName,strDOB],function(error,result){
                 if(!error){
                     res.status(200).send(result);
                 } else {
@@ -184,6 +188,7 @@ app.post("/preregistration",(req,res,next)=>{
 
             //})
                 if(!error){
+                    let strRegistrationID = uuidv4();
                     let strEvent = uuidv4();
                     pool.query("INSERT INTO tblRegistrations VALUES (?,?,1,NOW(),'Pre')",[strRegistrationID,strEmail],function(errors,results){
                         if(!errors){

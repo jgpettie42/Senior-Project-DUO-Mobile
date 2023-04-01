@@ -38,7 +38,7 @@ $('#btnCheckInPreReg').on('click', function(){
         let objSelectedPart = arrPreReqParts.filter(el=> el.RegistrationID == strPreRegID)[0];
 
         let strData = $("#selectParticipant").val()
-        let strSex = objSelectedPart.Sex
+       
         let strfname = objSelectedPart.FirstName
         let strlname = objSelectedPart.LastName
         let strdob = objSelectedPart.DOB.split('T')[0]
@@ -48,6 +48,8 @@ $('#btnCheckInPreReg').on('click', function(){
         let strPreferredName = objSelectedPart.PreferredName;
         let strMiddleName = objSelectedPart.MiddleName;
         let strServices = objSelectedPart.Services;
+        let strSex = objSelectedPart.Sex
+
 
         $('#txtPreFirstName').val(strfname);
         $('#txtPreLastName').val(strlname);
@@ -366,7 +368,7 @@ $('.btnCheck').on('click',function(){
 function fillPreRegs(){
     $('#selectParticipant').empty();
     strSessionID = sessionStorage.getItem('SimpleSession');
-    let objPreRegPromise = $.getJSON(strBaseURL + '/preregistration',{sessionid:strSessionID},function(result){
+    let objPreRegPromise = $.getJSON(strBaseURL + '/preregistration',{},function(result){
         arrPreReqParts = result;
     })
 
