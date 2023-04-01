@@ -3,7 +3,7 @@ $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         // call web service to verify ID and get role
         $('#divLogin').slideUp(function(){
-            $('#divDashboard').slideDown();
+            $('#divDashboardHealth').slideDown();
         })
     }
 })
@@ -23,13 +23,42 @@ $('.btnCheck').on('click',function(){
     
 })
 
+$('#btnSubmitAddAppt').on('click',function(){
+    if($('#selectServiceAddAppt').val() == ' ' || $('#txtUserAddAppt').val() == '' || $('#txtTimeAddAppt').val() == ''){
+        Swal.fire({
+            icon: 'error',
+            title: 'oops...',
+            text: 'You must fill out all fields'
+        })
+    }else{
+            //WRITE POST TO /appointments???
+    Swal.fire({
+        icon: 'success',
+        title: 'Nice!',
+        text: 'Appointment added!'
+    })
+    $('#divAddAppt').slideToggle();
+    $('#divInputData').slideToggle();
+    }
+})
+
+$(document).on('click','.btnBackFromAddAppt',function(){
+    $('#divAddAppt').slideToggle();
+    $('#divInputData').slideToggle();
+})
+
+
+$('#btnAddAppt').on('click',function(){
+    $('#divAddAppt').slideToggle();
+    $('#divInputData').slideToggle();
+})
 
 $('#btnLogin').on('click',function(){
     let strUsername = $('#txtUsername').val();
     let strPassword = $('#txtPassword').val();
     if(strUsername.length && strPassword.length > 1){
         $('#divLogin').slideToggle();
-        $('#divDashboard').slideToggle();
+        $('#divDashboardHealth').slideToggle();
         //if username and password are valid
     }else{
 
@@ -41,11 +70,14 @@ $('#btnLogin').on('click',function(){
     }
 })
 
-$('#btnLogout').on('click',function(){
-    $('#divDashboard').slideUp(function(){
+
+
+$('#btnLogoutHealth').on('click',function(){
+    $('#divDashboardHealth').slideUp(function(){
         $('#divLogin').slideDown();
     })
 })
+
 
 $('#btnRegister').on('click',function(){
     if(localStorage.getItem('DUODeviceID')){
@@ -90,7 +122,7 @@ $('#btnRegister').on('click',function(){
                     html: '<p>Your Device ID is TESTDEVICE</p>'
                 }).then((result)=> {
                     $('#divLogin').slideUp(function(){
-                        $('#divDashboard').slideDown();
+                        $('#divDashboardHealth').slideDown();
                     })
                 })
             }
@@ -98,9 +130,12 @@ $('#btnRegister').on('click',function(){
     }
     
 })
-$('#btnData').on('click',function(){
+
+
+
+$('#btnDataHealth').on('click',function(){
     $('#divInputData').slideToggle();
-    $('#divDashboard').slideToggle();
+    $('#divDashboardHealth').slideToggle();
 })
 
 let BMI = $('#txtBMI').val();
@@ -114,12 +149,26 @@ let Temp = $('#txtTemp').val();
 let HealthID = $('#txtHealthID').val();
 let ExtraInfo = $('#txtExtraInfo').val();
 let Condition = $('#txtCondition').val();
-
+let Allergies = $('#txtAllergies').val();
+let Medicines = $('#txtMedicines').val();
+let MentalState = $('#selectMentalState').val();
+let Drugs = $('#txtDrugs').val();
 
 
 $('#btnSubmitData').on('click',function(){
-    
-   /* $.post('http://localhost:8000/dashboard',{strBMI:BMI,strGripStrength:GripStrength,strHeight:Height,strWeight:Weight,strBP:BP,strHR:HR,strO2Sat:O2Sat,strTemp:Temp,strHealthID:HealthID,strExtraInfo:ExtraInfo,strCondition:Condition},function(result){
+    if(BMI.length < 1 || GripStrength.length < 1 || Height.length < 1 || Weight < 1 || BP.length < 1 || HR.length < 1 || O2Sat.length < 1 || Temp.length < 1 || HealthID.length < 1 || ExtraInfo.length < 1 || Condition.length < 1 || Drugs.length < 1 || MentalState == '' || Allergies.length < 1 || Medicines.length < 1){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Some spaces are blank... do you wish to continue?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, I am sure!'
+          }).then((result) => {
+            
+            if (result.isConfirmed) {
+                /* $.post('http://localhost:8000/dashboard',{strBMI:BMI,strGripStrength:GripStrength,strHeight:Height,strWeight:Weight,strBP:BP,strHR:HR,strO2Sat:O2Sat,strTemp:Temp,strHealthID:HealthID,strExtraInfo:ExtraInfo,strCondition:Condition},function(result){
         objResult = JSON.parse(result);
         if(objResult.Outcome){
             Swal.fire({
@@ -135,13 +184,16 @@ $('#btnSubmitData').on('click',function(){
             })
         }
     })*/
-    Swal.fire({             //deleter when post is written
-        icon:'success',
-        title:'Good to go!',
-        text: 'Data Entered',
-        })
-    $('#divInputData').slideToggle();
-    $('#divDashboard').slideToggle();
+            Swal.fire({         //delete when post works
+                icon:'success',
+                title:'Good to go!',
+                text: 'Data Entered',
+                })
+                $('#divInputData').slideToggle();
+                $('#divDashboardHealth').slideToggle();
+            }
+          })
+    }
 })
 
 $('.nav-link').on('click',function(){
@@ -169,8 +221,8 @@ $('.nav-link').on('click',function(){
 */
 /*$('#btnSaveNote').on('click',function(){
     let note = $('#txtNote').val();
-    let noteType = $('#cboNoteType).val();
-    *$.post('http://localhost:8000/notes',{strNote:note,strNoteType:noteType,USERIDHELP},function(result){
+    let noteType = $('#cboNoteType').val();
+    $.post('http://localhost:8000/notes',{strNote:note,strNoteType:noteType,USERIDHELP},function(result){
     let objResult = JSON.parse(result);
     if(objResult.Outcome){
         Swal.fire({
@@ -179,7 +231,7 @@ $('.nav-link').on('click',function(){
         text: 'Note Entered',
         })
         $('#modalAddNote').hide();
-        $('#divDashboard').slideDown();
+        $('#divDashboardHealth').slideDown();
     } else{
         Swal.fire({
         icon:'error',
@@ -187,7 +239,7 @@ $('.nav-link').on('click',function(){
         text: 'Note Not Entered',
         })
     }
- })*/
+})
     
     
     
@@ -200,3 +252,61 @@ $('.nav-link').on('click',function(){
     })
  })*/
 
+
+
+
+
+
+//dental
+let HealthIDDental = $('#txtHealthIDDental').val();
+let selectDentalVisit = $('#selectDentalVisit').val();
+let Xray = $('#txtXray').val();
+
+
+$('#btnSubmitDentalData').on('click',function(){
+    if(HealthIDDental.lenghth < 1 || selectDentalVisit == ' ' || Xray.lenghth < 1 ){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Some spaces are blank... do you wish to continue?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, I am sure!'
+          }).then((result) => {
+            
+            if (result.isConfirmed) {
+            Swal.fire({         //delete when post works
+                icon:'success',
+                title:'Good to go!',
+                text: 'Data Entered',
+                })
+                $('#divEditDental').slideToggle();
+                $('#divDashboardDental').slideToggle();
+            }
+          })
+    }
+})
+
+
+
+$('#btnDental').on('click',function(){
+    $('#divLogin').slideToggle();
+    $('#divDashboardDental').slideToggle();
+})
+
+$('#btnDataDental').on('click',function(){
+    $('#divEditDental').slideToggle();
+    $('#divDashboardDental').slideToggle();
+})
+
+$('#btnLogoutDental').on('click',function(){
+    $('#divDashboardDental').slideUp(function(){
+        $('#divLogin').slideDown();
+    })
+})
+
+$('#btnViewXray').on('click',function(){
+    $('#divDashbaordDental').slideToggle();
+    $('#divXray').slideToggle();
+})
