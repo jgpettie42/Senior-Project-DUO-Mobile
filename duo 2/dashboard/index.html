@@ -8,6 +8,7 @@
     <link href="css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="../bootstrap-icons-1.10.3/bootstrap-icons.css" rel="stylesheet">
     <link href="manifest.webmanifest" rel="manifest">
+    <link rel="icon" type="image/png" href="images/duologoblack01.png">
     <link rel="apple-touch-icon" href="images/DUODash.png">
 </head>
 <body class="bg-dark">
@@ -23,17 +24,28 @@
                         <input class="form-control" id="txtPassword" type="password" placeholder="Password" aria-label="Password">
                         <button class="btn btn-primary col-12 mt-3" type="button" id="btnLogin">Login</button>
                         <button class="btn btn-outline-primary col-12 mt-1" type="button" id="btnRegister">Register Device</button>
+                        <button class="btn btn-success col-12" type="button" id="btnDental">Dental</button>
                     </form>
                 </div>
-                
+            </div>
+        </div>
+        <!--HAIRCUT-->
+        <!--FOOD TRUCK-->
+        <!--DENTAL-->
+
+
+        <div id="divXray" style="display:none;">
+            <div class="card">
+                <div class="card-header">
+                    <p>Heres your xray</p>
+                </div>
+                <div class="card-body">
+                    <img src="images/xray.png">
+                </div>
             </div>
         </div>
 
-
-
-
-
-        <div id="divInputData" style="display:none;">
+        <div id="divEditDental" style="display: none;">
             <div class="col-12 card">
                 <div class="card-body participant-profile">
                     <div class="col-12 d-flex justify-content-between flex-wrap">
@@ -43,28 +55,15 @@
                             </div>
                             <div class="card-body">
                                 <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-12 fw-bold text-center"><i class="bi bi-rulers me-2 text-primary"></i>BMI
-                                        <input class="form-control" id="txtBMI">
-                                    </div>
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-hand-index text-primary me-2"></i>Type of Visit</div>
+                                    <select class="form-control" id="selectDentalVisit">
+                                        <option value=" "> </option>
+                                        <option value="Extraction">Extraction</option>
+                                        <option value="Cleaning">Cleaning</option>
+                                        <option value="Filling">Filling</option>
+                                    </select>
                                 </div>
                                 <hr>
-                                <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-12 fw-bold text-center"><i class="bi bi-hand-index me-2 text-primary"></i>Grip Strength
-                                        <input class="form-control" id="txtGripStrength">
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-12 fw-bold text-center"><i class="bi bi-rulers text-primary"></i>Height
-                                        <input class="form-control" id="txtHeight">
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-12 fw-bold text-center"><i class="bi bi-rulers text-primary"></i>Weight
-                                        <input class="form-control" id="txtWeight">
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-4 card">
@@ -73,29 +72,19 @@
                             </div>
                             <div class="card-body">
                                 <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-6 fw-bold text-center"><i class="bi bi-heart me-2 text-primary"></i>BP</div>
-                                    <div class="col-6 fw-bold text-center"><i class="bi bi-activity me-2 text-primary"></i>HR</div>
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-person-circle text-primary me-2"></i>Health ID</div>
                                 </div>
                                 <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtBP"></div>
-                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtHR"></div>
+                                    <div><input class="form-control" id="txtHealthIDDental"></div>
                                 </div>
                                 <hr>
                                 <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-6 fw-bold text-center"><i class="bi bi-lungs me-2 text-primary"></i>O2 Sat</div>
-                                    <div class="col-6 fw-bold text-center"><i class="bi bi-thermometer-half me-2 text-primary"></i>Temp</div>
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-person-vcard text-primary me-2"></i>Allergies</div>
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-prescription text-primary me-2"></i>Medicines</div>
                                 </div>
                                 <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtO2Sat"></div>
-                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtTemp"></div>
-                                </div>
-                                <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-6 fw-bold text-center"><i class="bi bi-person-circle text-primary"></i>Health ID</div>
-                                    <div class="col-6 fw-bold text-center"><i class="bi bi-clipboard-data text-primary"></i>Extra Info</div>
-                                </div>
-                                <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtHealthID"></div>
-                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtExtraInfo"></div>
+                                    <div class="col-6 text-center"><p class="fw-bold fs-5 text-danger">Peanut Allergy</p></div>
+                                    <div class="col-6 text-center text-danger"><p class="fw-bold fs-5">omeprazole (Prilosec)</p></div>
                                 </div>
                             </div>
                         </div>
@@ -103,16 +92,32 @@
                             <div class="card-header">
                                 <h3 class="col-12 text-center ">Labs</h3>
                             </div>
+                            <div class="d-flex col-12 flex-wrap mb-0">
+                                <div class="col-12 fw-bold text-center"><i class="bi bi-rulers me-2 text-primary"></i>X-Rays</div>
+                            </div>
+                            <div class="d-flex col-12 flex-wrap mb-0">
+                                <div class="col-12 fw-bold text-center fs-5 text-primary"><input class="form-control" id="txtXray" placeholder="Submit Xray"></div>
+                            </div>
                             <div class="card-body">
-                                <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-12 fw-bold text-center"><i class="bi bi-bag-heart me-2 text-primary"></i><input class="form-control" id=txtCondition" placeholder="input condition"></div>
-                                </div> 
-                                <hr>
                                 <div class="d-flex col-12 flex-wrap mb-0">
                                     <div class="col-12 fw-bold text-center"><i class="bi bi-list-ul me-2 text-primary"></i>Lipid Panel</div>
                                 </div>
                                 <div class="d-flex col-12 flex-wrap mb-0">
                                     <button class="col-12 btn btn-outline-primary mt-2" data-toggle="modal" data-target="#modalLipid">View</button>
+                                </div>
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-heart-pulse text-primary me-2"></i>Mental State</div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 text-center"><p class="fw-bold fs-5 text-primary">Average</p></div>
+                                </div>
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-capsule text-primary me-2"></i>Substance Usage</div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 text-center text-danger"><p class="fw-bold fs-5">Methamphetamine</p></div>
                                 </div>
                             </div>
                         </div>
@@ -140,25 +145,18 @@
                                         <li><button class="btn btn-outline-secondary col-12 mb-1">Vision on 23 June 2023 at 8:30 AM</i></button></li>
                                         <li><button class="btn btn-outline-secondary col-12 mb-1">Health on 24 June 2023 at 7:00 PM</i></button></li>
                                         <li><button class="btn btn-outline-secondary col-12 mb-1">Dental on 8 Nov 2023 at 6:15 PM</i></button></li>
-                                        <li><button class="btn btn-outline-success col-12 mt-4">Add Appt</button></li>
                                     </ul>
                                 </div>
-                                
                             </div>
                             <div class="col-12 d-flex justify-content-around flex-wrap align-items-center">
-                                <button class="btn btn-success col-6" id="btnSubmitData" type="button">Submit</button>
+                                <button class="btn btn-success col-6" type="button" id="btnSubmitDentalData">Submit</button>
                             </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-
-
-
-        <div id="divDashboard" style="display:none;">
+        <div id="divDashboardDental" style="display:none;">
             <div class="row vh-100 col-12 mt-1 gx-2">
                 <div class="col-3 h-100">
                     <ul id="ulDashboardParticipants">
@@ -264,18 +262,414 @@
                             </div>
                         </li>
                         <li class="w-100 mt-5">
-                            <button class="btn btn-danger btn-lg col-12" type="button" id="btnLogout">Logout</button>
+                            <button class="btn btn-danger btn-lg col-12" type="button" id="btnLogoutDental">Logout</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-9 h-100">
+                    <div class="col-12 alert alert-info text-center alert-dismissible fade show mb-1" role="alert">
+                        <strong>DENTAL</strong>
+                        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                        </button>
+                    </div>
+
+                    <div class="col-12 card">
+                        <div class="card-body participant-profile">
+                            <div class="col-12 d-flex justify-content-between flex-wrap">
+                                <div class="col-4 card">
+                                    <div class="card-header">
+                                        <h3 class="col-12 text-center ">Measurements</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <hr>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 fw-bold text-center"><i class="bi bi-hand-index text-primary me-2"></i>Type of Visit</div>
+                                            <div class="col-12 text-primary text-center">Extraction</div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="col-4 card">
+                                    <div class="card-header">
+                                        <h3 class="col-12 text-center ">Important Info</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-6 fw-bold text-center"><i class="bi bi-person-vcard text-primary me-2"></i>Allergies</div>
+                                            <div class="col-6 fw-bold text-center"><i class="bi bi-prescription text-primary me-2"></i>Medicines</div>
+                                        </div>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-6 text-center"><p class="fw-bold fs-5 text-danger">Peanut Allergy</p></div>
+                                            <div class="col-6 text-center text-danger"><p class="fw-bold fs-5">omeprazole (Prilosec)</p></div>
+                                        </div>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 fw-bold text-center"><i class="bi bi-heart-pulse text-primary me-2"></i>Mental State</div>
+                                        </div>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 text-center"><p class="fw-bold fs-5 text-primary">Average</p></div>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 fw-bold text-center"><i class="bi bi-capsule text-primary me-2"></i>Substance Usage</div>
+                                        </div>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 text-center text-danger"><p class="fw-bold fs-5">Methamphetamine</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 card">
+                                    <div class="card-header">
+                                        <h3 class="col-12 text-center ">Labs</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 fw-bold text-center"><i class="bi bi-rulers me-2 text-primary"></i>X-Rays</div>
+                                        </div>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 fw-bold text-center fs-5 text-primary"><button class="btn btn-outline-success col-12" id="btnViewXray" type="button">View</button></div>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 fw-bold text-center"><i class="bi bi-list-ul me-2 text-primary"></i>Lipid Panel</div>
+                                        </div>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <button class="col-12 btn btn-outline-primary mt-2" data-toggle="modal" data-target="#modalLipid">View</button>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-between flex-wrap mt-3 align-items-stretch">
+                                    <div class="col-6 card mb-3">
+                                        <div class="card-header">
+                                            <h3 class="col-12 text-center">Previous Visits</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="col-12 list-unstyled">
+                                                <li><button class="btn btn-outline-secondary col-12 mb-1">Health on 6 Jan 2023</i></button></li>
+                                                <li><button class="btn btn-outline-secondary col-12 mb-1">Dental on 6 Dec 2022</i></button></li>
+                                                <li><button class="btn btn-outline-warning col-12 mb-1">Dental on 26 Nov 2022 (Missed)</i></button></li>
+                                                <li><button class="btn btn-outline-primary col-12 mt-4">3 More</i></button></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 card mb-3">
+                                        <div class="card-header">
+                                            <h3 class="col-12 text-center">Appointments</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="col-12 list-unstyled">
+                                                <li><button class="btn btn-outline-secondary col-12 mb-1">Vision on 23 June 2023 at 8:30 AM</i></button></li>
+                                                <li><button class="btn btn-outline-secondary col-12 mb-1">Health on 24 June 2023 at 7:00 PM</i></button></li>
+                                                <li><button class="btn btn-outline-secondary col-12 mb-1">Dental on 8 Nov 2023 at 6:15 PM</i></button></li>
+                                            </ul>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-around flex-wrap align-items-center">
+                                        <button class="btn btn-primary col-2">OpenEMR</button>
+                                        <button class="btn btn-secondary col-2">Resources</button>
+                                        <button class="btn btn-secondary col-2" type="button" id="btnDataDental">Insert Data</button>
+                                        <button class="btn btn-success col-2" data-toggle="modal" data-target="#modalAddNote">Add Note</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--VISION-->
+        <!--WELLNESS-->
+        <div id="divAddAppt" style="display: none;">
+            <div class="d-flex col-12 justify-content-center align-items-center vh-100">
+                <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3>Add an Appointment</h3>
+                    <button class="btn btn-danger" id="btnBackFromAddAppt" type="button">Back</button>
+                </div>
+                <div class="card-body">
+                    <label class="form-label text-center fw-bold fs-5" for="txtUserAddAppt">User ID</label>
+                    <input class="form-control" id="txtUserAddAppt">
+                    <label class="form-label text-center fw-bold fs-5" for="txtTimeAddAppt">Time</label>
+                    <input class="form-control" id="txtTimeAddAppt">
+                    <label class="form-label text-center fw-bold fs-5" for="selectServiceAddAppt">Service</label>
+                    <select class="form-control" id="selectServiceAddAppt">
+                        <option value=" "> </option>
+                        <option value="Dental">Dental</option>
+                        <option value="Vision">Vision</option>
+                        <option value="Health/Wellness">Health/Wellness</option>
+                    </select>
+                    <button class="btn btn-outline-success col-12 mt-2" id="btnSubmitAddAppt" type="button">Submit</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="divInputData" style="display:none;">
+            <div class="col-12 card">
+                <div class="card-body participant-profile">
+                    <div class="col-12 d-flex justify-content-between flex-wrap">
+                        <div class="col-4 card">
+                            <div class="card-header">
+                                <h3 class="col-12 text-center ">Measurements</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-rulers me-2 text-primary"></i>BMI
+                                        <input class="form-control" id="txtBMI">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-hand-index me-2 text-primary"></i>Grip Strength
+                                        <input class="form-control" id="txtGripStrength">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-rulers text-primary"></i>Height
+                                        <input class="form-control" id="txtHeight">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-rulers text-primary"></i>Weight
+                                        <input class="form-control" id="txtWeight">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 card">
+                            <div class="card-header">
+                                <h3 class="col-12 text-center ">Vitals</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-heart me-2 text-primary"></i>BP</div>
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-activity me-2 text-primary"></i>HR</div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtBP"></div>
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtHR"></div>
+                                </div>
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-lungs me-2 text-primary"></i>O2 Sat</div>
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-thermometer-half me-2 text-primary"></i>Temp</div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtO2Sat"></div>
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtTemp"></div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-person-circle text-primary"></i>Health ID</div>
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-clipboard-data text-primary"></i>Extra Info</div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtHealthID"></div>
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtExtraInfo"></div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-person-vcard text-primary"></i>Allergies</div>
+                                    <div class="col-6 fw-bold text-center"><i class="bi bi-prescription text-primary"></i>Medicines</div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtAllergies"></div>
+                                    <div class="col-6 fw-bold text-center fs-3"><input class="form-control" id="txtMedicines"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 card">
+                            <div class="card-header">
+                                <h3 class="col-12 text-center ">Labs</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-bag-heart me-2 text-primary"></i><label class="form-label" for="txtCondition">Condition</label><input class="form-control" id="txtCondition"></div>
+                                </div> 
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-list-ul me-2 text-primary"></i>Lipid Panel</div>
+                                </div>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <button class="col-12 btn btn-outline-primary mt-2" data-toggle="modal" data-target="#modalLipid">View</button>
+                                </div>
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0 mt-2">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-heart-pulse text-primary"></i>
+                                        <label class="form-label fw-bold" for="selectMentalState">Mental State</label></div>
+                                </div>
+                                <div id="selectMentalState">
+                                    <select class="col-12 form-control" placeholder="Select Mental State...">
+                                        <option value=""> </option>
+                                        <option value="Quality">Quality</option>
+                                        <option value="Average">Average</option>
+                                        <option vale="Below Average">Below Average</option>
+                                    </select>
+                                </div>
+                                <hr>
+                                <div class="d-flex col-12 flex-wrap mb-0">
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-capsule text-primary"></i><label class="form-label" for="txtDrugs"> Substance Use</label><input class="form-control" id="txtDrugs"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-between flex-wrap mt-3 align-items-stretch">
+                            <div class="col-6 card mb-3">
+                                <div class="card-header">
+                                    <h3 class="col-12 text-center">Previous Visits</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="col-12 list-unstyled">
+                                        <li><button class="btn btn-outline-secondary col-12 mb-1">Health on 6 Jan 2023</button></li>
+                                        <li><button class="btn btn-outline-secondary col-12 mb-1">Dental on 6 Dec 2022</i></button></li>
+                                        <li><button class="btn btn-outline-warning col-12 mb-1">Dental on 26 Nov 2022 (Missed)</i></button></li>
+                                        <li><button class="btn btn-outline-primary col-12 mt-4">3 More</i></button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-6 card mb-3">
+                                <div class="card-header">
+                                    <h3 class="col-12 text-center">Appointments</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="col-12 list-unstyled">
+                                        <li><button class="btn btn-outline-secondary col-12 mb-1">Vision on 23 June 2023 at 8:30 AM</i></button></li>
+                                        <li><button class="btn btn-outline-secondary col-12 mb-1">Health on 24 June 2023 at 7:00 PM</i></button></li>
+                                        <li><button class="btn btn-outline-secondary col-12 mb-1">Dental on 8 Nov 2023 at 6:15 PM</i></button></li>
+                                        <li><button class="btn btn-outline-success col-12 mt-4" id="btnAddAppt">Add Appt</button></li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                            <div class="col-12 d-flex justify-content-around flex-wrap align-items-center">
+                                <button class="btn btn-success col-6" id="btnSubmitData" type="button">Submit</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div id="divDashboardHealth" style="display:none;">
+            <div class="row vh-100 col-12 mt-1 gx-2">
+                <div class="col-3 h-100">
+                    <ul id="ulDashboardParticipants">
+                        <li class="card w-100 mb-1 border-success">
+                            <div class="card-header text-bg-success btnDashboardHeader">
+                                <h3>AA213</h3>
+                            </div>
+                            <div class="card-body participant-profile" style="display:none;">
+                                <div class="text-center">
+                                    <img src="images/profile.png" class="w-100 rounded-circle">
+                                </div>
+                                <h3 class="col-12 text-center mb-0 mt-3 ">Johnny</h3>
+                                <h4 class="col-12 text-center ">Doeling</h4>
+                                <hr>
+                                <div class="col-12 row">
+                                    <p class="col-7 text-primary"><i class="bi bi-gender-ambiguous me-2"></i> Male</p>
+                                    <p class="col-5 text-primary"><i class="bi bi-megaphone me-2"></i> EN</p>
+                                </div>
+                                <div class="col-12 row">
+                                    <p class="col-7 text-primary"><i class="bi bi-calendar me-2"></i> 11/13/1991</p>
+                                    <p class="col-5 text-primary"><i class="bi bi-arrow-up-circle me-2"></i> 31yr</p>
+        
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary col-12 btnCheck" type="button">Check In</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card w-100 mb-1 border-primary">
+                            <div class="card-header text-bg-primary btnDashboardHeader">
+                                <h3>LR412</h3>
+                            </div>
+                            <div class="card-body participant-profile" style="display:none;">
+                                <div class="text-center">
+                                    <img src="images/male3.webp" class="w-100 rounded-circle">
+                                </div>
+                                <h3 class="col-12 text-center mb-0 mt-3 ">Nicholas</h3>
+                                <h4 class="col-12 text-center ">Sparks</h4>
+                                <hr>
+                                <div class="col-12 row">
+                                    <p class="col-7 text-primary"><i class="bi bi-gender-ambiguous me-2"></i> Male</p>
+                                    <p class="col-5 text-primary"><i class="bi bi-megaphone me-2"></i> EN</p>
+        
+                                </div>
+                                <div class="col-12 row">
+                                    <p class="col-7 text-primary"><i class="bi bi-calendar me-2"></i> 1/30/1978</p>
+                                    <p class="col-5 text-primary"><i class="bi bi-arrow-up-circle me-2"></i> 45yr</p>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary col-12 btnCheck" type="button">Check In</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card w-100 mb-1 border-primary">
+                            <div class="card-header text-bg-primary btnDashboardHeader">
+                                <h3>SH980</h3>
+                            </div>
+                            <div class="card-body participant-profile" style="display:none;">
+                                <div class="text-center">
+                                    <img src="images/female3.webp" class="w-100 rounded-circle">
+                                </div>
+                                <h3 class="col-12 text-center mb-0 mt-3 ">Jane</h3>
+                                <h4 class="col-12 text-center ">Smith</h4>
+                                <hr>
+                                <div class="col-12 row">
+                                    <p class="col-7 text-primary"><i class="bi bi-gender-ambiguous me-2"></i> Female</p>
+                                    <p class="col-5  text-danger"><i class="bi bi-megaphone me-2"></i> ES</p>
+        
+                                </div>
+                                <div class="col-12 row">
+                                    <p class="col-7 text-primary"><i class="bi bi-calendar me-2"></i> 07/25/1969</p>
+                                    <p class="col-5 text-primary"><i class="bi bi-arrow-up-circle me-2"></i> 53yr</p>
+        
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary col-12 btnCheck" type="button">Check In</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="card w-100 mb-1 border-primary">
+                            <div class="card-header text-bg-primary btnDashboardHeader">
+                                <h3>AA208</h3>
+                            </div>
+                            <div class="card-body participant-profile" style="display:none;">
+                                <div class="text-center">
+                                    <img src="images/female4.webp" class="w-100 rounded-circle">
+                                </div>
+                                <h3 class="col-12 text-center mb-0 mt-3 ">Markie</h3>
+                                <h4 class="col-12 text-center ">Whithers</h4>
+                                <hr>
+                                <div class="col-12 row">
+                                    <p class="col-7 text-primary"><i class="bi bi-gender-ambiguous me-2"></i> Female</p>
+                                    <p class="col-5 text-primary"><i class="bi bi-megaphone me-2"></i> EN</p>
+        
+                                </div>
+                                <div class="col-12 row">
+                                    <p class="col-7 text-primary"><i class="bi bi-calendar me-2"></i> 05/25/2002</p>
+                                    <p class="col-5 text-primary"><i class="bi bi-arrow-up-circle me-2"></i> 20yr</p>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary col-12 btnCheck" type="button">Check In</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="w-100 mt-5">
+                            <button class="btn btn-danger btn-lg col-12" type="button" id="btnLogoutHealth">Logout</button>
                         </li>
                     </ul>
                 </div>
                 <div class="col-9 h-100">
                     <div class="col-12 alert alert-danger alert-dismissible fade show mb-1" role="alert">
-                        <strong>A1c Change Warning</strong> Patient's A1c increased by 12% from previous recorded value.
-                        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
-                        </button>
-                    </div>
-                    <div class="col-12 alert alert-success alert-dismissible fade show mb-1" role="alert">
-                        <strong>BMI Change</strong> Patient's BMI decreased to normal range.
+                        <strong>Health</strong>
                         <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
                         </button>
                     </div>
@@ -291,29 +685,29 @@
                                             <div class="col-12 fw-bold text-center"><i class="bi bi-rulers me-2 text-primary"></i>BMI</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center fs-3">22.6</div>
+                                            <div class="col-12 fw-bold text-center fs-5 text-primary">22.6</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center text-success fs-3">Normal</div>
+                                            <div class="col-12 fw-bold text-center fs-5">Normal</div>
                                             
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center"><i class="bi bi-hand-index me-2 text-primary"></i>Grip Strength</div>
+                                            <div class="col-12 fw-bold text-center"><i class="bi bi-hand-index text-primary me-2"></i>Grip Strength</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center fs-3">12 lbs <span class="fw-bold text-warning fs-3">Weak</span></div>
+                                            <div class="col-12 fw-bold text-center fs-5 text-primary">12 lbs</div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center"><i class="bi bi-rulers text-primary"></i><h5>Height</h5>
-                                                <p>Input Height Here</p>
+                                            <div class="col-12 fw-bold text-center"><i class="bi bi-rulers text-primary me-2"></i>Height
+                                                <div class="fw-bold fs-5 text-primary">5'0 [60 inches]</div>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center"><i class="bi bi-rulers text-primary"></i><h5>Weight</h5>
-                                                <p>Input weight here</p>
+                                            <div class="col-12 fw-bold text-center"><i class="bi bi-rulers text-primary me-2"></i>Weight
+                                                <div class="fw-bold fs-5 text-primary">107 lbs</div>
                                             </div>
                                         </div>
                                     </div>
@@ -328,12 +722,12 @@
                                             <div class="col-6 fw-bold text-center"><i class="bi bi-activity me-2 text-primary"></i>HR</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-6 fw-bold text-center fs-3">140/83</div>
-                                            <div class="col-6 fw-bold text-center fs-3">83 bpm</div>
+                                            <div class="col-6 fw-bold text-center fs-5 text-primary">140/83</div>
+                                            <div class="col-6 fw-bold text-center fs-5 text-primary">83 bpm</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-2">
-                                            <div class="col-6 fw-bold text-center text-danger fs-3">Urgency</div>
-                                            <div class="col-6 fw-bold text-center text-success fs-3">Regular</div>
+                                            <div class="col-6 fw-bold text-center fs-5">Urgency</div>
+                                            <div class="col-6 fw-bold text-center fs-5">Regular</div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
@@ -341,17 +735,26 @@
                                             <div class="col-6 fw-bold text-center"><i class="bi bi-thermometer-half me-2 text-primary"></i>Temp</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-6 fw-bold text-center fs-3">96%</div>
-                                            <div class="col-6 fw-bold text-center fs-3">98.1 &#x2109</div>
+                                            <div class="col-6 fw-bold text-center fs-5 text-primary">96%</div>
+                                            <div class="col-6 fw-bold text-center fs-5 text-primary">98.1 &#x2109</div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-6 fw-bold text-center"><i class="bi bi-person-circle text-primary"></i><h5>Health ID</h5></div>
-                                            <div class="col-6 fw-bold text-center"><i class="bi bi-clipboard-data text-primary"></i><h5>Extra Info</h5></div>
+                                            <div class="col-6 fw-bold text-center"><i class="bi bi-person-circle text-primary me-2"></i>Health ID</div>
+                                            <div class="col-6 fw-bold text-center"><i class="bi bi-clipboard-data text-primary me-2"></i>Extra Info</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-6 text-center"><p>AA256</p></div>
-                                            <div class="col-6 text-center"><p>Decrease in BMI, Increased HR</p></div>
+                                            <div class="col-6 text-center"><p class="fw-bold fs-5 text-primary">AA256</p></div>
+                                            <div class="col-6 text-center text-primary"><p>Decrease in BMI, Increased HR</p></div>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-6 fw-bold text-center"><i class="bi bi-person-vcard text-primary me-2"></i>Allergies</div>
+                                            <div class="col-6 fw-bold text-center"><i class="bi bi-prescription text-primary me-2"></i>Medicines</div>
+                                        </div>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-6 text-center"><p class="fw-bold fs-5 text-danger">Peanut Allergy</p></div>
+                                            <div class="col-6 text-center text-danger"><p class="fw-bold fs-5">omeprazole (Prilosec)</p></div>
                                         </div>
                                     </div>
                                 </div>
@@ -364,10 +767,10 @@
                                             <div class="col-12 fw-bold text-center"><i class="bi bi-bag-heart me-2 text-primary"></i>A1c</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center fs-3">6.7</div>
+                                            <div class="col-12 fw-bold text-center fs-3 text-primary">6.7</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center text-danger fs-3">Diabetes</div>
+                                            <div class="col-12 fw-bold text-center fs-3">Diabetes</div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
@@ -375,6 +778,20 @@
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
                                             <button class="col-12 btn btn-outline-primary mt-2" data-toggle="modal" data-target="#modalLipid">View</button>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 fw-bold text-center"><i class="bi bi-heart-pulse text-primary me-2"></i>Mental State</div>
+                                        </div>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 text-center"><p class="fw-bold fs-5 text-primary">Average</p></div>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 fw-bold text-center"><i class="bi bi-capsule text-primary me-2"></i>Substance Usage</div>
+                                        </div>
+                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                            <div class="col-12 text-center text-danger"><p class="fw-bold fs-5">Methamphetamine</p></div>
                                         </div>
                                     </div>
                                 </div>
@@ -402,7 +819,6 @@
                                                 <li><button class="btn btn-outline-secondary col-12 mb-1">Vision on 23 June 2023 at 8:30 AM</i></button></li>
                                                 <li><button class="btn btn-outline-secondary col-12 mb-1">Health on 24 June 2023 at 7:00 PM</i></button></li>
                                                 <li><button class="btn btn-outline-secondary col-12 mb-1">Dental on 8 Nov 2023 at 6:15 PM</i></button></li>
-                                                <li><button class="btn btn-outline-success col-12 mt-4">Add Appt</button></li>
                                             </ul>
                                         </div>
                                         
@@ -410,7 +826,7 @@
                                     <div class="col-12 d-flex justify-content-around flex-wrap align-items-center">
                                         <button class="btn btn-primary col-2">OpenEMR</button>
                                         <button class="btn btn-secondary col-2">Resources</button>
-                                        <button class="btn btn-secondary col-2" type="button" id="btnData">Insert Data</button>
+                                        <button class="btn btn-secondary col-2" type="button" id="btnDataHealth">Insert Data</button>
                                         <button class="btn btn-success col-2" data-toggle="modal" data-target="#modalAddNote">Add Note</button>
                                     </div>
                             </div>
@@ -432,17 +848,17 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <table class="table">
+                  <table id="tblResults" class="table">
                     <thead>
                         <tr class="text-primary"><th></th><th>Patient</th><th>Optimal</th><th>Intermediate</th><th>High</th></tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-warning"><td>LDL Cholesterol</td><td>129 mg/dL</td><td>less than 130</td><td>130 - 159</td><td>above 159</td></tr>
-                        <tr><td>HDL Cholesterol</td><td>52 mg/dL</td><td>more than 60</td><td>60 - 40</td><td>less than 40</td></tr>
-                        <tr class="bg-danger"><td>Triglycerides</td><td>212 mg/dL</td><td>less than 150</td><td>150 - 199</td><td>above 199</td></tr>
-                        <tr><td>Non-HDL-C</td><td>142 mg/dL</td><td>less than 130</td><td>130 - 159</td><td>above 159</td></tr>
-                        <tr class="bg-warning"><td>TG to HDL Ratio</td><td>2.9 mg/dL</td><td>less than 3</td><td>3 - 3.8</td><td>above 3.8</td></tr>
-                        <tr><td>Total Cholesterol</td><td>85 mg/dL</td><td>less than 200</td><td>200 - 239</td><td>above 239</td></tr>
+                        <tr class="bg-warning"><td>LDL Cholesterol</td><td></td><td>less than 130</td><td>130 - 159</td><td>above 159</td></tr>
+                        <tr><td>HDL Cholesterol</td><td></td><td>more than 60</td><td>60 - 40</td><td>less than 40</td></tr>
+                        <tr class="bg-danger"><td>Triglycerides</td><td></td><td>less than 150</td><td>150 - 199</td><td>above 199</td></tr>
+                        <tr><td>Non-HDL-C</td><td></td><td>less than 130</td><td>130 - 159</td><td>above 159</td></tr>
+                        <tr class="bg-warning"><td>TG to HDL Ratio</td><td></td><td>less than 3</td><td>3 - 3.8</td><td>above 3.8</td></tr>
+                        <tr><td>Total Cholesterol</td><td></td><td>less than 200</td><td>200 - 239</td><td>above 239</td></tr>
                     </tbody>
                   </table>
                 </div>
