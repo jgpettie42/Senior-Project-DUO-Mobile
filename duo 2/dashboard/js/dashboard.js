@@ -42,7 +42,7 @@ $('#btnSubmitAddAppt').on('click',function(){
     }
 })
 
-$('#btnBackFromAddAppt').on('click',function(){
+$(document).on('click','.btnBackFromAddAppt',function(){
     $('#divAddAppt').slideToggle();
     $('#divInputData').slideToggle();
 })
@@ -221,8 +221,8 @@ $('.nav-link').on('click',function(){
 */
 /*$('#btnSaveNote').on('click',function(){
     let note = $('#txtNote').val();
-    let noteType = $('#cboNoteType).val();
-    *$.post('http://localhost:8000/notes',{strNote:note,strNoteType:noteType,USERIDHELP},function(result){
+    let noteType = $('#cboNoteType').val();
+    $.post('http://localhost:8000/notes',{strNote:note,strNoteType:noteType,USERIDHELP},function(result){
     let objResult = JSON.parse(result);
     if(objResult.Outcome){
         Swal.fire({
@@ -239,7 +239,7 @@ $('.nav-link').on('click',function(){
         text: 'Note Not Entered',
         })
     }
- })*/
+})
     
     
     
