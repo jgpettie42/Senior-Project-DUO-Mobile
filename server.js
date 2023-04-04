@@ -181,13 +181,12 @@ app.post("/preregistration",(req,res,next)=>{
 
     bcrypt.hash(strPassword,10).then(hash => {
         strPassword = hash;
-        try{
-            pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage) VALUES(?,?,?,?,?,?,?,?)',[strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage],function(error,result){
-            //let strRegistrationID = uuidv4()
-            //pool.query('INSERT INTO tblpreregistration (RegistrationID,Email,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage) VALUES(?,?,?,?,?,?,?,?,?)',[strRegistrationID,strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage],function(error,result){
+    try{
+            let strRegistrationID = uuidv4()
+            pool.query('INSERT INTO tblpreregistration (RegistrationID,Email,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage) VALUES(?,?,?,?,?,?,?,?,?)',[strRegistrationID,strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage],function(error,result){
 
-            //})
-                if(!error){
+        })
+        if(!error){
                     let strRegistrationID = uuidv4();
                     let strEvent = uuidv4();
                     pool.query("INSERT INTO tblRegistrations VALUES (?,?,1,NOW(),'Pre')",[strRegistrationID,strEmail],function(errors,results){
@@ -200,7 +199,6 @@ app.post("/preregistration",(req,res,next)=>{
                 } else {
                     res.status(400).send(JSON.stringify({Error:error}));
                 }
-            })
         } catch {
             console.log(error);
         }   
