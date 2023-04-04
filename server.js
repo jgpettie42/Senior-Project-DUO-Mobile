@@ -15,8 +15,6 @@ const pool = mysql.createPool({
 const HTTP_PORT = 8000; 
 
 
-// const host = 'http://localhost:8000' //
-
 
 
 var app = express(); 
@@ -185,7 +183,7 @@ app.post("/preregistration",(req,res,next)=>{
             let strRegistrationID = uuidv4()
             pool.query('INSERT INTO tblpreregistration (RegistrationID,Email,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage) VALUES(?,?,?,?,?,?,?,?,?)',[strRegistrationID,strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage],function(error,result){
 
-        })
+            })
         if(!error){
                     let strRegistrationID = uuidv4();
                     let strEvent = uuidv4();
@@ -301,7 +299,11 @@ app.post("/users", (req,res,next)=>{
         try{
             pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password) VALUES (?,?,?,?,?,?,?,?)',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
                 if(!error){
+                    pool.query('INSERT INTO tbluserroles (UserID,RoleID) VALUES (?,"Patient")',[strEmail],function(error,result){
+                    
+                    })
                     res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
+
                 } else {
                     res.status(400).send(JSON.stringify({Error:error}));
                 }
