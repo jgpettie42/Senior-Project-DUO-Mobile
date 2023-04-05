@@ -287,6 +287,8 @@ app.post("/users", (req,res,next)=>{
 
     console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword)
 
+    let strUserRoleId = uuidv4();
+
     if(strPassword == null){
         strPassword = uuidv4();
     }
@@ -297,10 +299,13 @@ app.post("/users", (req,res,next)=>{
     bcrypt.hash(strPassword,10).then(hash => {
         strPassword = hash;
         try{
-            pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password) VALUES (?,?,?,?,?,?,?,?)',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
+            pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
                 if(!error){
-                    pool.query('INSERT INTO tbluserroles (UserID,RoleID) VALUES (?,"Patient")',[strEmail],function(error,result){
-                    
+
+                    pool.query('INSERT INTO tbluserroles (UserRoleID,UserID,RoleID) VALUES (?,?,"Patient")',[strUserRoleId,strEmail],function(error,result){
+                        if(error){
+                            console.log(error)
+                        }
                     })
                     res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
 
@@ -314,6 +319,99 @@ app.post("/users", (req,res,next)=>{
         
     })
 })
+
+app.post("/admin", (req,res,next)=>{
+    let strFirstName = req.query.firstname || req.body.firstname;
+    let strMiddleName = req.query.middleinit || req.body.middleinit;
+    let strLastName = req.query.lastname || req.body.lastname;
+    let strPreferredName = req.query.preferredname || req.body.preferredname;
+    let strEmail = req.query.email || req.body.email;
+    let strSex = req.query.sex || req.body.sex;
+    let strDOB = req.query.dob || req.body.dob;
+    let strPassword = req.query.password || req.body.password;
+
+    console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword)
+
+    let strUserRoleId = uuidv4();
+
+    if(strPassword == null){
+        strPassword = uuidv4();
+    }
+    if(strEmail == null){
+        strEmail = uuidv4();
+    }
+
+    bcrypt.hash(strPassword,10).then(hash => {
+        strPassword = hash;
+        try{
+            pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
+                if(!error){
+
+                    pool.query('INSERT INTO tbluserroles (UserRoleID,UserID,RoleID) VALUES (?,?,"Admin")',[strUserRoleId,strEmail],function(error,result){
+                        if(error){
+                            console.log(error)
+                        }
+                    })
+                    res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
+
+                } else {
+                    res.status(400).send(JSON.stringify({Error:error}));
+                }
+            })
+        } catch{
+            console.log(error);
+        }
+        
+    })
+})
+
+
+app.post("/staff", (req,res,next)=>{
+    let strFirstName = req.query.firstname || req.body.firstname;
+    let strMiddleName = req.query.middleinit || req.body.middleinit;
+    let strLastName = req.query.lastname || req.body.lastname;
+    let strPreferredName = req.query.preferredname || req.body.preferredname;
+    let strEmail = req.query.email || req.body.email;
+    let strSex = req.query.sex || req.body.sex;
+    let strDOB = req.query.dob || req.body.dob;
+    let strPassword = req.query.password || req.body.password;
+    let strRole = req.query.role || req.body.role;
+
+    console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword,strRole)
+
+    let strUserRoleId = uuidv4();
+
+    if(strPassword == null){
+        strPassword = uuidv4();
+    }
+    if(strEmail == null){
+        strEmail = uuidv4();
+    }
+
+    bcrypt.hash(strPassword,10).then(hash => {
+        strPassword = hash;
+        try{
+            pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
+                if(!error){
+
+                    pool.query('INSERT INTO tbluserroles (UserRoleID,UserID,RoleID) VALUES (?,?,?)',[strUserRoleId,strEmail,strRole],function(error,result){
+                        if(error){
+                            console.log(error)
+                        }
+                    })
+                    res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
+
+                } else {
+                    res.status(400).send(JSON.stringify({Error:error}));
+                }
+            })
+        } catch{
+            console.log(error);
+        }
+        
+    })
+})
+
 
 app.post("/dashboard", (req,res,next)=>{
 
