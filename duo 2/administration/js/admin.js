@@ -1,5 +1,5 @@
 var strLang;
-$(document).ready(function(){
+/*$(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         // call web service to verify ID and get role
         $('#divLogin').slideUp(function(){
@@ -8,7 +8,7 @@ $(document).ready(function(){
             });
         })
     }
-})
+})*/
 $('.btnDashboardHeader').on('click',function(){
     $(this).siblings('.card-body').slideToggle();
 })
