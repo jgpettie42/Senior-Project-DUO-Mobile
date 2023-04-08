@@ -488,3 +488,45 @@ $('.nav-link').on('click',function(){
 $("input[name='phone']").keyup(function() {
     $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d+)$/, "($1)$2-$3"));
 });
+
+$(document).ready(function() {
+    var canvas = document.getElementById('signature-box');
+    var ctx = canvas.getContext('2d');
+    var resetButton = document.getElementById('reset-button');
+    var isDrawing = false;
+    var lastX = 0;
+    var lastY = 0;
+  
+    canvas.addEventListener('mousedown', function(e) {
+      isDrawing = true;
+      lastX = e.offsetX;
+      lastY = e.offsetY;
+    });
+  
+    canvas.addEventListener('mousemove', function(e) {
+      if (isDrawing) {
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+        lastX = e.offsetX;
+        lastY = e.offsetY;
+      }
+    });
+  
+    canvas.addEventListener('mouseup', function() {
+      isDrawing = false;
+    });
+  
+    resetButton.addEventListener('click', function() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+  });
+
+  $(document).ready(function() {
+    $('input[type="file"]').on('change', function(event) {
+      const selectedFile = event.target.files[0];
+      const imgElement = $('<img>').attr('src', URL.createObjectURL(selectedFile));
+      $('body').append(imgElement);
+    });
+  });
