@@ -1,5 +1,5 @@
 var strLang;
-$(document).ready(function(){
+/*$(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         // call web service to verify ID and get role
         $('#divLogin').slideUp(function(){
@@ -8,7 +8,7 @@ $(document).ready(function(){
             });
         })
     }
-})
+})*/
 $('.btnDashboardHeader').on('click',function(){
     $(this).siblings('.card-body').slideToggle();
 })
@@ -26,15 +26,24 @@ $('.btnCheck').on('click',function(){
 })
 
 $('#btnLogin').on('click',function(){
-    $('#divLogin').slideUp(function(){
-        $('#divDashboard').slideDown(function(){
-            $('#navMain').slideDown();
-            $('#divHome').slideDown();
-        
-
-           
-        });
+    strEmail = '';
+    strPassword = '';
+    $.getJson('http://localhost:8000/admin', {email: strEmail, password: strPassword}, function(result){
+    if(insrtgoodOutcome == true){
+        $('#divLogin').slideUp(function(){
+            $('#divDashboard').slideDown(function(){
+                $('#navMain').slideDown();
+                $('#divHome').slideDown();
+            });
+        })
+    } else {
+        swal.fire({
+            icon:'error',
+            html:'<p>Please input the correct login information!</p>'
+        })
+    }
     })
+    
 })
 
 $('#linkLogout').on('click',function(){
