@@ -524,9 +524,19 @@ $(document).ready(function() {
   });
 
   $(document).ready(function() {
-    $('input[type="file"]').on('change', function(event) {
-      const selectedFile = event.target.files[0];
-      const imgElement = $('<img>').attr('src', URL.createObjectURL(selectedFile));
-      $('body').append(imgElement);
+    $("#take-photo").on("click", function() {
+        // Use HTML5 input element to access device camera
+        $("<input>", {type: "file", accept: "image/*", capture: "camera"}).on("change", function(event) {
+            // Get the image file from the input element
+            var imageFile = event.target.files[0];
+            // Create a new FileReader object
+            var reader = new FileReader();
+            // When the FileReader object loads, set the photo container to display the image
+            reader.onload = function(event) {
+                $("#photo-container").html("<img src='" + event.target.result + "' />");
+            };
+            // Read the image file as a URL
+            reader.readAsDataURL(imageFile);
+        }).click();
     });
-  });
+});
