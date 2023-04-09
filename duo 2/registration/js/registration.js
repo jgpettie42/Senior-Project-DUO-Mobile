@@ -523,20 +523,43 @@ $(document).ready(function() {
     });
   });
 
-  $(document).ready(function() {
-    $("#take-photo").on("click", function() {
-        // Use HTML5 input element to access device camera
-        $("<input>", {type: "file", accept: "image/*", capture: "camera"}).on("change", function(event) {
-            // Get the image file from the input element
-            var imageFile = event.target.files[0];
-            // Create a new FileReader object
-            var reader = new FileReader();
-            // When the FileReader object loads, set the photo container to display the image
-            reader.onload = function(event) {
-                $("#photo-container").html("<img src='" + event.target.result + "' />");
-            };
-            // Read the image file as a URL
-            reader.readAsDataURL(imageFile);
-        }).click();
-    });
-});
+  // Handle image upload
+  $("#file-upload").on("change", function() {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      $("#preview-image").attr("src", event.target.result);
+      $("#delete-image").prop("disabled", false);
+    };
+    reader.readAsDataURL(this.files[0]);
+  });
+  
+  // Handle image capture
+  $("#capture-image").on("click", function() {
+    var video = $("<video autoplay></video>");
+    var canvas = $("<canvas></canvas>");
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function(stream) {
+        video.get(0).srcObject = stream;
+        video.on("loadedmetadata", function() {
+          canvas.get(0).width = video.width();
+          canvas.get(0).height = video.height();
+          canvas.get(0).getContext("2d").drawImage(video.get(0), 0, 0, canvas.width(), canvas.height());
+          var imageData = canvas.get(0).toDataURL();
+          $("#preview-image").attr("src", imageData);
+          $("#delete-image").prop("disabled", false);
+          video.get(0).srcObject.getTracks()[0].stop();
+          video.remove();
+          canvas.remove();
+        });
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+  });
+  
+  // Handle image deletion
+  $("#delete-image").on("click", function() {
+    $("#preview-image").attr("src", "#");
+    $("#file-upload").val("");
+    $(this).prop("disabled", true);
+  });

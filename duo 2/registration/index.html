@@ -356,9 +356,18 @@
               <button type="button" class="btn btn-outline-danger" id="reset-button">Reset</button>
             </div>
 
-            <h1>Take a Photo</h1>
-            <button id="take-photo">Add Photo</button>
-            <div id="photo-container"></div>
+            <div>
+              <h1>Photo Upload and Capture</h1>
+            <form>
+              <label for="file-upload">Upload a photo:</label>
+              <input type="file" id="file-upload"><br>
+              <img  class="imgclass" id="preview-image"><br>
+              <button class="btn btn-outline-danger"type="button" id="delete-image" disabled>Delete Photo</button>
+            </form>
+            <br>
+            <button class ="btn btn-outline-primary"type="button" id="capture-image">Take Photo</button>
+            </div>
+            
 
             <button id="btnFinishRegistration" type="button" class="btn btn-primary text-white col-12 mt-3"  aria-label="Registration Button">Register Your Account</button>
             <button id="btnBackToEmergencyContact" type="button" class="btn btn-outline-primary col-12 mt-3"  aria-label="Cancel Registration">Back</button>
