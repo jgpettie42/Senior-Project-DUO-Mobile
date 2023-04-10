@@ -221,6 +221,7 @@ app.get("/users/:userid",(req,res,next)=> {
 })
 
 app.get("/test",(req,res,next)=> {
+    
     try{
         pool.query('SELECT * FROM tblUsers',function(error,result){
             if(!error){
@@ -518,4 +519,19 @@ try{
 }
 
     
+})
+
+app.get("/testRoleGet",(req,res,next)=> {
+    let strRole = req.query.role || req.body.role;
+    try{
+        pool.query('SELECT * FROM tblUsers join tbluserroles on tbluserroles.UserID = tblusers.UserID where RoleID = ?',[strRole],function(error,result){
+            if(!error){
+                res.status(200).send(result);
+            } else {
+                res.status(400).send(JSON.stringify({Error:error}));
+            }
+        })
+    } catch{
+        console.log(error);
+    }
 })
