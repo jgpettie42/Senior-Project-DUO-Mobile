@@ -488,3 +488,78 @@ $('.nav-link').on('click',function(){
 $("input[name='phone']").keyup(function() {
     $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d+)$/, "($1)$2-$3"));
 });
+
+$(document).ready(function() {
+    var canvas = document.getElementById('signature-box');
+    var ctx = canvas.getContext('2d');
+    var resetButton = document.getElementById('reset-button');
+    var isDrawing = false;
+    var lastX = 0;
+    var lastY = 0;
+  
+    canvas.addEventListener('mousedown', function(e) {
+      isDrawing = true;
+      lastX = e.offsetX;
+      lastY = e.offsetY;
+    });
+  
+    canvas.addEventListener('mousemove', function(e) {
+      if (isDrawing) {
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+        lastX = e.offsetX;
+        lastY = e.offsetY;
+      }
+    });
+  
+    canvas.addEventListener('mouseup', function() {
+      isDrawing = false;
+    });
+  
+    resetButton.addEventListener('click', function() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+  });
+
+  // Handle image upload
+  $("#file-upload").on("change", function() {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      $("#preview-image").attr("src", event.target.result);
+      $("#delete-image").prop("disabled", false);
+    };
+    reader.readAsDataURL(this.files[0]);
+  });
+  
+  // Handle image capture
+  $("#capture-image").on("click", function() {
+    var video = $("<video autoplay></video>");
+    var canvas = $("<canvas></canvas>");
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function(stream) {
+        video.get(0).srcObject = stream;
+        video.on("loadedmetadata", function() {
+          canvas.get(0).width = video.width();
+          canvas.get(0).height = video.height();
+          canvas.get(0).getContext("2d").drawImage(video.get(0), 0, 0, canvas.width(), canvas.height());
+          var imageData = canvas.get(0).toDataURL();
+          $("#preview-image").attr("src", imageData);
+          $("#delete-image").prop("disabled", false);
+          video.get(0).srcObject.getTracks()[0].stop();
+          video.remove();
+          canvas.remove();
+        });
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+  });
+  
+  // Handle image deletion
+  $("#delete-image").on("click", function() {
+    $("#preview-image").attr("src", "#");
+    $("#file-upload").val("");
+    $(this).prop("disabled", true);
+  });
