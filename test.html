@@ -33,7 +33,7 @@
 
     <div id="divTable">
         <button id="testtable" class="btn btn-large" aria-label="login">table</button>
-        <table>
+        <table id="tblUsers">
             <thead>
                 <tr>First</tr>
                 <tr>Middle</tr>
@@ -43,6 +43,9 @@
                 <tr>Sex</tr>
                 <tr>Role</tr>
             </thead>
+            <tbody>
+
+            </tbody>
         </table>
     </div>
 
@@ -149,6 +152,12 @@
         $.get('http://localhost:8000/testRoleGet',{role:strRole},function(result){
             console.log(result)
             console.log("worked")
+            let arrUsers = result
+            $.each(arrUsers,function(index,user){
+                let strTableHtml = '';
+                strTableHtml += '<tr><td>'+ user.FirstName+'</td><td>'+user.MiddleName+'</td><td>'+ user.LastName+'</td><td>'+ user.DOB+'</td><td>'+ user.UserID+'</td><td>'+ user.Sex+'</td><td>'+ user.RoleID+'</td></tr>'
+                $('#tblUsers tbody').append(strTableHtml);
+           })
         })
     })
 
