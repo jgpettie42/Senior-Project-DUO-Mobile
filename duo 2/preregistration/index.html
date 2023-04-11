@@ -42,28 +42,23 @@
             <input class="form-control txtPhone mb-2" name="phone" type="telephone" id="txtPhone-en">
             <label class="form-label mb-0" for="selServices-en">Services Interested In</label>
             <div class="form-group" id="selServices-en">
+                <select class="form-control selServices-en mb-2" id="selectDental-en">
+                    <option selected>Select Dental options</option>
+                    <option value="Cleaning">Cleaning</option>
+                    <option value="Filling">Filling</option>
+                    <option value="Extraction">Extraction</option>
+                    <option value="No Dental needed">No Dental needed</option>
+                </select>
                 <div class="form-check">
-                    <input class="form-check-input selServices-en" type="checkbox" value="dental">
-                    <label class="form-check-label">Extraction</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input selServices-en" type="checkbox" value="dental">
-                    <label class="form-check-label">Cleaning</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input selServices-en" type="checkbox" value="dental">
-                    <label class="form-check-label">Filling</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input selServices-en" type="checkbox" value="haircut">
+                    <input class="form-check-input selServices-en" id="selectHaircut-en" type="checkbox" value="haircut">
                     <label class="form-check-label">Haircut</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input selServices-en" type="checkbox" value="health">
-                    <label class="form-check-label">Health</label>
+                    <input class="form-check-input selServices-en" id="selectMedical-en" type="checkbox" value="medical">
+                    <label class="form-check-label">Medical</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input selServices-en" type="checkbox" value="vision">
+                    <input class="form-check-input selServices-en" id="selectVision-en" type="checkbox" value="vision">
                     <label class="form-check-label">Vision</label>
                 </div>
             </div>
@@ -86,7 +81,7 @@
             <label class="form-label mb-0" for="txtDOB-es">Fecha de Nacimiento</label>
             <input class="form-control txtDOB mb-2" type="date" id="txtDOB-es">
             <label class="form-label mb-0" for="selectSex-es">Sexo</label>
-            <select class="form-conrtol selectSex mb-2" type="select" id="selectSex-es">
+            <select class="form-control selectSex mb-2" id="selectSex-es">
                 <option selected>Abrir el menu de seleccion</option>
                 <option value="Male">Masculino</option>
                 <option value="Female">Femenina</option>
@@ -99,20 +94,23 @@
             <input class="form-control txtPhone mb-2" name="phone" type="telephone" id="txtPhone-es">
             <label class="form-label mb-0" for="selServices-es">Servicios en los que está interesado</label>
             <div class="form-group" id="selServices-es">
+                <select class="form-control selServices-es mb-2" id="selectDental-es">
+                    <option selected>Seleccionar opciones dentales</option>
+                    <option value="Cleaning">Limpieza dental</option>
+                    <option value="Filling">Empaste dental</option>
+                    <option value="Extraction">Extracción dental</option>
+                    <option value="No Dental needed">No se necesita odontología</option>
+                </select>
                 <div class="form-check">
-                    <input class="form-check-input selServices-es" type="checkbox" value="dental">
-                    <label class="form-check-label">Dental</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input selServices-es" type="checkbox" value="haircut">
+                    <input class="form-check-input selServices-es" id="selectDental-es" type="checkbox" value="haircut">
                     <label class="form-check-label">Corte de pelo</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input selServices-es" type="checkbox" value="health">
-                    <label class="form-check-label">Servicios de Salud</label>
+                    <input class="form-check-input selServices-es" id="selectMedical-es" type="checkbox" value="medical">
+                    <label class="form-check-label">Servicios médicos</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input selServices-es" type="checkbox" value="vision">
+                    <input class="form-check-input selServices-es" id="selectVision-es" type="checkbox" value="vision">
                     <label class="form-check-label">Visión</label>
                 </div>
             </div>
