@@ -106,12 +106,13 @@ CREATE TABLE `tblPhoneTypes` (
 );
 CREATE TABLE `tblPreRegistration` (
   `RegistrationID` varchar(50) NOT NULL,
-  `FirstName` varchar(60) DEFAULT NULL,
-  `MiddleName` varchar(60) DEFAULT NULL,
-  `LastName` varchar(60) DEFAULT NULL,
+  `FirstName` varchar(60) NOT NULL,
+  `MiddleName` varchar(60) NOT NULL,
+  `LastName` varchar(60) NOT NULL,
   `Phone` varchar(15) DEFAULT NULL,
   `Email` varchar(100) DEFAULT NULL,
-  `DOB` date DEFAULT NULL,
+  `DOB` date NOT NULL,
+  `Password` varchar(100) NOT NULL,
   `Sex` varchar(30) DEFAULT NULL,
   `PreferredLanguage` varchar(50) DEFAULT NULL,
   `RegistrationDateTIme` datetime DEFAULT NULL,
