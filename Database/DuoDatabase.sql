@@ -220,6 +220,7 @@ CREATE TABLE `tblUsers` (
   `OpenEMRID` varchar(50) DEFAULT NULL,
   `MFAInfo` varchar(50) DEFAULT NULL,
   `PreferredLanguage` varchar(50) DEFAULT NULL,
+  `BadgeNum` varchar(4) NOT NULL,
   PRIMARY KEY (`UserID`)
 );
 CREATE TABLE `tblUserSkills` (
