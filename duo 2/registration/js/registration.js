@@ -84,6 +84,12 @@ $('#btnCheckVisitor').on('click', function(){
     $('#divExistingUser').slideToggle();
     //show user profile here
     //then after confirming them we will want to assign a ID for the day
+    let strfname = $('#txtFirstName').val()
+    let strlname= $('#txtLastName').val()
+    let strDOB= $('#txtDateOfBirth').val()
+    $.getJSON(strBaseURL+"/previoususers",{firstname:strfname,lastname:strlname,dob:strDOB},function(results){
+        console.log(results)
+    })
 })
 
 $('#btnCheckInExistingUser').on('click', function(){

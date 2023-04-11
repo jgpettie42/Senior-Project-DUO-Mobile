@@ -217,20 +217,25 @@ app.get("/users/:userid",(req,res,next)=> {
    
 })
 
-app.get("/test",(req,res,next)=> {
+app.get("/previoususers",(req,res,next)=> {
+    let strFirstName = req.query.firstname || req.body.firstname;
+    let strLastName = req.query.lastname || req.body.lastname;
+    let strDOB = req.query.dob || req.body.dob;
     
     try{
-        pool.query('SELECT * FROM tblUsers',function(error,result){
+        pool.query('SELECT * FROM tblUsers WHERE FirstName = ? AND LastName = ? AND DOB = ?',[strFirstName,strLastName,strDOB],function(error,result){
             if(!error){
                 res.status(200).send(result);
             } else {
                 res.status(400).send(JSON.stringify({Error:error}));
             }
         })
-    } catch {
+     } catch{
         console.log(error);
-    }
+     }
+   
 })
+
 
 app.get("/testnotes",(req,res,next)=> {
     try{
