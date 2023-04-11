@@ -109,14 +109,15 @@ CREATE TABLE `tblPreRegistration` (
   `FirstName` varchar(60) DEFAULT NULL,
   `MiddleName` varchar(60) DEFAULT NULL,
   `LastName` varchar(60) DEFAULT NULL,
-  `PreferredName` varchar(50) DEFAULT NULL,
   `Phone` varchar(15) DEFAULT NULL,
   `Email` varchar(100) DEFAULT NULL,
-  `DOB` varchar(50) DEFAULT NULL,
+  `DOB` date DEFAULT NULL,
   `Sex` varchar(30) DEFAULT NULL,
   `PreferredLanguage` varchar(50) DEFAULT NULL,
   `RegistrationDateTIme` datetime DEFAULT NULL,
   `Services` varchar(50) DEFAULT NULL,
+  `PreferredName` varchar(50) DEFAULT NULL,
+  `Checkin_Status` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`RegistrationID`)
 );
 CREATE TABLE `tblRegistrations` (
@@ -220,6 +221,7 @@ CREATE TABLE `tblUsers` (
   `OpenEMRID` varchar(50) DEFAULT NULL,
   `MFAInfo` varchar(50) DEFAULT NULL,
   `PreferredLanguage` varchar(50) DEFAULT NULL,
+  `BadgeNum` int NOT NULL,
   PRIMARY KEY (`UserID`)
 );
 CREATE TABLE `tblUserSkills` (
