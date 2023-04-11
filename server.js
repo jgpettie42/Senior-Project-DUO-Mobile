@@ -178,23 +178,26 @@ app.post("/preregistration",(req,res,next)=>{
     try{
             let strRegistrationID = uuidv4()
             pool.query('INSERT INTO tblpreregistration (RegistrationID,Email,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage,CheckIn_Status) VALUES(?,?,?,?,?,?,?,?,?,"NO")',[strRegistrationID,strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage],function(error,result){
-
-            })
             console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword)
+            res.status(201).send(result);
         if(!error){
                     let strRegistrationID = uuidv4();
                     let strEvent = uuidv4();
+                    console.log("1")
                     pool.query("INSERT INTO tblRegistrations VALUES (?,?,1,NOW(),'Pre')",[strRegistrationID,strEmail],function(errors,results){
                         if(!errors){
+                            console.log("2")
                             res.status(201).send(JSON.stringify({RegistrationID:strRegistrationID}));
                         } else {
+                            console.log("3")
                             res.status(400).send(JSON.stringify({Error:errors}));
                         }
                     })
                 } else {
                     res.status(400).send(JSON.stringify({Error:error}));
-                }
-        } catch {
+                } 
+             })
+        } catch (error) {
             console.log(error);
         }   
     })
