@@ -140,12 +140,8 @@ app.get("/location/:locationid",(req,res,next)=>{
 })
 
 app.get("/preregistration",(req,res,next)=>{
-    let strFirstName = req.query.firstname || req.body.firstname;
-    let strMiddleName = req.query.middleinit || req.body.middleinit;
-    let strLastName = req.query.lastname || req.body.lastname;
-    let strDOB = req.query.dob || req.body.dob;
         try{
-            pool.query('select * from tblusers where FirstName=? and LastName =? and DOB = ?',[strFirstName,strLastName,strDOB],function(error,result){
+            pool.query('select * from tblpreregistration where CheckIn_Status = "NO"',function(error,result){
                 if(!error){
                     res.status(200).send(result);
                 } else {
@@ -181,9 +177,10 @@ app.post("/preregistration",(req,res,next)=>{
         strPassword = hash;
     try{
             let strRegistrationID = uuidv4()
-            pool.query('INSERT INTO tblpreregistration (RegistrationID,Email,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage) VALUES(?,?,?,?,?,?,?,?,?)',[strRegistrationID,strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage],function(error,result){
+            pool.query('INSERT INTO tblpreregistration (RegistrationID,Email,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage,CheckIn_Status) VALUES(?,?,?,?,?,?,?,?,?,"NO")',[strRegistrationID,strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage],function(error,result){
 
             })
+            console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword)
         if(!error){
                     let strRegistrationID = uuidv4();
                     let strEvent = uuidv4();
@@ -252,17 +249,17 @@ app.get("/testnotes",(req,res,next)=> {
 
 app.post("/badgenum", (req,res,next)=>{
     let strFirstName = req.query.firstname || req.body.firstname;
-    let strMiddleName = req.query.middleinit || req.body.middleinit;
     let strLastName = req.query.lastname || req.body.lastname;
 
     let strDOB = req.query.dob || req.body.dob;
     let intBadgeNum = req.query.badgenum || req.body.badgenum;
 
-    console.log(strFirstName,strMiddleName,strLastName,strDOB,intBadgeNum)
+    console.log(strFirstName,strLastName,strDOB,intBadgeNum)
 
     try{
-        pool.query('update tblusers set BadgeNum = (?) WHERE (FirstName,MiddleName,LastName,DOB) = (?,?,?,?)',[intBadgeNum,strFirstName,strMiddleName,strLastName,strDOB],function(error,result){
+        pool.query('update tblusers set BadgeNum = (?) WHERE (FirstName,LastName,DOB) = (?,?,?)',[intBadgeNum,strFirstName,strLastName,strDOB],function(error,result){
             if(!error){
+                pool.query('update tblpreregistration set CheckIn_Status = "Yes"')
                 res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
             } else {
                 res.status(400).send(JSON.stringify({Error:error}));

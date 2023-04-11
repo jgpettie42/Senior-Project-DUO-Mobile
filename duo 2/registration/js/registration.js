@@ -4,6 +4,7 @@ var strLang;
 var arrPreReqParts;
 
 var strBaseURL = 'http://localhost:8000';
+
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         if(sessionStorage.getItem('SimpleSession')){
@@ -27,6 +28,7 @@ $('.btnDashboardHeader').on('click',function(){
 })
 
 $('#btnCheckInPreReg').on('click', function(){
+    console.log("uhhh")
     let strPreRegID = $('#selectParticipant').val();
     if(strPreRegID == ''){
         Swal.fire({
@@ -36,9 +38,9 @@ $('#btnCheckInPreReg').on('click', function(){
     } else {
         //get preregistration data and fill the text boxes for the person to confirm user
         let objSelectedPart = arrPreReqParts.filter(el=> el.RegistrationID == strPreRegID)[0];
-
+        console.log(objSelectedPart)
         let strData = $("#selectParticipant").val()
-       
+        console.log(strData)
         let strfname = objSelectedPart.FirstName
         let strlname = objSelectedPart.LastName
         let strdob = objSelectedPart.DOB.split('T')[0]
@@ -312,7 +314,7 @@ $('#btnAssignUserID').on('click', function(){
         */
 
 
-        $.post(strBaseURL + '/badgenum',{firstname: $('#txtPreFirstName').val(), middleinit:$('#txtPreMiddleName').val(), lastname: $('#txtPreLastName').val(), dob: $('#txtPreDateOfBirth').val(), badgenum: $('#txtAssignUserID').val()},function(result){
+        $.post(strBaseURL + '/badgenum',{firstname: $('#txtPreFirstName').val(), lastname: $('#txtPreLastName').val(), dob: $('#txtPreDateOfBirth').val(), badgenum: $('#txtAssignUserID').val()},function(result){
             console.log(result);
             let objResult = JSON.parse(result);
             if(objResult.Outcome){
