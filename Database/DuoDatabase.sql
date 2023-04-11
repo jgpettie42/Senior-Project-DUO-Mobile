@@ -117,7 +117,7 @@ CREATE TABLE `tblPreRegistration` (
   `RegistrationDateTIme` datetime DEFAULT NULL,
   `Services` varchar(50) DEFAULT NULL,
   `PreferredName` varchar(50) DEFAULT NULL,
-  `Status` varchar(45) DEFAULT NULL,
+  `Checkin_Status` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`RegistrationID`)
 );
 CREATE TABLE `tblRegistrations` (
