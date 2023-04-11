@@ -143,6 +143,10 @@ $('#btnNextToRegistration').on('click', function(){
         blnError = true;
         strHTML += '<p>You must enter Date of Birth</p>'
     }
+    if($('#txtEmail').val().length < 1){
+        blnError = true;
+        strHTML += '<p>You must enter a valid email address</p>'
+    }
     if(blnError == true){
         swal.fire({
             html: strHTML,
