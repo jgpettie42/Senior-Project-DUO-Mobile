@@ -6,7 +6,18 @@ $('.btnLang').on('click',function(){
         $('#divReg-' + strLang).slideDown();
     })
 })
+var expanded = false;
 
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
 $('.btnRegistar').on('click',function(){
     let strLang = $(this).attr('data-lang');
     let strFirstName = $('#divReg-' + strLang + ' .txtFirstName').val();
