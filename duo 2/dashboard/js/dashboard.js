@@ -22,6 +22,17 @@ $('.btnCheck').on('click',function(){
     }
     
 })
+$('.btnCheckIn').on('click',function(){
+    let strButtonText = $(this).text();
+    if(strButtonText != 'In Use'){
+        $(this).removeClass('btn-success').addClass('btn-danger');
+        $(this).text('In Use');
+    } else {
+        $(this).removeClass('btn-danger').addClass('btn-success');
+        $(this).text('Vacant');
+    }
+    
+})
 
 $('#btnSubmitAddAppt').on('click',function(){
     if($('#selectServiceAddAppt').val() == ' ' || $('#txtUserAddAppt').val() == '' || $('#txtTimeAddAppt').val() == ''){
@@ -321,4 +332,27 @@ $('#btnVision').on('click',function(){
 $('#btnLogoutVision').on('click',function(){
     $('#divLogin').slideToggle();
     $('#divDashboardVision').slideToggle();
+})
+
+
+
+$('#btnHaircut').on('click',function(){
+    $('#divLogin').slideToggle();
+    $('#divHaircut').slideToggle();
+})
+let strUserIDHair = $('#txtHairUserID').val();
+$(document).on('click','.btnSubmitHair',function(){
+    if(strUserIDHair.length < 1){
+        Swal.fire({
+            icon: 'error',
+            title: 'oops...',
+            text: 'You must fill out all fields'
+        })
+    } else{
+        Swal.fire({
+            icon: 'success',
+            title: 'Congrats!',
+            text: 'User Submitted'
+        })
+    }
 })
