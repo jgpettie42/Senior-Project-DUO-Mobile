@@ -310,3 +310,15 @@ $('#btnViewXray').on('click',function(){
     $('#divDashbaordDental').slideToggle();
     $('#divXray').slideToggle();
 })
+
+
+$('#btnVision').on('click',function(){
+    $('#divLogin').slideToggle();
+    $('#divDashboardVision').slideToggle();
+})
+
+
+$('#btnLogoutVision').on('click',function(){
+    $('#divLogin').slideToggle();
+    $('#divDashboardVision').slideToggle();
+})
