@@ -17,10 +17,11 @@ $('.btnRegistar').on('click',function(){
     let strEmail = $('#divReg-' + strLang + ' .txtEmail').val();
     let strDOB = $('#divReg-' + strLang + ' .txtDOB').val();
     let strSex = $('#divReg-' + strLang + ' .selectSex').val();
-    let arrServicesInputs = $('.selServices-' + strLang + ' input');
-    var arrServices = $('.selServices-en').map((i, e) => e.value).get();
-    var arrServices = '';
+    let arrServicesInputs = $('.selServices-' + strLang);
+    var arrServices = $('.selServices-'+strLang).map((i, e) => e.value).get();
     console.log(arrServices);
+    let strServices = ""
+    
     let strError = '';
     if(strLang == 'en'){
         if(strFirstName.length < 1){
@@ -56,7 +57,11 @@ $('.btnRegistar').on('click',function(){
             html:strError
         })
     } else {
-        $.post('http://localhost:8000/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex})
+        arrServices.forEach(i,function(){
+            strServices += "," + i
+        })
+        
+        $.post('http://localhost:8000/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex, services:strServices})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success
