@@ -356,3 +356,33 @@ $(document).on('click','.btnSubmitHair',function(){
         })
     }
 })
+
+$('#btnFood').on('click',function(){
+    $('#divLogin').slideToggle();
+    $('#divFood').slideToggle();
+})
+let foodCount = 0;
+$('#btnSubmitFood').on('click',function(){
+
+
+    Swal.fire({
+        icon: 'question',
+        title: 'Are you sure you want to continue?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: `Yes`,
+        denyButtonText: `No`,
+        }).then((result) => {
+        if (result.isConfirmed) {
+            foodCount += 1;
+            $('#txtFoodCount').empty();
+            $('#txtFoodCount').append(foodCount);
+            Swal.fire({
+                icon: 'success',
+                title: 'Meal Submitted!'
+            })
+        } else if (result.isDenied) {
+            
+        }
+        })
+})
