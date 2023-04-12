@@ -154,6 +154,26 @@ app.get("/preregistration",(req,res,next)=>{
         
 })
 
+app.get("/preregistrationtransfer",(req,res,next)=>{
+    let strFirstName = req.query.firstname || req.body.firstname;
+    let strLastName = req.query.lastname || req.body.lastname;
+
+    let strDOB = req.query.dob || req.body.dob;
+
+    try{
+        pool.query('select * from tblpreregistration where FirstName = ? AND LastName = ? AND DOB = ?',[strFirstName,strLastName,strDOB],function(error,result){
+            if(!error){
+                res.status(200).send(result);
+            } else {
+                res.status(400).send(JSON.stringify({Error:error}));
+            }
+        })
+    } catch{
+        console.log(error);
+    }
+    
+})
+
 app.post("/preregistration",(req,res,next)=>{
     let strEvent = req.query.event || req.body.event;
     let strFirstName = req.query.firstname || req.body.firstname;
@@ -266,7 +286,7 @@ app.post("/badgenum", (req,res,next)=>{
     try{
         pool.query('update tblusers set BadgeNum = (?) WHERE (FirstName,LastName,DOB) = (?,?,?)',[intBadgeNum,strFirstName,strLastName,strDOB],function(error,result){
             if(!error){
-                pool.query('update tblpreregistration set CheckIn_Status = "Yes"')
+                pool.query('update tblpreregistration set CheckIn_Status = "Yes" WHERE (FirstName,LastName,DOB) = (?,?,?)',[strFirstName,strLastName,strDOB])
                 res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
             } else {
                 res.status(400).send(JSON.stringify({Error:error}));

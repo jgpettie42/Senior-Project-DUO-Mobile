@@ -326,6 +326,15 @@ $('#btnAssignUserID').on('click', function(){
         $('#txtPreServices').val(strServices);
         $('#txtPreLanguage').val(strLang);
         */
+       $.getJSON(strBaseURL+"/preregistrationtransfer",{firstname: $('#txtPreFirstName').val(), lastname: $('#txtPreLastName').val(), dob: $('#txtPreDateOfBirth').val()},function(result){
+            console.log(result)
+            let arrInfo = []
+            $.each(result,function(index,currfield){
+                arrInfo += result[index]
+                
+            })
+            console.log(arrInfo)
+       })
 
 
         $.post(strBaseURL + '/badgenum',{firstname: $('#txtPreFirstName').val(), lastname: $('#txtPreLastName').val(), dob: $('#txtPreDateOfBirth').val(), badgenum: $('#txtAssignUserID').val()},function(result){
