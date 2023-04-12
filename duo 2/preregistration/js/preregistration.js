@@ -57,8 +57,8 @@ $('.btnRegistar').on('click',function(){
             html:strError
         })
     } else {
-        arrServices.forEach(i,function(){
-            strServices += "," + i
+        arrServices.forEach(function(item,index){
+            strServices += "," +  item
         })
         
         $.post('http://localhost:8000/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex, services:strServices})
