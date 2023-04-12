@@ -288,15 +288,12 @@ app.post("/users", (req,res,next)=>{
     let strEmail = req.query.email || req.body.email;
     let strSex = req.query.sex || req.body.sex;
     let strDOB = req.query.dob || req.body.dob;
-    let strPassword = req.query.password || req.body.password;
+    let strPassword = (strDOB.split("-")[0]) + strFirstName.split(0) + strLastName + "!"
 
     console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword)
 
     let strUserRoleId = uuidv4();
 
-    if(strPassword == null){
-        strPassword = uuidv4();
-    }
     if(strEmail == null){
         strEmail = uuidv4();
     }

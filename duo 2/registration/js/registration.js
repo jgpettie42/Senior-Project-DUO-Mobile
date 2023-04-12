@@ -280,12 +280,16 @@ $('#btnFinishRegistration').on('click', function(){
                 icon: 'error',
             })
     } else {
-        $.post(strBaseURL + '/users', {firstname: $('#txtRegFirstName').val(), middleinit: $('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), preferredname: $('#txtPreferredName').val(), sex: $('#selectSex').val(), dob: $('#txtRegDateOfBirth').val()})
+        $.post(strBaseURL + '/users', {firstname: $('#txtRegFirstName').val(), middleinit: $('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), preferredname: $('#txtPreferredName').val(), sex: $('#selectSex').val(), dob: $('#txtRegDateOfBirth').val(), email: $('#txtEmail').val()})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success
             if(objResult.Outcome){
                 $('#divLoginInfo').slideToggle();
+                $('#txtPreFirstName').val($('#txtRegFirstName').val());
+                $('#txtPreMiddleName').val($('#txtRegMiddleName').val());
+                $('#txtPreLastName').val($('#txtRegLastName').val());
+                $('#txtPreDateOfBirth').val($('#txtRegDateOfBirth').val());
                 $('#divAssignUserID').slideToggle();
             } else {
                 swal.fire({
