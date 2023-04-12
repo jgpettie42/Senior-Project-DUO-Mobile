@@ -60,6 +60,7 @@ $('.btnRegistar').on('click',function(){
         arrServices.forEach(function(item,index){
             strServices += "," +  item
         })
+        //ceagan i changed it back to index and result for the time being. stack overfolow's example showed that this is the correct format.
         
         $.post('http://localhost:8000/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex, services:strServices})
         .done(function(result){
