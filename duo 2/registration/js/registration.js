@@ -328,12 +328,12 @@ $('#btnAssignUserID').on('click', function(){
         */
        $.getJSON(strBaseURL+"/preregistrationtransfer",{firstname: $('#txtPreFirstName').val(), lastname: $('#txtPreLastName').val(), dob: $('#txtPreDateOfBirth').val()},function(result){
             console.log(result)
-            let arrInfo = []
+            let strFname = ""
             $.each(result,function(index,currfield){
-                arrInfo += result[index]
-                
+                console.log(currfield)
+                strFname = currfield.FirstName
             })
-            console.log(arrInfo)
+            console.log(strFname)
        })
 
 
