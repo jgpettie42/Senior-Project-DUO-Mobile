@@ -155,8 +155,48 @@
            })
         })
     })
+    
+    $('#teststaff').on('click',function(){
+        console.log('test')
+        let strBMI 
 
+        let strGripStrength 
 
+        let strHeight
+
+        let strWeight
+
+        let strBloodPressure
+
+        let strHeartRate
+
+        let strO2Saturation 
+
+        let strTemp
+
+        let struserID
+
+        let strextrainfo
+
+        let strallergy
+
+        let strmedicines 
+
+        let strmentalstate
+
+        let strsubstanceusage 
+
+        let strInfo = letstrBMI = +strGripStrength+ strHeight+ strWeight +strBloodPressure+ strHeartRate+ strO2Saturation+ strTemp+ struserID+ strextrainfo+ strallergy+ strmedicines+ strmentalstate+ strsubstanceusage 
+        
+        console.log(strInfo)
+        console.log("working")
+
+        $.post('http://localhost:8000/userhealthinfo',{},function(result){
+            console.log(result)
+            console.log("worked")
+        })
+    
+    })
 
 </script>
 
