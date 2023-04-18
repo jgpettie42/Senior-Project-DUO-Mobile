@@ -756,7 +756,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="d-flex col-12 flex-wrap mb-0">
-                                    <div class="col-12 fw-bold text-center"><i class="bi bi-bag-heart me-2 text-primary"></i><label class="form-label" for="txtCondition">Condition</label><input class="form-control" id="txtCondition"></div>
+                                    <div class="col-12 fw-bold text-center"><i class="bi bi-bag-heart me-2 text-primary"></i><label class="form-label" for="txtA1C">A1C</label><input class="form-control" id="txtA1C"></div>
                                 </div> 
                                 <hr>
                                 <div class="d-flex col-12 flex-wrap mb-0">
@@ -954,29 +954,25 @@
                                             <div class="col-12 fw-bold text-center"><i class="bi bi-rulers me-2 text-primary"></i>BMI</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center fs-5 text-primary">22.6</div>
-                                        </div>
-                                        <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center fs-5">Normal</div>
-                                            
+                                            <div class="col-12 fw-bold text-center fs-5 text-primary" id="divBMI"></div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
                                             <div class="col-12 fw-bold text-center"><i class="bi bi-hand-index text-primary me-2"></i>Grip Strength</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center fs-5 text-primary">12 lbs</div>
+                                            <div class="col-12 fw-bold text-center fs-5 text-primary" id="divGripStrength"></div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
                                             <div class="col-12 fw-bold text-center"><i class="bi bi-rulers text-primary me-2"></i>Height
-                                                <div class="fw-bold fs-5 text-primary">5'0 [60 inches]</div>
+                                                <div class="fw-bold fs-5 text-primary" id="divHeight"></div>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
                                             <div class="col-12 fw-bold text-center"><i class="bi bi-rulers text-primary me-2"></i>Weight
-                                                <div class="fw-bold fs-5 text-primary">107 lbs</div>
+                                                <div class="fw-bold fs-5 text-primary" id="divWeight"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -991,12 +987,8 @@
                                             <div class="col-6 fw-bold text-center"><i class="bi bi-activity me-2 text-primary"></i>HR</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-6 fw-bold text-center fs-5 text-primary">140/83</div>
-                                            <div class="col-6 fw-bold text-center fs-5 text-primary">83 bpm</div>
-                                        </div>
-                                        <div class="d-flex col-12 flex-wrap mb-2">
-                                            <div class="col-6 fw-bold text-center fs-5">Urgency</div>
-                                            <div class="col-6 fw-bold text-center fs-5">Regular</div>
+                                            <div class="col-6 fw-bold text-center fs-5 text-primary" id="divBP"></div>
+                                            <div class="col-6 fw-bold text-center fs-5 text-primary" id="divHR"></div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
@@ -1004,8 +996,8 @@
                                             <div class="col-6 fw-bold text-center"><i class="bi bi-thermometer-half me-2 text-primary"></i>Temp</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-6 fw-bold text-center fs-5 text-primary">96%</div>
-                                            <div class="col-6 fw-bold text-center fs-5 text-primary">98.1 &#x2109</div>
+                                            <div class="col-6 fw-bold text-center fs-5 text-primary" id="divO2Sat"></div>
+                                            <div class="col-6 fw-bold text-center fs-5 text-primary" id="divTemp"></div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
@@ -1013,8 +1005,8 @@
                                             <div class="col-6 fw-bold text-center"><i class="bi bi-clipboard-data text-primary me-2"></i>Extra Info</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-6 text-center"><p class="fw-bold fs-5 text-primary">AA256</p></div>
-                                            <div class="col-6 text-center text-primary"><p>Decrease in BMI, Increased HR</p></div>
+                                            <div class="col-6 text-center"><p class="fw-bold fs-5 text-primary" id="divUserID"></p></div>
+                                            <div class="col-6 text-center text-primary"><p id="divExtraInfo"></p></div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
@@ -1022,8 +1014,8 @@
                                             <div class="col-6 fw-bold text-center"><i class="bi bi-prescription text-primary me-2"></i>Medicines</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-6 text-center"><p class="fw-bold fs-5 text-danger">Peanut Allergy</p></div>
-                                            <div class="col-6 text-center text-danger"><p class="fw-bold fs-5">omeprazole (Prilosec)</p></div>
+                                            <div class="col-6 text-center"><p class="fw-bold fs-5 text-danger" id="divAllergies"></p></div>
+                                            <div class="col-6 text-center text-danger"><p class="fw-bold fs-5" id="divMedicines"></p></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1036,31 +1028,28 @@
                                             <div class="col-12 fw-bold text-center"><i class="bi bi-bag-heart me-2 text-primary"></i>A1c</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center fs-3 text-primary">6.7</div>
-                                        </div>
-                                        <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 fw-bold text-center fs-3">Diabetes</div>
+                                            <div class="col-12 fw-bold text-center fs-3 text-primary" id="divA1C"></div>
                                         </div>
                                         <hr>
-                                        <div class="d-flex col-12 flex-wrap mb-0">
+                                        <!--<div class="d-flex col-12 flex-wrap mb-0">
                                             <div class="col-12 fw-bold text-center"><i class="bi bi-list-ul me-2 text-primary"></i>Lipid Panel</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
                                             <button class="col-12 btn btn-outline-primary mt-2" data-toggle="modal" data-target="#modalLipid">View</button>
                                         </div>
-                                        <hr>
+                                        <hr>-->
                                         <div class="d-flex col-12 flex-wrap mb-0">
                                             <div class="col-12 fw-bold text-center"><i class="bi bi-heart-pulse text-primary me-2"></i>Mental State</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 text-center"><p class="fw-bold fs-5 text-primary">Average</p></div>
+                                            <div class="col-12 text-center"><p class="fw-bold fs-5 text-primary" id="divMentalState"></p></div>
                                         </div>
                                         <hr>
                                         <div class="d-flex col-12 flex-wrap mb-0">
                                             <div class="col-12 fw-bold text-center"><i class="bi bi-capsule text-primary me-2"></i>Substance Usage</div>
                                         </div>
                                         <div class="d-flex col-12 flex-wrap mb-0">
-                                            <div class="col-12 text-center text-danger"><p class="fw-bold fs-5">Methamphetamine</p></div>
+                                            <div class="col-12 text-center text-danger"><p class="fw-bold fs-5" id="divSubstances"></p></div>
                                         </div>
                                     </div>
                                 </div>
