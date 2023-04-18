@@ -34,7 +34,7 @@ $('.btnCheckIn').on('click',function(){
     
 })
 
-$('#btnSubmitAddAppt').on('click',function(){
+/*$('#btnSubmitAddAppt').on('click',function(){
     if($('#selectServiceAddAppt').val() == ' ' || $('#txtUserAddAppt').val() == '' || $('#txtTimeAddAppt').val() == ''){
         Swal.fire({
             icon: 'error',
@@ -51,7 +51,7 @@ $('#btnSubmitAddAppt').on('click',function(){
     $('#divAddAppt').slideToggle();
     $('#divInputData').slideToggle();
     }
-})
+})*/
 
 $(document).on('click','.btnBackFromAddAppt',function(){
     $('#divAddAppt').slideToggle();
@@ -549,7 +549,7 @@ $('#btnViewXray').on('click',function(){
     $('#divXray').slideToggle();
 })
 
-
+//vision
 $('#btnVision').on('click',function(){
     $('#divLogin').slideToggle();
     $('#divDashboardVision').slideToggle();
@@ -562,7 +562,7 @@ $('#btnLogoutVision').on('click',function(){
 })
 
 
-
+//haircut
 $('#btnHaircut').on('click',function(){
     $('#divLogin').slideToggle();
     $('#divHaircut').slideToggle();
@@ -584,6 +584,8 @@ $(document).on('click','.btnSubmitHair',function(){
     }
 })
 
+
+//food
 $('#btnFood').on('click',function(){
     $('#divLogin').slideToggle();
     $('#divFood').slideToggle();
