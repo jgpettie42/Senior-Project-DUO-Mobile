@@ -556,3 +556,24 @@ app.get("/testRoleGet",(req,res,next)=> {
         console.log(error);
     }
 })
+
+app.post("userhealthinfo",(req,res,next)=>{
+    let strUserID = req.query.userid || req.body.userid
+    let strBMI = req.query.bmi || req.body.bmi
+    let strGripStrength = req.query.gripstrength || req.body.gripstrength
+    let strHeight = req.query.height || req.body.height
+    let strWeight = req.query.weight || req.body.weight
+    let strBloodPressure = req.query.bloodpressure || req.body.bloodpressure
+    let strHeartRate = req.query.heartrate || req.body.heartrate
+    let strO2 = req.query.o2 || req.body.o2
+    let strTemp = req.query.temp || req.body.temp
+    let strExtraInfo = req.query.extrainfo || req.body.ex
+    let strAllergy = req.query.allergy || req.body.allergy
+    let strMedicines = req.query.medicines || req.body.medicines
+    let strMentalState = req.query.mentalstate || req.body.mentalstate
+    let strSubstances = req.query.substances || req.body.substances
+
+    let strInfo = strAllergy+strBMI+strBloodPressure+strExtraInfo+strGripStrength+strHeartRate+strHeight+strMedicines+strMentalState+strO2+strSubstances+strTemp+strWeight+strUserID
+    console.log(strInfo)
+
+})

@@ -1,4 +1,4 @@
-var strLang;
+ var strLang;
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         // call web service to verify ID and get role
@@ -179,29 +179,27 @@ $('#btnSubmitData').on('click',function(){
           }).then((result) => {
             
             if (result.isConfirmed) {
-                /* $.post('http://localhost:8000/dashboard',{strBMI:BMI,strGripStrength:GripStrength,strHeight:Height,strWeight:Weight,strBP:BP,strHR:HR,strO2Sat:O2Sat,strTemp:Temp,strHealthID:HealthID,strExtraInfo:ExtraInfo,strCondition:Condition},function(result){
-        objResult = JSON.parse(result);
-        if(objResult.Outcome){
-            Swal.fire({
-            icon:'success',
-            title:'Good to go!',
-            text: 'Data Entered',
-            })
-        }else{
-            Swal.fire({
-            icon:'error',
-            title:'oops..',
-            text: 'Data Not Entered',
-            })
-        }
-    })*/
-            Swal.fire({         //delete when post works
-                icon:'success',
-                title:'Good to go!',
-                text: 'Data Entered',
-                })
-                $('#divInputData').slideToggle();
-                $('#divDashboardHealth').slideToggle();
+                $.ajax({
+                    url: 'http://localhost:8000/userhealthinfo',
+                    type: 'PUT',
+                    success: function(result) {
+                        Swal.fire({
+                            icon:'success',
+                            title:'Good to go!',
+                            text: 'Data Entered',
+                            })
+                            $('#divInputData').slideToggle();
+                            $('#divDashboardHealth').slideToggle();
+                            $.getJSON('http://localhost:8000/userhealthinfo',{APIkeys:apiKeys},function(result){
+                                $.each(result,function(index, curInfo){
+                                    let strHTML = '';
+                                    strHtml +='<h3>' + curInfo.APIKEY + '</h3>';
+                                    //etc
+                                    $('#divCard card-body').append(strHTML);
+                                })    
+                            })
+                    }
+                });
             }
           })
     }
@@ -212,14 +210,7 @@ $('.nav-link').on('click',function(){
     $(this).addClass('active');
 })
 
-/*$.getJSON('http://localhost:8000/dashboard',{APIkeys:apiKeys},function(result){
-    $.each(result,function(index, curInfo){
-        let strHTML = '';
-        strHtml +='<h3>' + curInfo.APIKEY + '</h3>';
-        //etc
-        $('#divCard card-body').append(strHTML);
-    })    
-})*/
+
 
 /*$.post('http://localhost:8000/users',{APIkeys:apikeys},function(result){
     let objResult = JSON.parse(result);
