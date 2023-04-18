@@ -190,14 +190,22 @@ CREATE TABLE `tblStationAppointment` (
 );
 CREATE TABLE `tblUserHealthInfo` (
   `HealthID` varchar(50) NOT NULL,
+  `UserID` varchar(100) DEFAULT NULL,
   `Height` varchar(50) DEFAULT NULL,
   `Weight` varchar(50) DEFAULT NULL,
   `BMI` varchar(50) DEFAULT NULL,
+  `BloodPressure` varchar(50) DEFAULT NULL,
   `BloodType` varchar(50) DEFAULT NULL,
+  `Temp` decimal(3,2) DEFAULT NULL,
   `O2` varchar(50) DEFAULT NULL,
-  `ExtraInfo` varchar(250) DEFAULT NULL,
-  `UserID` varchar(100) DEFAULT NULL,
   `HeartRate` varchar(50) DEFAULT NULL,
+  `Allergy` varchar(50) DEFAULT NULL,
+  `Medicines` varchar(100) DEFAULT NULL,
+  `MentalState` varchar(50) DEFAULT NULL,
+  `SubstanceUsage` varchar(50) DEFAULT NULL,
+  `GripStrength` decimal(3,2) DEFAULT NULL,
+  `A1C` varchar(50) DEFAULT NULL,
+  `ExtraInfo` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`HealthID`)
 );
 CREATE TABLE `tblUserRoles` (
