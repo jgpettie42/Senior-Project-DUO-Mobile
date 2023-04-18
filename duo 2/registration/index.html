@@ -9,9 +9,12 @@
     <link href="../bootstrap-icons-1.10.3/bootstrap-icons.css" rel="stylesheet">
     <link href="manifest.webmanifest" rel="manifest">
     <link rel="apple-touch-icon" href="images\duologowhite01.png">
+    <style>
+      
+    </style>
 </head>
 <body class="bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="navMain" style="display:none;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="navMain" style="display:none;">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"><div class="h-100 d-flex align-items-center"><img src="images\duologowhite01.png" alt="DUO Dashboard Logo" style="max-height: 35px;" ></div></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +98,7 @@
         <div id="divDashboard" style="display:none;">
             
         </div>
-        <div id="divFirstRegister" style="display: none;">
+        <div id="divFirstRegister" style="display: none;"class="mt-5">
           <div class="col-12 d-flex justify-content-center align-items-center vh-100">
             <div class="col-12 col-lg-5 card">
               <div class="card-header text-center">
@@ -159,7 +162,7 @@
           </div>
       </div>
     
-      <div id="divSecondRegister" style="display: none;">
+      <div id="divSecondRegister" style="display: none;"class="mt-5">
         <div class="col-12 d-flex justify-content-center align-items-center vh-100">
           <div class="col-12 col-lg-5 card">
             <div class="card-header text-center">
@@ -278,7 +281,7 @@
           </div>
       </div>
     
-      <div id="divEmergencyContactRegister" style="display: none;">
+      <div id="divEmergencyContactRegister" style="display: none;" class="mt-5">
         <div class="col-12 d-flex justify-content-center align-items-center vh-100">
           <div class="col-12 col-lg-5 card">
             <div class="card-header text-center">
@@ -314,22 +317,23 @@
         </div>
     </div>
     
-    <div id="divLoginInfo" style="display: none;">
+    <div id="divLoginInfo" style="display: none; position:absolute; top: 300px;" class="mt-5">
       <div class="col-12 d-flex justify-content-center align-items-center vh-100">
-        <div class="col-12 col-lg-5 card">
+        <div class="col-12 col-lg-6 card"style=" max-height: 1300px; overflow: auto;">
           <div class="card-header text-center">
             <h1>DUO MOBILE</h1>
           </div>
-          <form class="card-body">
-            <h5 class="login-box-msg">Register New User's Login Information</h5>
-            <div class="mt-1">
-                <label for="selectPreferredLang" class="text-black form-label">Email</label>
-                <div class="input-group">
-                  <select id="selectPreferredLang" type="select" class="form-control col-12" aria-label="Select Language">
-                    <option selected>Open This Select Menu</option>
-                    <option value="English">English</option>
-                    <option value="Spanish">Spanish</option>
-                  </select>
+          <div class="card-body" >
+            <form>
+              <h5 class="login-box-msg">Register New User's Login Information</h5>
+              <div class="mt-1">
+                  <label for="selectPreferredLang" class="text-black form-label">Preffered Language</label>
+                  <div class="input-group">
+                    <select id="selectPreferredLang" type="select" class="form-control col-12" aria-label="Select Language">
+                      <option selected>Open This Select Menu</option>
+                      <option value="English">English</option>
+                      <option value="Spanish">Spanish</option>
+                    </select>
                 </div>
             </div>
             <div class="mt-1">
@@ -357,21 +361,21 @@
 
             <div>
               <h4>Please Provide A Signature after reading the terms and conditions</h4>
-              <canvas id="signature-box" class="bg-secondary" width="750" height="200">Insert a Signature</canvas>
+              <canvas id="signature-box" class="bg-secondary" width="650" height="200">Insert a Signature</canvas>
               <button type="button" class="btn btn-outline-danger" id="reset-button">Reset</button>
             </div>
+            
 
-            <div>
-              <h1>Photo Upload and Capture</h1>
-            <form>
-              <label for="file-upload">Upload a photo:</label>
-              <input type="file" id="file-upload"><br>
-              <img  class="imgclass" id="preview-image"><br>
-              <button class="btn btn-outline-danger"type="button" id="delete-image" disabled>Delete Photo</button>
-            </form>
-            <br>
-            <button class ="btn btn-outline-primary"type="button" id="capture-image">Take Photo</button>
+            
+            <div class="camera-container">
+              <div class="position-relative">
+                <video id="video-preview" class="camera-preview"></video>
+                <img id="photo-preview" class="camera-preview d-none"></img>
+              </div>
+              <button id="take-photo" class="btn btn-primary">Take Photo</button>
+              <button id="retake-photo" class="btn btn-secondary d-none">Retake</button>
             </div>
+            
             
 
             <button id="btnFinishRegistration" type="button" class="btn btn-primary text-white col-12 mt-3"  aria-label="Registration Button">Register Your Account</button>

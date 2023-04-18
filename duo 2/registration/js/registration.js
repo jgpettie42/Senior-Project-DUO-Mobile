@@ -548,43 +548,32 @@ $(document).ready(function() {
     });
   });
 
-  // Handle image upload
-  $("#file-upload").on("change", function() {
-    var reader = new FileReader();
-    reader.onload = function(event) {
-      $("#preview-image").attr("src", event.target.result);
-      $("#delete-image").prop("disabled", false);
-    };
-    reader.readAsDataURL(this.files[0]);
+  navigator.mediaDevices.getUserMedia({ video: true })
+  .then(function(stream) {
+    var video = document.getElementById("video-preview");
+    video.srcObject = stream;
+    video.play();
+  })
+  .catch(function(error) {
+    console.log("Error accessing camera: ", error);
   });
-  
-  // Handle image capture
-  $("#capture-image").on("click", function() {
-    var video = $("<video autoplay></video>");
-    var canvas = $("<canvas></canvas>");
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(function(stream) {
-        video.get(0).srcObject = stream;
-        video.on("loadedmetadata", function() {
-          canvas.get(0).width = video.width();
-          canvas.get(0).height = video.height();
-          canvas.get(0).getContext("2d").drawImage(video.get(0), 0, 0, canvas.width(), canvas.height());
-          var imageData = canvas.get(0).toDataURL();
-          $("#preview-image").attr("src", imageData);
-          $("#delete-image").prop("disabled", false);
-          video.get(0).srcObject.getTracks()[0].stop();
-          video.remove();
-          canvas.remove();
-        });
-      })
-      .catch(function(error) {
-        console.error(error);
-      });
-  });
-  
-  // Handle image deletion
-  $("#delete-image").on("click", function() {
-    $("#preview-image").attr("src", "#");
-    $("#file-upload").val("");
-    $(this).prop("disabled", true);
-  });
+
+$("#take-photo").click(function() {
+  var video = document.getElementById("video-preview");
+  var canvas = document.createElement("canvas");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video, 0, 0);
+  var imageUrl = canvas.toDataURL("image/png");
+  $("#photo-preview").attr("src", imageUrl).removeClass("d-none");
+  $("#video-preview").addClass("d-none");
+  $("#take-photo").addClass("d-none");
+  $("#retake-photo").removeClass("d-none");
+});
+
+$("#retake-photo").click(function() {
+  $("#photo-preview").addClass("d-none");
+  $("#video-preview").removeClass("d-none");
+  $("#take-photo").removeClass("d-none");
+  $("#retake-photo").addClass("d-none");
+});
