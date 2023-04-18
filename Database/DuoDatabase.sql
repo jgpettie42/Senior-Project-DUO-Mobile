@@ -231,6 +231,8 @@ CREATE TABLE `tblUsers` (
   `MFAInfo` varchar(50) DEFAULT NULL,
   `PreferredLanguage` varchar(50) DEFAULT NULL,
   `BadgeNum` int NOT NULL,
+  `Signature` blob,
+  `Picture` blob,
   PRIMARY KEY (`UserID`)
 );
 CREATE TABLE `tblUserSkills` (
