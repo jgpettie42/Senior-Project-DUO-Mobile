@@ -272,8 +272,9 @@ $('.nav-link').on('click',function(){
 let HealthIDDental = $('#txtHealthIDDental').val();
 let selectDentalVisit = $('#selectDentalVisit').val();
 let Xray = $('#txtXray').val();
-$.getJSON('http://localhost:8000/dental',{},function(){
-    $.each(result,function(index,curDental){
+$('#btnDental').on('click',function(){
+//$.getJSON('http://localhost:8000/dental',{},function(){
+    //$.each(result,function(index,curDental){
         let strHTML ='';
 strHTML +='<div class="row vh-100 col-12 mt-1 gx-2">';
 strHTML +='<div class="col-3 h-100">';
@@ -496,8 +497,12 @@ strHTML +='</div>';
                         strHTML +='</div>';
                         strHTML +='</div>';
 $('#divDashboardDental').append(strHTML);
+$('#divLogin').slideToggle();
+$('#divDashboardDental').slideToggle();
     })
-})
+//})
+
+//})
 
 
 
@@ -528,12 +533,9 @@ $('#btnSubmitDentalData').on('click',function(){
 
 
 
-$('#btnDental').on('click',function(){
-    $('#divLogin').slideToggle();
-    $('#divDashboardDental').slideToggle();
-})
 
-$('#btnDataDental').on('click',function(){
+
+$(document).on('click','.btnDataDental',function(){
     $('#divEditDental').slideToggle();
     $('#divDashboardDental').slideToggle();
 })
