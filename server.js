@@ -557,7 +557,7 @@ app.get("/testRoleGet",(req,res,next)=> {
     }
 })
 
-app.post("userhealthinfo",(req,res,next)=>{
+app.put("/userhealthinfo",(req,res,next)=>{
     let strUserID = req.query.userid || req.body.userid
     let strBMI = req.query.bmi || req.body.bmi
     let strGripStrength = req.query.gripstrength || req.body.gripstrength
@@ -567,7 +567,7 @@ app.post("userhealthinfo",(req,res,next)=>{
     let strHeartRate = req.query.heartrate || req.body.heartrate
     let strO2 = req.query.o2 || req.body.o2
     let strTemp = req.query.temp || req.body.temp
-    let strExtraInfo = req.query.extrainfo || req.body.ex
+    let strExtraInfo = req.query.extrainfo || req.body.extrainfo
     let strAllergy = req.query.allergy || req.body.allergy
     let strMedicines = req.query.medicines || req.body.medicines
     let strMentalState = req.query.mentalstate || req.body.mentalstate
@@ -575,5 +575,7 @@ app.post("userhealthinfo",(req,res,next)=>{
 
     let strInfo = strAllergy+strBMI+strBloodPressure+strExtraInfo+strGripStrength+strHeartRate+strHeight+strMedicines+strMentalState+strO2+strSubstances+strTemp+strWeight+strUserID
     console.log(strInfo)
+
+    pool.query("update tbluserhealthinfo set Height = ?, Weight = ?, BMI = ?, BloodPressure = ?, BloodType = ?, Temp = ?, O2 = ?, HeartRate = ?, Allergy = ?, Medicines = ?, MentalState = ?, SubstanceUsage = ?, GripStrength = ?, A1C= ?, ExtraInfo = ? where UserID = ?",[strHeight,strWeight,strBMI,s])
 
 })
