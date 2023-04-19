@@ -586,7 +586,19 @@ app.put("/userhealthinfo",(req,res,next)=>{
         } else {
             res.status(400).send(JSON.stringify({Error:errors}));
         }
+    })
 
+})
+
+app.get("/userhealthinfo",(req,res,next)=>{
+    let strUserID = req.query.userid || req.body.userid
+
+    pool.query("select * tbluserhealthinfo where UserID = ?",[strUserID],function(error,results){
+        if(!error){         
+            res.status(202).send(JSON.stringify(results));
+        } else {
+            res.status(400).send(JSON.stringify({Error:errors}));
+        }
     })
 
 })
