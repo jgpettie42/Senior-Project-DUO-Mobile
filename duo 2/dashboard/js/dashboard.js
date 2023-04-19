@@ -316,8 +316,9 @@ $('#btnHaircut').on('click',function(){
     $('#divLogin').slideToggle();
     $('#divHaircut').slideToggle();
 })
-let strUserIDHair = $('#txtHairUserID').val();
+
 $(document).on('click','.btnSubmitHair',function(){
+    let strUserIDHair = $('#txtHairUserID').val();
     if(strUserIDHair.length < 1){
         Swal.fire({
             icon: 'error',
