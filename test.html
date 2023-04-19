@@ -32,7 +32,7 @@
     <label>BMI</label>
     <input id = 'bmi'>
     <label>strGripStrength</label>
-    <input id = 'GS'>
+    <input id = 'gs'>
     <label>height</label>
     <input id = 'h'>
     <label>strWeight</label>
@@ -195,7 +195,7 @@
         console.log('test')
         let strBMI = $('#bmi').val()
 
-        let strGripStrength = $('#bmi').val()
+        let strGripStrength = $('#gs').val()
 
         let strHeight = $('#h').val()
 
@@ -221,12 +221,12 @@
 
         let strsubstanceusage = $('#s').val()
 
-        let strInfo = letstrBMI = +strGripStrength+ strHeight+ strWeight +strBloodPressure+ strHeartRate+ strO2Saturation+ strTemp+ struserID+ strextrainfo+ strallergy+ strmedicines+ strmentalstate+ strsubstanceusage 
+        let strInfo = strBMI +strGripStrength+ strHeight+ strWeight +strBloodPressure+ strHeartRate+ strO2Saturation+ strTemp+ struserID+ strextrainfo+ strallergy+ strmedicines+ strmentalstate+ strsubstanceusage 
         
         console.log(strInfo)
         console.log("working")
 
-        $.post('http://localhost:8000/userhealthinfo',{},function(result){
+        $.post('http://localhost:8000/userhealthinfo',{userid:struserID,bmi:strBMI,gripstrength:strGripStrength,height:strHeight,weight:strWeight,bloodpressure:strBloodPressure,heartrate:strHeartRate,o2:strO2Saturation,temp:strTemp,extrainfo:strextrainfo,allergy:strallergy,medicines:strmedicines,mentalstate:strmentalstate,substances:strsubstanceusage},function(result){
             console.log(result)
             console.log("worked")
         })
