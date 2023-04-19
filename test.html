@@ -26,10 +26,45 @@
     <label>Role</label>
     <input id = '8'>
 
+
+<div></div>
+
+    <label>BMI</label>
+    <input id = 'bmi'>
+    <label>strGripStrength</label>
+    <input id = 'GS'>
+    <label>height</label>
+    <input id = 'h'>
+    <label>strWeight</label>
+    <input id = 'w'>
+    <label>strBloodPressure</label>
+    <input id = 'bp'>
+    <label>strHeartRate</label>
+    <input id = 'hr'>
+    <label>O2</label>
+    <input id = 'o2'>
+    <label>Temp</label>
+    <input id = 't'>
+    <label>ExtraInfo</label>
+    <input id = 'ei'>
+    <label>Allergy</label>
+    <input id = 'a'>
+    <label>Medicines</label>
+    <input id = 'm'>
+    <label>MentalState</label>
+    <input id = 'ms'>
+    <label>Substances</label>
+    <input id = 's'>
+   
+
     <button id="testadmin" class="btn btn-large" aria-label="admin">Admin</button>
     <button id="testpost" class="btn btn-large" aria-label="patient">Patient</button>
     <button id="teststaff" class="btn btn-large" aria-label="staff">Staff</button>
     <button id="testlogin" class="btn btn-large" aria-label="login">Login</button>
+
+    <button id="health" class="btn btn-large" aria-label="login">health</button>
+
+
 
     <div id="divTable">
         <button id="testtable" class="btn btn-large" aria-label="login">table</button>
@@ -156,35 +191,35 @@
         })
     })
     
-    $('#teststaff').on('click',function(){
+    $('#health').on('click',function(){
         console.log('test')
-        let strBMI 
+        let strBMI = $('#bmi').val()
 
-        let strGripStrength 
+        let strGripStrength = $('#bmi').val()
 
-        let strHeight
+        let strHeight = $('#h').val()
 
-        let strWeight
+        let strWeight = $('#w').val()
 
-        let strBloodPressure
+        let strBloodPressure = $('#bp').val()
 
-        let strHeartRate
+        let strHeartRate = $('#hr').val()
 
-        let strO2Saturation 
+        let strO2Saturation = $('#o2').val()
 
-        let strTemp
+        let strTemp = $('#t').val()
 
-        let struserID
+        let struserID = $('#6').val()
 
-        let strextrainfo
+        let strextrainfo = $('#ei').val()
 
-        let strallergy
+        let strallergy = $('#a').val()
 
-        let strmedicines 
+        let strmedicines = $('#m').val()
 
-        let strmentalstate
+        let strmentalstate = $('#ms').val()
 
-        let strsubstanceusage 
+        let strsubstanceusage = $('#s').val()
 
         let strInfo = letstrBMI = +strGripStrength+ strHeight+ strWeight +strBloodPressure+ strHeartRate+ strO2Saturation+ strTemp+ struserID+ strextrainfo+ strallergy+ strmedicines+ strmentalstate+ strsubstanceusage 
         
