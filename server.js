@@ -564,6 +564,7 @@ app.put("/userhealthinfo",(req,res,next)=>{
     let strHeight = req.query.height || req.body.height
     let strWeight = req.query.weight || req.body.weight
     let strBloodPressure = req.query.bloodpressure || req.body.bloodpressure
+    let strBloodType = req.query.bloodtype || req.body.bloodtype
     let strHeartRate = req.query.heartrate || req.body.heartrate
     let strO2 = req.query.o2 || req.body.o2
     let strTemp = req.query.temp || req.body.temp
@@ -572,10 +573,20 @@ app.put("/userhealthinfo",(req,res,next)=>{
     let strMedicines = req.query.medicines || req.body.medicines
     let strMentalState = req.query.mentalstate || req.body.mentalstate
     let strSubstances = req.query.substances || req.body.substances
+    let strA1C = req.query.a1c || req.body.a1c
 
-    let strInfo = strAllergy+strBMI+strBloodPressure+strExtraInfo+strGripStrength+strHeartRate+strHeight+strMedicines+strMentalState+strO2+strSubstances+strTemp+strWeight+strUserID
+
+
+    let strInfo = strAllergy+strBMI+strBloodPressure+strExtraInfo+strGripStrength+strHeartRate+strHeight+strMedicines+strMentalState+strO2+strSubstances+strTemp+strWeight+strUserID +strA1C+strBloodType
     console.log(strInfo)
 
-    pool.query("update tbluserhealthinfo set Height = ?, Weight = ?, BMI = ?, BloodPressure = ?, BloodType = ?, Temp = ?, O2 = ?, HeartRate = ?, Allergy = ?, Medicines = ?, MentalState = ?, SubstanceUsage = ?, GripStrength = ?, A1C= ?, ExtraInfo = ? where UserID = ?",[strHeight,strWeight,strBMI,s])
+    pool.query("update tbluserhealthinfo set Height = ?, Weight = ?, BMI = ?, BloodPressure = ?, BloodType = ?, Temp = ?, O2 = ?, HeartRate = ?, Allergy = ?, Medicines = ?, MentalState = ?, SubstanceUsage = ?, GripStrength = ?, A1C= ?, ExtraInfo = ? where UserID = ?",[strHeight,strWeight,strBMI,strBloodPressure,strBloodType,strTemp,strO2,strHeartRate,strAllergy,strMedicines,strMentalState,strSubstances,strGripStrength,strA1C,strExtraInfo,strUserID],function(error,results){
+        if(!error){         
+            res.status(202).send(JSON.stringify({'Outcome':'Records Updated'}));
+        } else {
+            res.status(400).send(JSON.stringify({Error:errors}));
+        }
+
+    })
 
 })
