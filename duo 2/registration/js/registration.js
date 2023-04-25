@@ -550,33 +550,3 @@ $(document).ready(function() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
   });
-
-  navigator.mediaDevices.getUserMedia({ video: true })
-  .then(function(stream) {
-    var video = document.getElementById("video-preview");
-    video.srcObject = stream;
-    video.play();
-  })
-  .catch(function(error) {
-    console.log("Error accessing camera: ", error);
-  });
-
-$("#take-photo").click(function() {
-  var video = document.getElementById("video-preview");
-  var canvas = document.createElement("canvas");
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-  canvas.getContext("2d").drawImage(video, 0, 0);
-  var imageUrl = canvas.toDataURL("image/png");
-  $("#photo-preview").attr("src", imageUrl).removeClass("d-none");
-  $("#video-preview").addClass("d-none");
-  $("#take-photo").addClass("d-none");
-  $("#retake-photo").removeClass("d-none");
-});
-
-$("#retake-photo").click(function() {
-  $("#photo-preview").addClass("d-none");
-  $("#video-preview").removeClass("d-none");
-  $("#take-photo").removeClass("d-none");
-  $("#retake-photo").addClass("d-none");
-});
