@@ -342,6 +342,31 @@ app.post("/users", (req,res,next)=>{
     })
 })
 
+app.post('/users', (req, res) => {
+    let signature = req.body.signature;
+    let base64Data = signature.replace(/^data:image\/png;base64,/, '');
+  
+    // Save signature data to JSON file
+    fs.readFile('signatures.json', (err, data) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send('Error reading signatures file');
+      } else {
+        let signatures = JSON.parse(data);
+        let newSignature = { signature: base64Data };
+        signatures.push(newSignature);
+        fs.writeFile('signatures.json', JSON.stringify(signatures), (err) => {
+          if (err) {
+            console.log(err);
+            res.status(500).send('Error saving signature');
+          } else {
+            res.status(200).send('Signature saved successfully');
+          }
+        });
+      }
+    });
+  });
+
 app.post("/admin", (req,res,next)=>{
     let strFirstName = req.query.firstname || req.body.firstname;
     let strMiddleName = req.query.middleinit || req.body.middleinit;
