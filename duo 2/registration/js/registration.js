@@ -269,6 +269,41 @@ $('#btnBackToEmergencyContact').on('click', function(){
     $('#divLoginInfo').slideToggle();
     $('#divEmergencyContactRegister').slideToggle();
 })
+$(document).ready(function() {
+    const canvas = document.getElementById('signature-box');
+    const ctx = canvas.getContext('2d');
+    const dataURL = canvas.toDataURL();
+    var resetButton = document.getElementById('reset-button');
+    var isDrawing = false;
+    var lastX = 0;
+    var lastY = 0;
+  
+    canvas.addEventListener('mousedown', function(e) {
+      isDrawing = true;
+      lastX = e.offsetX;
+      lastY = e.offsetY;
+    });
+  
+    canvas.addEventListener('mousemove', function(e) {
+      if (isDrawing) {
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+        lastX = e.offsetX;
+        lastY = e.offsetY;
+      }
+    });
+  
+    canvas.addEventListener('mouseup', function() {
+      isDrawing = false;
+    });
+  
+    resetButton.addEventListener('click', function() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+  });
+
 
 $('#btnFinishRegistration').on('click', function(){
     blnError = false;
@@ -283,7 +318,7 @@ $('#btnFinishRegistration').on('click', function(){
                 icon: 'error',
             })
     } else {
-        $.post(strBaseURL + '/users', {firstname: $('#txtRegFirstName').val(), middleinit: $('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), preferredname: $('#txtPreferredName').val(), sex: $('#selectSex').val(), dob: $('#txtRegDateOfBirth').val(), email: $('#txtEmail').val()})
+        $.post(strBaseURL + '/users', {firstname: $('#txtRegFirstName').val(), middleinit: $('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), preferredname: $('#txtPreferredName').val(), sex: $('#selectSex').val(), dob: $('#txtRegDateOfBirth').val(), email: $('#txtEmail').val(),signature:dataURL})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success
@@ -305,6 +340,8 @@ $('#btnFinishRegistration').on('click', function(){
     }
 
 })
+
+
 
 $('#btnBackToLoginInfo').on('click', function(){
     $('#divLoginInfo').slideToggle();
@@ -517,66 +554,3 @@ $("input[name='phone']").keyup(function() {
     $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d+)$/, "($1)$2-$3"));
 });
 
-$(document).ready(function() {
-    var canvas = document.getElementById('signature-box');
-    var ctx = canvas.getContext('2d');
-    var resetButton = document.getElementById('reset-button');
-    var isDrawing = false;
-    var lastX = 0;
-    var lastY = 0;
-  
-    canvas.addEventListener('mousedown', function(e) {
-      isDrawing = true;
-      lastX = e.offsetX;
-      lastY = e.offsetY;
-    });
-  
-    canvas.addEventListener('mousemove', function(e) {
-      if (isDrawing) {
-        ctx.beginPath();
-        ctx.moveTo(lastX, lastY);
-        ctx.lineTo(e.offsetX, e.offsetY);
-        ctx.stroke();
-        lastX = e.offsetX;
-        lastY = e.offsetY;
-      }
-    });
-  
-    canvas.addEventListener('mouseup', function() {
-      isDrawing = false;
-    });
-  
-    resetButton.addEventListener('click', function() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    });
-  });
-
-  navigator.mediaDevices.getUserMedia({ video: true })
-  .then(function(stream) {
-    var video = document.getElementById("video-preview");
-    video.srcObject = stream;
-    video.play();
-  })
-  .catch(function(error) {
-    console.log("Error accessing camera: ", error);
-  });
-
-$("#take-photo").click(function() {
-  var video = document.getElementById("video-preview");
-  var canvas = document.createElement("canvas");
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-  canvas.getContext("2d").drawImage(video, 0, 0);
-  var imageUrl = canvas.toDataURL("image/png");
-  $("#photo-preview").attr("src", imageUrl).removeClass("d-none");
-  $("#video-preview").addClass("d-none");
-  $("#take-photo").addClass("d-none");
-  $("#retake-photo").removeClass("d-none");
-});
-
-$("#retake-photo").click(function() {
-  $("#photo-preview").addClass("d-none");
-  $("#video-preview").removeClass("d-none");
-  $("#take-photo").removeClass("d-none");
-  $("#retake-photo").addClass("d-none");
-});
