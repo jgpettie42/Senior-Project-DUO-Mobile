@@ -26,6 +26,9 @@ $(document).ready(function(){
 $('.btnDashboardHeader').on('click',function(){
     $(this).siblings('.card-body').slideToggle();
 })
+$('.btnDocHeader').on('click',function(){
+    $(this).siblings('.card-body').slideToggle();
+})
 
 $('#btnCheckInPreReg').on('click', function(){
     console.log("uhhh")
