@@ -179,7 +179,49 @@ $('#btnSubmitData').on('click',function(){
           }).then((result) => {
             
             if (result.isConfirmed) {
-                $.ajax({
+                let struserID ='cock';
+                $('#divBMI').empty();
+                $('#divGripStrength').empty();
+                $('#divHeight').empty();
+                $('#divWeight').empty();
+                $('#divBP').empty();
+                $('#divHR').empty();
+                $('#divO2Sat').empty();
+                $('#divTemp').empty();
+                $('#divUserID').empty();
+                $('#divExtraInfo').empty();;
+                $('#divAllergies').empty();
+                $('#divMedicines').empty();
+                $('#divA1C').empty();
+                $('#divMentalState').empty();
+                $('#divSubstances').empty();
+                $.get('http://localhost:8000/dashboard',{userid:struserID},function(result){
+                    console.log(result)
+                    console.log("worked")
+
+                    let arrUsers = result
+                    $.each(arrUsers,function(index,user){
+                        let BMI = user.BMI
+                        $('#divBMI').append(user.BMI);
+                        $('#divGripStrength').append(user.GripStrength);
+                        $('#divHeight').append(user.Height);
+                        $('#divWeight').append(user.Weight);
+                        $('#divBP').append(user.BP);
+                        $('#divHR').append(user.HR);
+                        $('#divO2Sat').append(user.O2Sat);
+                        $('#divTemp').append(user.Temp);
+                        $('#divUserID').append(user.UserID);
+                        $('#divExtraInfo').append(user.ExtraInfo);
+                        $('#divAllergies').append(user.Allergies);
+                        $('#divMedicines').append(user.Medicines);
+                        $('#divA1C').append(user.A1C);
+                        $('#divMentalState').append(user.MentalState);
+                        $('#divSubstances').append(user.Substances);
+                   })
+                   $('#divInputData').slideToggle();
+                   $('#divDashboardHealth').slideToggle();
+                })
+               /* $.ajax({
                     url: 'http://localhost:8000/userhealthinfo',
                     type: 'PUT',
                     success: function(result) {
@@ -199,7 +241,7 @@ $('#btnSubmitData').on('click',function(){
                                 })    
                             })
                     }
-                });
+                })*/
             }
           })
     }

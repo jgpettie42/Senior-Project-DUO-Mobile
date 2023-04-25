@@ -202,10 +202,10 @@ app.post("/preregistration",(req,res,next)=>{
         if(!error){
                     let strRegistrationID = uuidv4();
                     let strEvent = uuidv4();
-
+                    let strHealthID = uuidv4();
                     pool.query("INSERT INTO tblRegistrations VALUES (?,?,1,NOW(),'Pre')",[strRegistrationID,strEmail],function(errors,results){
                         if(!errors){
-                            
+                            pool.query("INSERT INTO tbluserhealthinfo (HealthID,UserID) VALUES (?,?)",[strHealthID,strEmail],function(errors,results){})
                             res.status(201).send(JSON.stringify({RegistrationID:strRegistrationID}));
                         } else {
                             
@@ -486,7 +486,7 @@ app.post("/notes",(req,res,next)=>{
 })
 
 
-app.get("/dashboard/:userid",(req,res,next)=> {
+app.get("/dashboardnotes/:userid",(req,res,next)=> {
     let strUserID = req.param.userid;
     let strSessionID = req.query.sessionid || req.body.sessionid;
     try{
@@ -503,11 +503,10 @@ app.get("/dashboard/:userid",(req,res,next)=> {
 })
 
 
-app.get("/dashboard/:userid",(req,res,next)=> {
-    let strUserID = req.param.userid;
-    let strSessionID = req.query.sessionid || req.body.sessionid;
+app.get("/dashboard",(req,res,next)=> {
+    let strUserID = req.query.userid || req.body.userid
 try{
-    pool.query('SELECT HealthID,Height,Weight,BMI,HeartRate,BloodType,O2,ExtraInfo,UserID FROM tblUserHealthInfo WHERE UserID = ? AND (SELECT COUNT(*) FROM tblSessions WHERE SessionID = ?) > 0',[strUserID,strSessionID],function(error,result){
+    pool.query('SELECT * FROM tblUserHealthInfo WHERE UserID = ?',[strUserID],function(error,result){
         if(!error){
             res.status(200).send(result);
         } else {
@@ -517,7 +516,6 @@ try{
 } catch{
     console.log(error);
 }
-
     
 })
 
@@ -557,7 +555,7 @@ app.get("/testRoleGet",(req,res,next)=> {
     }
 })
 
-app.put("/userhealthinfo",(req,res,next)=>{
+app.post("/userhealthinfo",(req,res,next)=>{
     let strUserID = req.query.userid || req.body.userid
     let strBMI = req.query.bmi || req.body.bmi
     let strGripStrength = req.query.gripstrength || req.body.gripstrength
@@ -576,6 +574,15 @@ app.put("/userhealthinfo",(req,res,next)=>{
     let strInfo = strAllergy+strBMI+strBloodPressure+strExtraInfo+strGripStrength+strHeartRate+strHeight+strMedicines+strMentalState+strO2+strSubstances+strTemp+strWeight+strUserID
     console.log(strInfo)
 
-    pool.query("update tbluserhealthinfo set Height = ?, Weight = ?, BMI = ?, BloodPressure = ?, BloodType = ?, Temp = ?, O2 = ?, HeartRate = ?, Allergy = ?, Medicines = ?, MentalState = ?, SubstanceUsage = ?, GripStrength = ?, A1C= ?, ExtraInfo = ? where UserID = ?",[strHeight,strWeight,strBMI,s])
-
+    try{
+    pool.query("update tbluserhealthinfo set Height = ?, Weight = ?, BMI = ?, BloodPressure = ?, BloodType = ?, Temp = ?, O2 = ?, HeartRate = ?, Allergy = ?, Medicines = ?, MentalState = ?, SubstanceUsage = ?, GripStrength = ?, A1C= ?, ExtraInfo = ? where UserID = ?",[strHeight,strWeight,strBMI,strBloodPressure,"Clear",strTemp,strO2,strHeartRate,strAllergy,strMedicines,strMentalState,strSubstances,strGripStrength,"12",strExtraInfo,strUserID],function(error,result){
+        if(!error){
+            res.status(200).send(result);
+        }else{
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
+    })
+    }catch(error){
+        console.log(error)
+    }
 })

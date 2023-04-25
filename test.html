@@ -63,6 +63,7 @@
     <button id="testlogin" class="btn btn-large" aria-label="login">Login</button>
 
     <button id="health" class="btn btn-large" aria-label="login">health</button>
+    <button id="gethealth" class="btn btn-large" aria-label="login">gethealth</button>
 
 
 
@@ -191,6 +192,21 @@
         })
     })
     
+    $("#gethealth").on('click',function(){
+        let struserID = $('#6').val()
+        $.get('http://localhost:8000/dashboard',{userid:struserID},function(result){
+            console.log(result)
+            console.log("worked")
+            let arrUsers = result
+            $.each(arrUsers,function(index,user){
+                let strTableHtml = '';
+                strTableHtml += '<tr><td>'+ user.FirstName+'</td><td>'+user.MiddleName+'</td><td>'+ user.LastName+'</td><td>'+ user.DOB+'</td><td>'+ user.UserID+'</td><td>'+ user.Sex+'</td><td>'+ user.RoleID+'</td></tr>'
+                $('#tblUsers tbody').append(strTableHtml);
+           })
+        })
+    })
+
+
     $('#health').on('click',function(){
         console.log('test')
         let strBMI = $('#bmi').val()
