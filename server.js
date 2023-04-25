@@ -342,7 +342,7 @@ app.post("/users", (req,res,next)=>{
     })
 })
 
-app.post('/users', (req, res) => {
+app.post('/img', (req, res) => {
     let signature = req.body.signature;
     let base64Data = signature.replace(/^data:image\/png;base64,/, '');
   
