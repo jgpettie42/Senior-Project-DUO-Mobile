@@ -68,8 +68,10 @@ $('#btnCheckInPreReg').on('click', function(){
 
         $("#txtPreSex").val(strSex)
 
-        $('#divPreregisteredFill').slideToggle();
-        $('#divCheckIn').slideToggle();
+        $('#divPreregisteredFill').slideToggle(function(){
+            $('#divCheckIn').slideToggle();
+        });
+        
     }
 })
 
