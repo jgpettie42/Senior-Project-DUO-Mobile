@@ -611,3 +611,62 @@ app.post("/userhealthinfo",(req,res,next)=>{
         console.log(error)
     }
 })
+
+
+
+
+
+app.put('/userhealthinfo',(req,res,next)=>{
+    let strUserID = req.query.userid || req.body.userid
+    let strBMI = req.query.bmi || req.body.bmi
+    let strGripStrength = req.query.gripstrength || req.body.gripstrength
+    let strHeight = req.query.height || req.body.height
+    let strWeight = req.query.weight || req.body.weight
+    let strBloodPressure = req.query.bloodpressure || req.body.bloodpressure
+    let strHeartRate = req.query.heartrate || req.body.heartrate
+    let strO2 = req.query.o2 || req.body.o2
+    let strTemp = req.query.temp || req.body.temp
+    let strExtraInfo = req.query.extrainfo || req.body.extrainfo
+    let strAllergy = req.query.allergy || req.body.allergy
+    let strMedicines = req.query.medicines || req.body.medicines
+    let strMentalState = req.query.mentalstate || req.body.mentalstate
+    let strSubstances = req.query.substances || req.body.substances
+
+    let strQuery = ""
+    let arrInputs = []
+        if(strShortName.length > 0){
+            strQuery += "ShortName = ?,"
+            arrInputs.push(strShortName)
+        }
+        if(strLongName.length > 0){
+            strQuery += " LongName = ?,"
+            arrInputs.push(strLongName)
+        }
+        if(strFarmID.length > 0){
+            strQuery += "FarmID= ?,"
+            arrInputs.push(strFarmID)
+        }
+        if(strDescription.length > 0){
+            strQuery += "Description=?,"
+            arrInputs.push(strDescription)
+        }
+        if(strStatus.length > 0){
+            strQuery += "Status=?,"
+            arrInputs.push(strStatus)
+        }
+        strQuery = strQuery.substring(0, (strQuery.length - 1))
+        arrInputs.push(strProdID)
+        console.log(strQuery)
+        console.log(arrInputs)
+
+
+    pool.query("Update tblproducts set "+strQuery+" where ProductID=?",arrInputs,function(error,result){
+        if(!error){
+            res.status(201).send(result);
+        }else{
+            console.log(error)
+            res.status(400).send(JSON.stringify({Error:error}))
+        }
+
+    })
+})
