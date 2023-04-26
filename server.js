@@ -634,33 +634,69 @@ app.put('/userhealthinfo',(req,res,next)=>{
 
     let strQuery = ""
     let arrInputs = []
-        if(strShortName.length > 0){
-            strQuery += "ShortName = ?,"
-            arrInputs.push(strShortName)
-        }
-        if(strLongName.length > 0){
-            strQuery += " LongName = ?,"
-            arrInputs.push(strLongName)
-        }
-        if(strFarmID.length > 0){
-            strQuery += "FarmID= ?,"
-            arrInputs.push(strFarmID)
-        }
-        if(strDescription.length > 0){
-            strQuery += "Description=?,"
-            arrInputs.push(strDescription)
-        }
-        if(strStatus.length > 0){
-            strQuery += "Status=?,"
-            arrInputs.push(strStatus)
-        }
-        strQuery = strQuery.substring(0, (strQuery.length - 1))
-        arrInputs.push(strProdID)
-        console.log(strQuery)
-        console.log(arrInputs)
+    if(strHeight.length > 0){
+        strQuery += "Height = ?,"
+        arrInputs.push(strHeight)
+    }
+    if(strWeight.length > 0){
+        strQuery += "Weight = ?,"
+        arrInputs.push(strWeight)
+    }
+    if(strGripStrength.length > 0){
+        strQuery += "GripStrength =?,"
+        arrInputs.push(strGripStrength)
+    }
+    if(strBMI.length > 0){
+        strQuery += "BMI = ?,"
+        arrInputs.push(strBMI)
+    }
+    if(strBloodPressure.length > 0){
+        strQuery += "BloodPressure = ?,"
+        arrInputs.push(strBloodPressure)
+    }
+    if(strBloodType.length > 0){
+        strQuery += "BloodType =?,"
+        arrInputs.push(strBloodType)
+    }
+    if(strHeartRate.length > 0){
+        strQuery += "HeartRate =?,"
+        arrInputs.push(strHeartRate)
+    }
+    if(strO2.length > 0){
+        strQuery += "O2 =?,"
+        arrInputs.push(strO2)
+    }
+    if(strTemp.length > 0){
+        strQuery += "Temp =?,"
+        arrInputs.push(strTemp)
+    }
+    if(strExtraInfo.length > 0){
+        strQuery += "ExtraInfo =?,"
+        arrInputs.push(strExtraInfo)
+    }
+    if(strAllergy.length > 0){
+        strQuery += "Allergy =?,"
+        arrInputs.push(strAllergy)
+    }
+    if(strMedicines.length > 0){
+        strQuery += "Medicines =?,"
+        arrInputs.push(strMedicines)
+    }
+    if(strMentalState.length > 0){
+        strQuery += "MentalState =?,"
+        arrInputs.push(strMentalState)
+    }
+    if(strSubstances.length > 0){
+        strQuery += "Substances =?,"
+        arrInputs.push(strSubstances)
+    }
+    strQuery = strQuery.substring(0, (strQuery.length - 1))
+    arrInputs.push(strUserID)
+    console.log(strQuery)
+    console.log(arrInputs)
 
 
-    pool.query("Update tblproducts set "+strQuery+" where ProductID=?",arrInputs,function(error,result){
+    pool.query("Update tbluserhealthinfo set "+strQuery+" where UserID=?",arrInputs,function(error,result){
         if(!error){
             res.status(201).send(result);
         }else{
