@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const cors = require('cors'); 
 const bodyParser = require('body-parser'); 
 const bcrypt = require("bcrypt"); 
+const { error } = require('console');
 
 const pool = mysql.createPool({ 
     host: 'localhost', 
@@ -325,6 +326,10 @@ app.post("/users", (req,res,next)=>{
                 if(!error){
 
                     pool.query('INSERT INTO tbluserroles (UserRoleID,UserID,RoleID) VALUES (?,?,"Patient")',[strUserRoleId,strEmail],function(error,result){
+                        let strHealthID = uuidv4()
+                        pool.query('INSERT INTO tbluserhealthinfo (HealthID,UserID) VALUES (?,?)',[strHealthID,strEmail],function(error,result){
+                            console.log(error)
+                        })
                         if(error){
                             console.log(error)
                         }
@@ -579,7 +584,7 @@ app.get("/testRoleGet",(req,res,next)=> {
         console.log(error);
     }
 })
-
+/*
 app.post("/userhealthinfo",(req,res,next)=>{
     let strUserID = req.query.userid || req.body.userid
     let strBMI = req.query.bmi || req.body.bmi
@@ -612,7 +617,7 @@ app.post("/userhealthinfo",(req,res,next)=>{
     }
 })
 
-
+*/
 
 
 
@@ -695,14 +700,18 @@ app.put('/userhealthinfo',(req,res,next)=>{
     console.log(strQuery)
     console.log(arrInputs)
 
-
-    pool.query("Update tbluserhealthinfo set "+strQuery+" where UserID=?",arrInputs,function(error,result){
-        if(!error){
-            res.status(201).send(result);
-        }else{
-            console.log(error)
-            res.status(400).send(JSON.stringify({Error:error}))
-        }
-
-    })
+    try{
+        pool.query("Update tbluserhealthinfo set "+strQuery+" where UserID=?",arrInputs,function(error,result){
+            if(!error){
+                res.status(201).send(result);
+            }else{
+                console.log(error)
+                res.status(400).send(JSON.stringify({Error:error}))
+            }
+    
+        })
+    }catch{
+        console.log(error)
+    }
+    
 })

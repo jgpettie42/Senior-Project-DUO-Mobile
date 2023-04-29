@@ -177,7 +177,27 @@ $('#btnSubmitData').on('click',function(){
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, I am sure!'
           }).then((result) => {
-            
+
+            $.ajax({
+                url: 'http://localhost:8008/userhealthinfo',
+                type: 'PUT',
+                dataType: 'json',
+                data: {userid:struserID,bmi:strBMI,gripstrength:strGripStrength,height:strHeight,weight:strWeight,bloodpressure:strBloodPressure,heartrate:strHeartRate,o2:strO2Saturation,temp:strTemp,extrainfo:strextrainfo,allergy:strallergy,medicines:strmedicines,mentalstate:strmentalstate,substances:strsubstanceusage},
+                success: function (data, textStatus, xhr) {
+                     Swal.fire({
+                            icon:'success',
+                            title:'Good to go!',
+                            text: 'Data Entered',
+                        })
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    Swal.fire({
+                        icon:'error',
+                        title:'Something Went Wrong',
+                        text: 'Something went wrong please try again',
+                        })
+                }
+            })
             if (result.isConfirmed) {
                 let struserID ='cock';
                 $('#divBMI').empty();
@@ -221,6 +241,9 @@ $('#btnSubmitData').on('click',function(){
                    $('#divInputData').slideToggle();
                    $('#divDashboardHealth').slideToggle();
                 })
+
+               
+
                /* $.ajax({
                     url: 'http://localhost:8000/userhealthinfo',
                     type: 'PUT',
