@@ -1,4 +1,7 @@
  var strLang;
+
+ var strBaseURL = 'http://localhost:8000';
+ 
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         // call web service to verify ID and get role
@@ -68,8 +71,22 @@ $('#btnLogin').on('click',function(){
     let strUsername = $('#txtUsername').val();
     let strPassword = $('#txtPassword').val();
     if(strUsername.length && strPassword.length > 1){
-        $('#divLogin').slideToggle();
-        $('#divDashboardHealth').slideToggle();
+            console.log(strBaseURL)
+            $.post(strBaseURL + '/sessions?email=' + $('#txtUsername').val() + '&password=' + $('#txtPassword').val())
+            .done(function(sessionData){
+                let objSession = JSON.parse(sessionData);
+                if(objSession.Outcome == 'Bad Username or Password'){
+                    swal.fire({
+                        icon: 'error',
+                        html: '<p>Incorrect Username or Password!</p>'
+                    })
+                } else {
+                    sessionStorage.setItem('SimpleSession',objSession.SessionID);
+                    $('#divLogin').slideUp(function(){
+                        $('#divLogin').slideToggle(function(){$('#divDashboardHealth').slideToggle();});
+                    })
+                }
+            })
         //if username and password are valid
     }else{
 
