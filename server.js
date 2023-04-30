@@ -549,6 +549,13 @@ try{
     
 })
 
+app.get('/dashboardpeeps',(req,res,next)=>{
+    pool.query('Select * from tblUsers where BadgeNum IS NOT NULL',function(error,result){
+        console.log(result)
+    })
+})
+
+
 app.get("/usercheckinfo",(req,res,next)=> {
     let strFirstName = req.query.firstname || req.body.firstname;
     let strLastName = req.query.lastname || req.body.lastname;
