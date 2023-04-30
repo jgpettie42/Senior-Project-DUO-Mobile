@@ -1,7 +1,7 @@
  var strLang;
 
  var strBaseURL = 'http://localhost:8000';
- 
+
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         // call web service to verify ID and get role
@@ -60,6 +60,50 @@ $(document).on('click','.btnBackFromAddAppt',function(){
     $('#divAddAppt').slideToggle();
     $('#divInputData').slideToggle();
 })
+
+function fillFields(){
+    let struserID ='cock';
+                $('#divBMI').empty();
+                $('#divGripStrength').empty();
+                $('#divHeight').empty();
+                $('#divWeight').empty();
+                $('#divBP').empty();
+                $('#divHR').empty();
+                $('#divO2Sat').empty();
+                $('#divTemp').empty();
+                $('#divUserID').empty();
+                $('#divExtraInfo').empty();;
+                $('#divAllergies').empty();
+                $('#divMedicines').empty();
+                $('#divA1C').empty();
+                $('#divMentalState').empty();
+                $('#divSubstances').empty();
+                $.get('http://localhost:8000/dashboard',{userid:struserID},function(result){
+                    console.log(result)
+                    console.log("worked")
+
+                    let arrUsers = result
+                    $.each(arrUsers,function(index,user){
+                        let BMI = user.BMI
+                        $('#divBMI').append(user.BMI);
+                        $('#divGripStrength').append(user.GripStrength);
+                        $('#divHeight').append(user.Height);
+                        $('#divWeight').append(user.Weight);
+                        $('#divBP').append(user.BP);
+                        $('#divHR').append(user.HR);
+                        $('#divO2Sat').append(user.O2Sat);
+                        $('#divTemp').append(user.Temp);
+                        $('#divUserID').append(user.UserID);
+                        $('#divExtraInfo').append(user.ExtraInfo);
+                        $('#divAllergies').append(user.Allergies);
+                        $('#divMedicines').append(user.Medicines);
+                        $('#divA1C').append(user.A1C);
+                        $('#divMentalState').append(user.MentalState);
+                        $('#divSubstances').append(user.Substances);
+                   })
+                })
+}
+
 
 
 $('#btnAddAppt').on('click',function(){
@@ -166,21 +210,7 @@ $('#btnDataHealth').on('click',function(){
     $('#divDashboardHealth').slideToggle();
 })
 
-let BMI = $('#txtBMI').val();
-let GripStrength = $('#txtGripStrength').val();
-let Height = $('#txtHeight').val();
-let Weight = $('#txtWeight').val();
-let BP = $('#txtBP').val();
-let HR = $('#txtHR').val();
-let O2Sat = $('#txtO2Sat').val();
-let Temp = $('#txtTemp').val();
-let HealthID = $('#txtHealthID').val();
-let ExtraInfo = $('#txtExtraInfo').val();
-let A1C = $('#txtA1C').val();
-let Allergies = $('#txtAllergies').val();
-let Medicines = $('#txtMedicines').val();
-let MentalState = $('#selectMentalState').val();
-let Drugs = $('#txtDrugs').val();
+
 
 
 $('#btnSubmitData').on('click',function(){
@@ -194,7 +224,21 @@ $('#btnSubmitData').on('click',function(){
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, I am sure!'
           }).then((result) => {
-
+            let strBMI = $('#txtBMI').val();
+            let strGripStrength = $('#txtGripStrength').val();
+            let strHeight = $('#txtHeight').val();
+            let strWeight = $('#txtWeight').val();
+            let strBloodPressure = $('#txtBP').val();
+            let strHeartRate = $('#txtHR').val();
+            let strO2Saturation = $('#txtO2Sat').val();
+            let strTemp = $('#txtTemp').val();
+            let strHealthID = $('#txtHealthID').val();
+            let strextrainfo = $('#txtExtraInfo').val();
+            let A1C = $('#txtA1C').val();
+            let strallergy = $('#txtAllergies').val();
+            let strmedicines = $('#txtMedicines').val();
+            let strmentalstate= $('#selectMentalState').val();
+            let strsubstanceusage = $('#txtDrugs').val();
             $.ajax({
                 url: 'http://localhost:8008/userhealthinfo',
                 type: 'PUT',
@@ -261,27 +305,7 @@ $('#btnSubmitData').on('click',function(){
 
                
 
-               /* $.ajax({
-                    url: 'http://localhost:8000/userhealthinfo',
-                    type: 'PUT',
-                    success: function(result) {
-                        Swal.fire({
-                            icon:'success',
-                            title:'Good to go!',
-                            text: 'Data Entered',
-                            })
-                            $('#divInputData').slideToggle();
-                            $('#divDashboardHealth').slideToggle();
-                            $.getJSON('http://localhost:8000/userhealthinfo',{APIkeys:apiKeys},function(result){
-                                $.each(result,function(index, curInfo){
-                                    let strHTML = '';
-                                    strHtml +='<h3>' + curInfo.APIKEY + '</h3>';
-                                    //etc
-                                    $('#divCard card-body').append(strHTML);
-                                })    
-                            })
-                    }
-                })*/
+              
             }
           })
     }
