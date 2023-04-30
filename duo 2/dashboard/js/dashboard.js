@@ -10,21 +10,9 @@ $(document).ready(function(){
         })
     }
 })
-$('.btnDashboardHeader').on('click',function(){
-    $(this).siblings('.card-body').slideToggle();
-})
 
-$('.btnCheck').on('click',function(){
-    let strButtonText = $(this).text();
-    if(strButtonText != 'Check Out'){
-        $(this).removeClass('btn-primary').addClass('btn-danger');
-        $(this).text('Check Out');
-    } else {
-        $(this).removeClass('btn-danger').addClass('btn-primary');
-        $(this).text('Check In');
-    }
-    
-})
+
+
 $('.btnCheckIn').on('click',function(){
     let strButtonText = $(this).text();
     if(strButtonText != 'In Use'){
@@ -62,7 +50,7 @@ $(document).on('click','.btnBackFromAddAppt',function(){
 })
 
 function fillFields(){
-    let struserID ='cock';
+    let struserID =sessionStorage.getItem('UserID');
                 $('#divBMI').empty();
                 $('#divGripStrength').empty();
                 $('#divHeight').empty();
@@ -104,9 +92,71 @@ function fillFields(){
                 })
 }
 
+function fillPeeps(){
+    console.log(2)
+    $.get('http://localhost:8000/dashboardpeeps',function(results){
+        console.log(results)
+        let arrUsers = results;
+        let strAppendHtml = ''
+        $('#ulDashboardParticipants').empty();
+        $.each(arrUsers,function(index,user){
+            let shortDOB = user.DOB.split('T')[0]
+            strAppendHtml+='<li class="card w-100 mb-1 border-success">'
+            strAppendHtml+='<div class="card-header text-bg-success btnDashboardHeader">'
+            strAppendHtml+='<h3>'+user.BadgeNum+'</h3>'
+            strAppendHtml+='</div>'
+            strAppendHtml+='<div class="card-body participant-profile" style="display:none;">'
+            strAppendHtml+='<div class="text-center">'
+            strAppendHtml+='<img src="images/profile.png" class="w-100 rounded-circle">'
+            strAppendHtml+='</div>';
+            strAppendHtml+='<h3 class="col-12 text-center mb-0 mt-3 ">'+user.FirstName+'</h3>';
+            strAppendHtml+='<h4 class="col-12 text-center ">'+user.LastName+'</h4>';
+            strAppendHtml+='<hr>';
+            strAppendHtml+= '<div class="col-12 row">';
+            strAppendHtml+= '<p class="col-7 text-primary"><i class="bi bi-gender-ambiguous me-2"></i>'+user.Sex+'</p>';
+            strAppendHtml+='<p class="col-5 text-primary"><i class="bi bi-megaphone me-2"></i>'+user.PreferredLanguage+'</p>';
+            strAppendHtml+='</div>';
+            strAppendHtml+='<div class="col-12 row">';
+            strAppendHtml+='<p class="col-7 text-primary"><i class="bi bi-calendar me-2"></i>'+shortDOB+'</p>';
+            strAppendHtml+='<p class="col-5 text-primary"><i class="bi bi-person-circle me-2"></i>'+user.UserID +'</p>';
+            strAppendHtml+='</div>';
+            strAppendHtml+='<div class="col-12">';
+            strAppendHtml+='<button value='+user.UserID+' class="btn btn-primary col-12 btnCheck" type="button">Check In</button>';
+            strAppendHtml+='</div>';
+            strAppendHtml+='</div>';
+            strAppendHtml+='</li>';
+        })
+        $('#ulDashboardParticipants').append(strAppendHtml);
+    })
+}
+$(document).on('click','.btnDashboardHeader',function(){
+    $(this).siblings('.card-body').slideToggle();
+})
+$(document).on('click','.btnCheck',function(){
+    
+    let strButtonText = $(this).text();
+    let strUserID = $(this).val();
+    
+    if(strButtonText != 'Check Out'){
+        sessionStorage.setItem('UserID',strUserID)
+        $(this).removeClass('btn-primary').addClass('btn-danger');
+        $(this).text('Check Out');
+    } else {
+        sessionStorage.removeItem('UserID')
+        $(this).removeClass('btn-danger').addClass('btn-primary');
+        $(this).text('Check In');
+    }
+    
+})
+/*
+
+
+*/ 
+
 setInterval(() => {
+    fillPeeps()
     fillFields()
-}, 5000);
+}, 15000);
 
 $('#btnAddAppt').on('click',function(){
     $('#divAddAppt').slideToggle();
@@ -216,7 +266,22 @@ $('#btnDataHealth').on('click',function(){
 
 
 $('#btnSubmitData').on('click',function(){
-    if(BMI.length < 1 || GripStrength.length < 1 || Height.length < 1 || Weight < 1 || BP.length < 1 || HR.length < 1 || O2Sat.length < 1 || Temp.length < 1 || HealthID.length < 1 || ExtraInfo.length < 1 || Condition.length < 1 || Drugs.length < 1 || MentalState == '' || Allergies.length < 1 || Medicines.length < 1){
+            let strBMI = $('#txtBMI').val();
+            let strGripStrength = $('#txtGripStrength').val();
+            let strHeight = $('#txtHeight').val();
+            let strWeight = $('#txtWeight').val();
+            let strBP = $('#txtBP').val();
+            let strHeartRate = $('#txtHR').val();
+            let strO2Saturation = $('#txtO2Sat').val();
+            let strTemp = $('#txtTemp').val();
+            let strHealthID = $('#txtHealthID').val();
+            let strExtraInfo = $('#txtExtraInfo').val();
+            let strCondition = $('#txtA1C').val();
+            let strAllergies = $('#txtAllergies').val();
+            let strMedicines = $('#txtMedicines').val();
+            let strMentalState= $('#selectMentalState').val();
+            let strDrugs= $('#txtDrugs').val();
+    if(strBMI.length < 1 || strGripStrength.length < 1 || strHeight.length < 1 || strWeight < 1 || strBP.length < 1 || strHeartRate.length < 1 || strO2Saturation.length < 1 || strTemp.length < 1 || strExtraInfo.length < 1 || strCondition.length < 1 || strDrugs.length < 1 || strMentalState == '' || strAllergies.length < 1 || strMedicines.length < 1){
         Swal.fire({
             title: 'Are you sure?',
             text: "Some spaces are blank... do you wish to continue?",
@@ -242,10 +307,10 @@ $('#btnSubmitData').on('click',function(){
             let strmentalstate= $('#selectMentalState').val();
             let strsubstanceusage = $('#txtDrugs').val();
             $.ajax({
-                url: 'http://localhost:8008/userhealthinfo',
+                url: 'http://localhost:8000/userhealthinfo',
                 type: 'PUT',
                 dataType: 'json',
-                data: {userid:struserID,bmi:strBMI,gripstrength:strGripStrength,height:strHeight,weight:strWeight,bloodpressure:strBloodPressure,heartrate:strHeartRate,o2:strO2Saturation,temp:strTemp,extrainfo:strextrainfo,allergy:strallergy,medicines:strmedicines,mentalstate:strmentalstate,substances:strsubstanceusage},
+                data: {userid:sessionStorage.getItem('UserID'),bmi:strBMI,gripstrength:strGripStrength,height:strHeight,weight:strWeight,bloodpressure:strBloodPressure,heartrate:strHeartRate,o2:strO2Saturation,temp:strTemp,extrainfo:strextrainfo,allergy:strallergy,medicines:strmedicines,mentalstate:strmentalstate,substances:strsubstanceusage},
                 success: function (data, textStatus, xhr) {
                      Swal.fire({
                             icon:'success',
@@ -289,9 +354,9 @@ $('#btnSubmitData').on('click',function(){
                         $('#divGripStrength').append(user.GripStrength);
                         $('#divHeight').append(user.Height);
                         $('#divWeight').append(user.Weight);
-                        $('#divBP').append(user.BP);
-                        $('#divHR').append(user.HR);
-                        $('#divO2Sat').append(user.O2Sat);
+                        $('#divBP').append(user.BloodPressure);
+                        $('#divHR').append(user.HeartRate);
+                        $('#divO2Sat').append(user.O2);
                         $('#divTemp').append(user.Temp);
                         $('#divUserID').append(user.UserID);
                         $('#divExtraInfo').append(user.ExtraInfo);

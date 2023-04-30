@@ -203,10 +203,8 @@ app.post("/preregistration",(req,res,next)=>{
         if(!error){
                     let strRegistrationID = uuidv4();
                     let strEvent = uuidv4();
-                    let strHealthID = uuidv4();
                     pool.query("INSERT INTO tblRegistrations VALUES (?,?,1,NOW(),'Pre')",[strRegistrationID,strEmail],function(errors,results){
                         if(!errors){
-                            pool.query("INSERT INTO tbluserhealthinfo (HealthID,UserID) VALUES (?,?)",[strHealthID,strEmail],function(errors,results){})
                             res.status(201).send(JSON.stringify({RegistrationID:strRegistrationID}));
                         } else {
                             
@@ -551,7 +549,11 @@ try{
 
 app.get('/dashboardpeeps',(req,res,next)=>{
     pool.query('Select * from tblUsers where BadgeNum IS NOT NULL',function(error,result){
-        console.log(result)
+        if(!error){
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
     })
 })
 
@@ -665,10 +667,6 @@ app.put('/userhealthinfo',(req,res,next)=>{
     if(strBloodPressure.length > 0){
         strQuery += "BloodPressure = ?,"
         arrInputs.push(strBloodPressure)
-    }
-    if(strBloodType.length > 0){
-        strQuery += "BloodType =?,"
-        arrInputs.push(strBloodType)
     }
     if(strHeartRate.length > 0){
         strQuery += "HeartRate =?,"
