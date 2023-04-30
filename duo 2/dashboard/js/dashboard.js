@@ -72,7 +72,7 @@ function fillFields(){
                 $('#divO2Sat').empty();
                 $('#divTemp').empty();
                 $('#divUserID').empty();
-                $('#divExtraInfo').empty();;
+                $('#divExtraInfo').empty();
                 $('#divAllergies').empty();
                 $('#divMedicines').empty();
                 $('#divA1C').empty();
@@ -89,22 +89,24 @@ function fillFields(){
                         $('#divGripStrength').append(user.GripStrength);
                         $('#divHeight').append(user.Height);
                         $('#divWeight').append(user.Weight);
-                        $('#divBP').append(user.BP);
-                        $('#divHR').append(user.HR);
-                        $('#divO2Sat').append(user.O2Sat);
+                        $('#divBP').append(user.BloodPressure);
+                        $('#divHR').append(user.HeartRate);
+                        $('#divO2Sat').append(user.O2);
                         $('#divTemp').append(user.Temp);
                         $('#divUserID').append(user.UserID);
                         $('#divExtraInfo').append(user.ExtraInfo);
-                        $('#divAllergies').append(user.Allergies);
+                        $('#divAllergies').append(user.Allergy);
                         $('#divMedicines').append(user.Medicines);
                         $('#divA1C').append(user.A1C);
                         $('#divMentalState').append(user.MentalState);
-                        $('#divSubstances').append(user.Substances);
+                        $('#divSubstances').append(user.SubstanceUsage);
                    })
                 })
 }
 
-
+setInterval(() => {
+    fillFields()
+}, 5000);
 
 $('#btnAddAppt').on('click',function(){
     $('#divAddAppt').slideToggle();
