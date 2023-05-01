@@ -394,12 +394,11 @@ $('.nav-link').on('click',function(){
     }
 })
 */
-/*$('#btnSaveNote').on('click',function(){
-    let note = $('#txtNote').val();
-    let noteType = $('#cboNoteType').val();
-    $.post('http://localhost:8000/notes',{strNote:note,strNoteType:noteType,USERIDHELP},function(result){
-    let objResult = JSON.parse(result);
-    if(objResult.Outcome){
+$('#btnSaveNote').on('click',function(){
+    let strNote = $('#txtNotes').val();
+    let strNoteType = $('#cboNoteType').val();
+    $.post('http://localhost:8000/notes?note=' + strNote + '&noteid=' + strNoteType + '&userid=' + sessionStorage.getItem('UserID'),function(result){
+    if(result){
         Swal.fire({
         icon:'success',
         title:'Good to go!',
@@ -414,6 +413,7 @@ $('.nav-link').on('click',function(){
         text: 'Note Not Entered',
         })
     }
+})
 })
     
     
