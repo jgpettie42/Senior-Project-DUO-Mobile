@@ -697,7 +697,7 @@ app.put('/userhealthinfo',(req,res,next)=>{
         arrInputs.push(strMentalState)
     }
     if(strSubstances.length > 0){
-        strQuery += "Substances =?,"
+        strQuery += "SubstanceUsage =?,"
         arrInputs.push(strSubstances)
     }
     strQuery = strQuery.substring(0, (strQuery.length - 1))
