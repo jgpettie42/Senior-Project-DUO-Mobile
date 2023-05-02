@@ -440,6 +440,7 @@ function fillPreRegs(){
     })
 
     $.when(objPreRegPromise).done(function(){
+        $('#selectParticipant').append('<option value=""></option>');
         $.each(arrPreReqParts,function(index,participant){
             let shortDOB = participant.DOB.split('T')[0]
             let strHTML = '<option value="' + participant.RegistrationID + '">' + participant.FirstName + " " + participant.LastName + " | " + shortDOB + '</option>';
