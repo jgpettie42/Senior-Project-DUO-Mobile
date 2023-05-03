@@ -230,7 +230,7 @@ CREATE TABLE `tblUsers` (
   `OpenEMRID` varchar(50) DEFAULT NULL,
   `MFAInfo` varchar(50) DEFAULT NULL,
   `PreferredLanguage` varchar(50) DEFAULT NULL,
-  `BadgeNum` int NOT NULL,
+  `BadgeNum` int DEFAULT NULL,
   `Signature` blob,
   `Picture` blob,
   PRIMARY KEY (`UserID`)
