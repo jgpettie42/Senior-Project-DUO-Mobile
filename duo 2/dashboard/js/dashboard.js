@@ -11,8 +11,6 @@ $(document).ready(function(){
     }
 })
 
-
-
 $('.btnCheckIn').on('click',function(){
     let strButtonText = $(this).text();
     if(strButtonText != 'In Use'){
@@ -88,6 +86,19 @@ function fillFields(){
                         $('#divA1C').append(user.A1C);
                         $('#divMentalState').append(user.MentalState);
                         $('#divSubstances').append(user.SubstanceUsage);
+                   })
+                })
+}
+
+function fillNotes(){
+    let struserID =sessionStorage.getItem('UserID');
+                $('#tblNotes tbody').empty();
+                
+                $.get('http://localhost:8000/notes',{userid:struserID},function(result){
+                    let arrNotes = result
+                    $.each(arrNotes,function(index,note){
+                        
+                        console.log(note)
                    })
                 })
 }

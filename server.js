@@ -36,7 +36,7 @@ app.listen(HTTP_PORT, () => {
 app.get("/sessions/:sessionid", (req,res,next)=>{
     let strSessionID = req.params.sessionid;
     try{
-        pool.query('SELECT * FROM tblSessions WHERE SessionID = ?',strSessionID,function(error,result){
+        pool.query('SELECT * FROM tblsessions WHERE SessionID = ?',strSessionID,function(error,result){
             if(!error){
                 res.status(200).send(result);
             } else {
@@ -55,13 +55,13 @@ app.post("/sessions", (req,res,next)=>{
     
     let strSessionID = uuidv4();
     try {
-        pool.query('SELECT Password FROM tblUsers WHERE UPPER(UserID) = UPPER(?)',[strEmail],function(error,results){
+        pool.query('SELECT Password FROM tblusers WHERE UPPER(UserID) = UPPER(?)',[strEmail],function(error,results){
             if(results){
                 bcrypt.compare(strPassword,results[0].Password)
                 .then(outcome => {
                     if(outcome == true){
                         let strSessionID = uuidv4();
-                        pool.query('INSERT INTO tblSession VALUES(?, ?,SYSDATE())',[strSessionID, strEmail], function(error, results){
+                        pool.query('INSERT INTO tblsession VALUES(?, ?,SYSDATE())',[strSessionID, strEmail], function(error, results){
                             if(!error){
                                 res.status(201).send(JSON.stringify({SessionID:strSessionID}));
                             } else {
@@ -87,7 +87,7 @@ app.get("/event/:status",(req,res,next)=>{
     try{
         if(strStatus == 'Future'){
         
-            pool.query('SELECT * FROM tblEvents WHERE EndDateTime >= NOW()',function(error,result){
+            pool.query('SELECT * FROM tblevents WHERE EndDateTime >= NOW()',function(error,result){
                 if(!error){
                     res.status(200).send(result)
                 } else {
@@ -95,7 +95,7 @@ app.get("/event/:status",(req,res,next)=>{
                 }
             })
         } else if(strStatus == 'Past'){
-            pool.query('SELECT * FROM tblEvents EndDateTime <= NOW()',function(error,result){
+            pool.query('SELECT * FROM tblevents EndDateTime <= NOW()',function(error,result){
                 if(!error){
                     res.status(200).send(result)
                 } else {
@@ -103,7 +103,7 @@ app.get("/event/:status",(req,res,next)=>{
                 }
             })
         } else if(strStatus == 'All'){
-            pool.query('SELECT * FROM tblEvents',function(error,result){
+            pool.query('SELECT * FROM tblevents',function(error,result){
                 if(!error){
                     res.status(200).send(result)
                 } else {
@@ -118,7 +118,7 @@ app.get("/event/:status",(req,res,next)=>{
 app.get("/location/:locationid",(req,res,next)=>{
     try{
         if(locationid == null){
-            pool.query('SELECT * FROM tblEventLocations',function(error,result){
+            pool.query('SELECT * FROM tbleventlocations',function(error,result){
                 if(!error){
                     res.status(200).send(result)
                 } else {
@@ -126,7 +126,7 @@ app.get("/location/:locationid",(req,res,next)=>{
                 }
             })
         } else {
-            pool.query('SELECT * FROM tblEventLocations WHERE LocationID = ?', locationid, function(error,result){
+            pool.query('SELECT * FROM tbleventlocations WHERE LocationID = ?', locationid, function(error,result){
                 if(!error){
                     res.status(200).send(result)
                 } else {
@@ -203,7 +203,7 @@ app.post("/preregistration",(req,res,next)=>{
         if(!error){
                     let strRegistrationID = uuidv4();
                     let strEvent = uuidv4();
-                    pool.query("INSERT INTO tblRegistrations VALUES (?,?,1,NOW(),'Pre')",[strRegistrationID,strEmail],function(errors,results){
+                    pool.query("INSERT INTO tblregistrations VALUES (?,?,1,NOW(),'Pre')",[strRegistrationID,strEmail],function(errors,results){
                         if(!errors){
                             res.status(201).send(JSON.stringify({RegistrationID:strRegistrationID}));
                         } else {
@@ -225,7 +225,7 @@ app.get("/users/:userid",(req,res,next)=> {
     let strUserID = req.param.userid;
     let strSessionID = req.query.sessionid || req.body.sessionid;
      try{
-        pool.query('SELECT FirstName,LastName,MiddleName,PreferredName,DOB,Sex,PreferredLanguage FROM tblUsers WHERE UserID = ? AND (SELECT COUNT(*) FROM tblSessions WHERE SessionID = ?) > 0',[strUserID,strSessionID],function(error,result){
+        pool.query('SELECT FirstName,LastName,MiddleName,PreferredName,DOB,Sex,PreferredLanguage FROM tblusers WHERE UserID = ? AND (SELECT COUNT(*) FROM tblsessions WHERE SessionID = ?) > 0',[strUserID,strSessionID],function(error,result){
             if(!error){
                 res.status(200).send(result);
             } else {
@@ -244,7 +244,7 @@ app.get("/previoususers",(req,res,next)=> {
     let strDOB = req.query.dob || req.body.dob;
     
     try{
-        pool.query('SELECT * FROM tblUsers WHERE FirstName = ? AND LastName = ? AND DOB = ?',[strFirstName,strLastName,strDOB],function(error,result){
+        pool.query('SELECT * FROM tblusers WHERE FirstName = ? AND LastName = ? AND DOB = ?',[strFirstName,strLastName,strDOB],function(error,result){
             if(!error){
                 res.status(200).send(result);
             } else {
@@ -258,9 +258,10 @@ app.get("/previoususers",(req,res,next)=> {
 })
 
 
-app.get("/testnotes",(req,res,next)=> {
+app.get("/notes",(req,res,next)=> {
+    let strUserID = req.query.userid||req.body.userid
     try{
-        pool.query('SELECT * FROM tblDashboardNotes',function(error,result){
+        pool.query('SELECT * FROM tbldashboardnotes where UserID=?',strUserID,function(error,result){
             if(!error){
                 res.status(200).send(result);
             } else {
@@ -320,7 +321,7 @@ app.post("/users", (req,res,next)=>{
     bcrypt.hash(strPassword,10).then(hash => {
         strPassword = hash;
         try{
-            pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
+            pool.query('INSERT INTO tblusers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
                 if(!error){
 
                     pool.query('INSERT INTO tbluserroles (UserRoleID,UserID,RoleID) VALUES (?,?,"Patient")',[strUserRoleId,strEmail],function(error,result){
@@ -394,7 +395,7 @@ app.post("/admin", (req,res,next)=>{
     bcrypt.hash(strPassword,10).then(hash => {
         strPassword = hash;
         try{
-            pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
+            pool.query('INSERT INTO tblusers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
                 if(!error){
 
                     pool.query('INSERT INTO tbluserroles (UserRoleID,UserID,RoleID) VALUES (?,?,"Admin")',[strUserRoleId,strEmail],function(error,result){
@@ -441,7 +442,7 @@ app.post("/staff", (req,res,next)=>{
     bcrypt.hash(strPassword,10).then(hash => {
         strPassword = hash;
         try{
-            pool.query('INSERT INTO tblUsers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
+            pool.query('INSERT INTO tblusers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
                 if(!error){
 
                     pool.query('INSERT INTO tbluserroles (UserRoleID,UserID,RoleID) VALUES (?,?,?)',[strUserRoleId,strEmail,strRole],function(error,result){
@@ -476,7 +477,7 @@ app.post("/dashboard", (req,res,next)=>{
     let strO2 = req.query.o2 || req.body.o2;
 
     try{
-        pool.query('INSERT INTO tblUserHealthInfo (HealthID,Height,Weight,BMI,HeartRate,BloodType,O2,ExtraInfo,UserID) VALUES (?,?,?,?,?,?,?,?)',[strHealthID,strHeight,strWeight,strBMI,strHR,strBloodType,strExtraInfo,stro2,strUserID],function(error,result){
+        pool.query('INSERT INTO tbluserhealthinfo (HealthID,Height,Weight,BMI,HeartRate,BloodType,O2,ExtraInfo,UserID) VALUES (?,?,?,?,?,?,?,?)',[strHealthID,strHeight,strWeight,strBMI,strHR,strBloodType,strExtraInfo,stro2,strUserID],function(error,result){
             if(!error){
                 res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
             } else {
@@ -498,7 +499,7 @@ app.post("/notes",(req,res,next)=>{
 
     console.log(strNote,strNoteID,strUserID)
     try{
-        pool.query('INSERT INTO tblDashboardNotes (NotesID,UserID,Note,CreateDateTime) VALUES (?,?,?,SYSDATE())',[strNoteID,strUserID,strNote],function(error,result){
+        pool.query('INSERT INTO tbldashboardnotes (NotesID,UserID,Note,CreateDateTime) VALUES (?,?,?,SYSDATE())',[strNoteID,strUserID,strNote],function(error,result){
             if(!error){
                 res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
             } else {
@@ -518,7 +519,7 @@ app.get("/dashboardnotes/:userid",(req,res,next)=> {
     let strUserID = req.param.userid;
     let strSessionID = req.query.sessionid || req.body.sessionid;
     try{
-        pool.query('SELECT * FROM tblDashboardNotes WHERE UserID = ? AND (SELECT COUNT(*) FROM tblSessions WHERE SessionID = ?) > 0',[strUserID,strSessionID],function(error,result){
+        pool.query('SELECT * FROM tbldashboardnotes WHERE UserID = ? AND (SELECT COUNT(*) FROM tblsessions WHERE SessionID = ?) > 0',[strUserID,strSessionID],function(error,result){
             if(!error){
                 res.status(200).send(result);
             } else {
@@ -534,7 +535,7 @@ app.get("/dashboardnotes/:userid",(req,res,next)=> {
 app.get("/dashboard",(req,res,next)=> {
     let strUserID = req.query.userid || req.body.userid
 try{
-    pool.query('SELECT * FROM tblUserHealthInfo WHERE UserID = ?',[strUserID],function(error,result){
+    pool.query('SELECT * FROM tbluserhealthinfo WHERE UserID = ?',[strUserID],function(error,result){
         if(!error){
             res.status(200).send(result);
         } else {
@@ -548,7 +549,7 @@ try{
 })
 
 app.get('/dashboardpeeps',(req,res,next)=>{
-    pool.query('Select * from tblUsers where BadgeNum IS NOT NULL',function(error,result){
+    pool.query('Select * from tblusers where BadgeNum IS NOT NULL',function(error,result){
         if(!error){
             res.status(200).send(result);
         } else {
@@ -565,7 +566,7 @@ app.get("/usercheckinfo",(req,res,next)=> {
     let strDOB = req.query.dob || req.body.dob;
 
 try{
-    pool.query('SELECT * FROM tblUsers WHERE FirstName = ? AND LastName = ? AND DOB = ?',[strFirstName,strLastName,strDOB],function(error,result){
+    pool.query('SELECT * FROM tblusers WHERE FirstName = ? AND LastName = ? AND DOB = ?',[strFirstName,strLastName,strDOB],function(error,result){
         if(!error){
             res.status(200).send(result);
         } else {
@@ -582,7 +583,7 @@ try{
 app.get("/testRoleGet",(req,res,next)=> {
     let strRole = req.query.role || req.body.role;
     try{
-        pool.query('SELECT * FROM tblUsers join tbluserroles on tbluserroles.UserID = tblusers.UserID where RoleID = ?',[strRole],function(error,result){
+        pool.query('SELECT * FROM tblusers join tbluserroles on tbluserroles.UserID = tblusers.UserID where RoleID = ?',[strRole],function(error,result){
             if(!error){
                 res.status(200).send(result);
             } else {
