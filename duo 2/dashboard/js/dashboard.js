@@ -327,7 +327,6 @@ $('#btnSubmitData').on('click',function(){
                 }
             })
             if (result.isConfirmed) {
-                let struserID ='cock';
                 $('#divBMI').empty();
                 $('#divGripStrength').empty();
                 $('#divHeight').empty();
@@ -343,13 +342,19 @@ $('#btnSubmitData').on('click',function(){
                 $('#divA1C').empty();
                 $('#divMentalState').empty();
                 $('#divSubstances').empty();
-                $.get('http://localhost:8000/dashboard',{userid:struserID},function(result){
+                $.get('http://localhost:8000/dashboard',{userid:sessionStorage.getItem('UserID')},function(result){
                     console.log(result)
                     console.log("worked")
 
                     let arrUsers = result
                     $.each(arrUsers,function(index,user){
                         let BMI = user.BMI
+                        let divBMI = $('divBMI').val()
+                        if(BMI == divBMI){
+                            console.log('Cool')
+                        }else{
+                            console.log('Not Cool')
+                        }
                         $('#divBMI').append(user.BMI);
                         $('#divGripStrength').append(user.GripStrength);
                         $('#divHeight').append(user.Height);
