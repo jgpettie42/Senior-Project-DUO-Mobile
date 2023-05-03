@@ -2,6 +2,8 @@
 
  var strBaseURL = 'http://localhost:8000';
 
+sessionStorage.setItem('CheckArray',[])
+
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         // call web service to verify ID and get role
@@ -49,21 +51,8 @@ $(document).on('click','.btnBackFromAddAppt',function(){
 
 function fillFields(){
     let struserID =sessionStorage.getItem('UserID');
-                $('#divBMI').empty();
-                $('#divGripStrength').empty();
-                $('#divHeight').empty();
-                $('#divWeight').empty();
-                $('#divBP').empty();
-                $('#divHR').empty();
-                $('#divO2Sat').empty();
-                $('#divTemp').empty();
-                $('#divUserID').empty();
-                $('#divExtraInfo').empty();
-                $('#divAllergies').empty();
-                $('#divMedicines').empty();
-                $('#divA1C').empty();
-                $('#divMentalState').empty();
-                $('#divSubstances').empty();
+                
+                
                 $.get('http://localhost:8000/dashboard',{userid:struserID},function(result){
                     console.log(result)
                     console.log("worked")
@@ -71,14 +60,47 @@ function fillFields(){
                     let arrUsers = result
                     $.each(arrUsers,function(index,user){
                         let BMI = user.BMI
-                        $('#divBMI').append(user.BMI);
-                        $('#divGripStrength').append(user.GripStrength);
-                        $('#divHeight').append(user.Height);
-                        $('#divWeight').append(user.Weight);
-                        $('#divBP').append(user.BloodPressure);
-                        $('#divHR').append(user.HeartRate);
-                        $('#divO2Sat').append(user.O2);
-                        $('#divTemp').append(user.Temp);
+                        if($('#divBMI').text() != user.BMI){
+                            $('#divBMI').empty();
+                            $('#divBMI').append(BMI);
+                        }
+                        if($('#divGripStrength').text() != user.GripStrength){
+                            $('#divGripStrength').empty();
+                            $('#divGripStrength').append(user.GripStrength);
+                        }
+                        if($('#divHeight').text() != user.Height){
+                            $('#divHeight').empty();
+                            $('#divHeight').append(user.Height);
+                        }
+                        if($('#divWeight').text() != user.Weight){
+                            $('#divWeight').empty();
+                            $('#divWeight').append(user.Weight);
+                        }
+                        if($('#divBP').text() != user.BloodPressure){
+                            $('#divBP').empty();
+                            $('#divBP').append(user.BloodPressure);
+                        }
+                        if($('#divHR').text() != user.HeartRate){
+                            $('#divHR').empty();
+                            $('#divHR').append(user.HeartRate);
+                        }
+                        if($('#divO2Sat').text() != user.O2){
+                            $('#divO2Sat').empty();
+                            $('#divO2Sat').append(user.O2);
+                        }
+                        if($('#divTemp').text() != user.Temp){
+                            $('#divTemp').empty();
+                            $('#divTemp').append(user.Temp);
+                        }
+
+                        $('#divUserID').empty();
+                        $('#divExtraInfo').empty();
+                        $('#divAllergies').empty();
+                        $('#divMedicines').empty();
+                        $('#divA1C').empty();
+                        $('#divMentalState').empty();
+                        $('#divSubstances').empty();
+                        
                         $('#divUserID').append(user.UserID);
                         $('#divExtraInfo').append(user.ExtraInfo);
                         $('#divAllergies').append(user.Allergy);
@@ -109,8 +131,12 @@ function fillPeeps(){
         console.log(results)
         let arrUsers = results;
         let strAppendHtml = ''
-        $('#ulDashboardParticipants').empty();
+        let checkArray = []
+        let test = sessionStorage.getItem('CheckArray') 
         $.each(arrUsers,function(index,user){
+            if(test.includes(user.BadgeNum)){
+                console.log('in')
+            }else{
             let shortDOB = user.DOB.split('T')[0]
             strAppendHtml+='<li class="card w-100 mb-1 border-success">'
             strAppendHtml+='<div class="card-header text-bg-success btnDashboardHeader">'
@@ -136,8 +162,15 @@ function fillPeeps(){
             strAppendHtml+='</div>';
             strAppendHtml+='</div>';
             strAppendHtml+='</li>';
+            checkArray.push(user.BadgeNum)
+            }
         })
+        if(checkArray.length<1){
+
+        }else{
+        sessionStorage.setItem('CheckArray',checkArray)
         $('#ulDashboardParticipants').append(strAppendHtml);
+        }
     })
 }
 $(document).on('click','.btnDashboardHeader',function(){
@@ -167,7 +200,7 @@ $(document).on('click','.btnCheck',function(){
 setInterval(() => {
     fillPeeps()
     fillFields()
-}, 15000);
+}, 5000);
 
 $('#btnAddAppt').on('click',function(){
     $('#divAddAppt').slideToggle();
@@ -177,6 +210,7 @@ $('#btnAddAppt').on('click',function(){
 $('#btnLogin').on('click',function(){
     let strUsername = $('#txtUsername').val();
     let strPassword = $('#txtPassword').val();
+    sessionStorage.setItem('SessionUser',strUsername)
     if(strUsername.length && strPassword.length > 1){
             console.log(strBaseURL)
             $.post(strBaseURL + '/sessions?email=' + $('#txtUsername').val() + '&password=' + $('#txtPassword').val())
@@ -338,8 +372,9 @@ $('#btnSubmitData').on('click',function(){
                 }
             })
             if (result.isConfirmed) {
+
                 $('#divBMI').empty();
-                $('#divGripStrength').empty();
+                $('#divBMI').empty();
                 $('#divHeight').empty();
                 $('#divWeight').empty();
                 $('#divBP').empty();
@@ -359,15 +394,29 @@ $('#btnSubmitData').on('click',function(){
 
                     let arrUsers = result
                     $.each(arrUsers,function(index,user){
-                        let BMI = user.BMI
-                        let divBMI = $('divBMI').val()
-                        if(BMI == divBMI){
-                            console.log('Cool')
-                        }else{
-                            console.log('Not Cool')
+                        
+                            
+                           
+                            $('#divBMI').append(user.BMI);
+                            $('#divGripStrength').append(user.GripStrength);
+
+                        /*
+
+                        if($('#divBMI').val() != user.BMI){
+                            $('#divBMI').empty();
+                            $('#divBMI').append(user.BMI);
                         }
-                        $('#divBMI').append(user.BMI);
-                        $('#divGripStrength').append(user.GripStrength);
+                        if($('#divBMI').val() != user.BMI){
+                            $('#divBMI').empty();
+                            $('#divBMI').append(user.BMI);
+                        }
+                        if($('#divBMI').val() != user.BMI){
+                            $('#divBMI').empty();
+                            $('#divBMI').append(user.BMI);
+                        }
+                        
+                        */
+
                         $('#divHeight').append(user.Height);
                         $('#divWeight').append(user.Weight);
                         $('#divBP').append(user.BloodPressure);
@@ -381,6 +430,23 @@ $('#btnSubmitData').on('click',function(){
                         $('#divA1C').append(user.A1C);
                         $('#divMentalState').append(user.MentalState);
                         $('#divSubstances').append(user.Substances);
+
+
+                        
+
+                        $('#divHeight').val(user.Height);
+                        $('#divWeight').val(user.Weight);
+                        $('#divBP').val(user.BloodPressure);
+                        $('#divHR').val(user.HeartRate);
+                        $('#divO2Sat').val(user.O2);
+                        $('#divTemp').val(user.Temp);
+                        $('#divUserID').val(user.UserID);
+                        $('#divExtraInfo').val(user.ExtraInfo);
+                        $('#divAllergies').val(user.Allergies);
+                        $('#divMedicines').val(user.Medicines);
+                        $('#divA1C').val(user.A1C);
+                        $('#divMentalState').val(user.MentalState);
+                        $('#divSubstances').val(user.Substances);
                    })
                    $('#divInputData').slideToggle();
                    $('#divDashboardHealth').slideToggle();
