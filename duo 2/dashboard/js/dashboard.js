@@ -3,7 +3,7 @@
  var strBaseURL = 'http://localhost:8000';
 
 sessionStorage.setItem('CheckArray',[])
-
+/*
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
         // call web service to verify ID and get role
@@ -12,7 +12,7 @@ $(document).ready(function(){
         })
     }
 })
-
+*/
 $('.btnCheckIn').on('click',function(){
     let strButtonText = $(this).text();
     if(strButtonText != 'In Use'){
@@ -118,9 +118,15 @@ function fillNotes(){
                 
                 $.get('http://localhost:8000/notes',{userid:struserID},function(result){
                     let arrNotes = result
+                    let tblstring = ''
                     $.each(arrNotes,function(index,note){
-                        
-                        console.log(note)
+                        tblstring+='<tr>'
+                        tblstring+='<td>'+note.UserID+'</td>'
+                        tblstring+='<td>'+''+'</td>'
+                        tblstring+='<td>'+note.NoteType+'</td>'
+                        tblstring+='<td>'+note.Note+'</td>'
+                        tblstring+='<td>'+note.CreateDateTime+'</td>'
+                        tblstring+='</tr>'
                    })
                 })
 }
@@ -138,7 +144,7 @@ function fillPeeps(){
                 console.log('in')
             }else{
             let shortDOB = user.DOB.split('T')[0]
-            strAppendHtml+='<li class="card w-100 mb-1 border-success">'
+            strAppendHtml+='<li class="card w-100 mb-1 border-success '+user.BadgeNum+'">'
             strAppendHtml+='<div class="card-header text-bg-success btnDashboardHeader">'
             strAppendHtml+='<h3>'+user.BadgeNum+'</h3>'
             strAppendHtml+='</div>'
@@ -166,9 +172,9 @@ function fillPeeps(){
             }
         })
         if(checkArray.length<1){
-
+            
         }else{
-        sessionStorage.setItem('CheckArray',checkArray)
+        sessionStorage.setItem('CheckArray',test+=checkArray)
         $('#ulDashboardParticipants').append(strAppendHtml);
         }
     })
@@ -223,9 +229,9 @@ $('#btnLogin').on('click',function(){
                     })
                 } else {
                     sessionStorage.setItem('SimpleSession',objSession.SessionID);
-                    $('#divLogin').slideUp(function(){
+                    
                         $('#divLogin').slideToggle(function(){$('#divDashboardHealth').slideToggle();});
-                    })
+    
                 }
             })
         //if username and password are valid

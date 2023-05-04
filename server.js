@@ -492,14 +492,14 @@ app.post("/dashboard", (req,res,next)=>{
 })
 
 app.post("/notes",(req,res,next)=>{
-
-    let strNoteID = req.query.noteid || req.body.noteid;
+    let strNoteID = uuidv4()
+    let strNoteType = req.query.noteid || req.body.noteid;
     let strUserID = req.query.userid || req.body.userid;
     let strNote = req.query.note || req.body.note;
 
     console.log(strNote,strNoteID,strUserID)
     try{
-        pool.query('INSERT INTO tbldashboardnotes (NotesID,UserID,Note,CreateDateTime) VALUES (?,?,?,SYSDATE())',[strNoteID,strUserID,strNote],function(error,result){
+        pool.query('INSERT INTO tbldashboardnotes (NotesID,UserID,Note,CreateDateTime,NoteType) VALUES (?,?,?,SYSDATE(),?)',[strNoteID,strUserID,strNote,strNoteType],function(error,result){
             if(!error){
                 res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
             } else {
@@ -630,6 +630,18 @@ app.post("/userhealthinfo",(req,res,next)=>{
 */
 
 
+app.post('/checkout',(req,res,next)=>{
+    let strBadgeNum = req.query.badgenum || req.body.badgenum
+
+    pool.query('update tblusers set BadgeNum = NULL WHERE BadgeNum = (?)',[strBadgeNum],function(error,result){
+        if(!error){
+            res.status(201).send(result);
+        }else{
+            console.log(error)
+            res.status(400).send(JSON.stringify({Error:error}))
+        }
+    })
+})
 
 app.put('/userhealthinfo',(req,res,next)=>{
     let strUserID = req.query.userid || req.body.userid

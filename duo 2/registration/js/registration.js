@@ -432,6 +432,14 @@ $('.btnCheck').on('click',function(){
     
 })
 
+$('#btnCheckOutUser').on('click',function(){
+    let strBadgeNum = $('#checkoutnum').val()
+    $.post(strBaseURL+'/checkout',{badgenum:strBadgeNum},function(result){
+        console.log(result)
+    })
+})
+
+
 function fillPreRegs(){
     $('#selectParticipant').empty();
     strSessionID = sessionStorage.getItem('SimpleSession');
