@@ -9,9 +9,6 @@
     <link href="../bootstrap-icons-1.10.3/bootstrap-icons.css" rel="stylesheet">
     <link href="manifest.webmanifest" rel="manifest">
     <link rel="apple-touch-icon" href="images\duologowhite01.png">
-    <style>
-      
-    </style>
 </head>
 <body class="bg-dark">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="navMain" style="display:none;">
@@ -63,7 +60,7 @@
                       <option value="">Select a Preregisterd Participant</option>
                     </select>
                   <div class="col-12 d-flex justify-content-center align-items-center flex-wrap mt-1">
-                    <button class="btn btn-primary col-12" type="button" id="btnCheckInPreReg">CheckIn Selected</button>
+                    <button class="btn btn-primary col-12" type="button" id="btnCheckInPreReg">Check In Selected</button>
                     <hr>  
                     <button class="btn btn-outline-primary col-12 mt-3" type="button" id="btnCheckInNew">Register New User</button>
                     <hr>
@@ -121,7 +118,7 @@
                             <option selected>Open This Select Menu</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="Other">Other</option>
+                            <option value="Other">Intersex</option>
                         </select>
                         <span class="input-group-text bg-light"><i class="bi bi-gender-trans"></i></span>
                     </div> 
@@ -259,8 +256,12 @@
                     </div>
                 </div>
                 <div class="mb-2">
-                    <input class="form-control" id="Checkbox" type="checkbox" aria-label="Other">
-                    <label for="Checkbox" >Other: (homeless,...etc)</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Transient" id="Checkbox">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Check Here for Transient Community
+                    </label>
+                  </div>
                 </div>
                 <div class="text-center mb-2">
                     <button id="btnNextToEmergencyContact" type="button" class="btn btn-primary btn-block">Next To Emergency Contact</button>
@@ -311,7 +312,7 @@
         </div>
     </div>
     
-    <div id="divLoginInfo" style="display: none; position:absolute; top: 300px;" class="mt-5">
+    <div id="divLoginInfo" style="display: none; position:absolute; top: 200px;" class="mt-1">
       <div class="col-12 d-flex justify-content-center align-items-center vh-100">
         <div class="col-12 col-lg-6 card"style=" max-height: 1300px; overflow: auto;">
           <div class="card-header text-center">
@@ -321,7 +322,7 @@
             <form>
               <h5 class="login-box-msg">Register New User's Login Information</h5>
               <div class="mt-1">
-                  <label for="selectPreferredLang" class="text-black form-label">Preffered Language</label>
+                  <label for="selectPreferredLang" class="text-black form-label">Prefered Language</label>
                   <div class="input-group">
                     <select id="selectPreferredLang" type="select" class="form-control col-12" aria-label="Select Language">
                       <option selected>Open This Select Menu</option>
@@ -334,9 +335,8 @@
                 <label for="chkServices" class="text-black form-label">Services</label>
                 <div class="form-group" id="selServices-es">
                   <div class="form-check">
-                      <input class="form-check-input selServices-es" type="checkbox" value="dental">
-                      <label class="form-check-label">Dental</label> 
-                      <!--add in option for extraction/cleaning for dental-->
+                      <input class="form-check-input selServices" id="checkbox-dental" type="checkbox" value="dental">
+                      <label class="form-check-label">Dental</label>
                   </div>
                   <div class="form-check">
                       <input class="form-check-input selServices-es" type="checkbox" value="haircut">
