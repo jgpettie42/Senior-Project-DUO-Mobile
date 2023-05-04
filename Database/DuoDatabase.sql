@@ -244,3 +244,9 @@ CREATE TABLE `tbluserskills` (
   `UserID` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`UserSkillID`)
 );
+CREATE TABLE `tblstats` (
+  `Stats` varchar(50) NOT NULL,
+  `Current` int DEFAULT NULL,
+  `Max` int DEFAULT NULL,
+  PRIMARY KEY (`Stats`)
+);
