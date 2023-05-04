@@ -55,8 +55,41 @@
             </div>
         </div>
         <div id="divCheckIn" style="display:none;">
+         
             <div class="col-12 d-flex justify-content-center align-items-center vh-100">
               <div class="col-12 col-lg-5 card">
+                <div class="card-header">
+                  <div id="divCheckinStats" clas="col-12 d-flex justify-content-center" style="display: flex !important; justify-content: space-around;">
+                    <div class="small-box col-3 py-2 px-4 bg-danger">
+                      <span class="info-box-icon"></span>
+                      <div class="info-box-content"><div class="row"><span class="btn btn-sm btn-outline-success btnStatChange rounded-circle me-2" data-amount="1" data-stat="Extraction"><i class="bi bi-plus"></i></span> <h3 class="col-12 text-center"><span id="txtCurrentExtraction">5/5</span><span class="btn btn-sm btn-outline-danger btnStatChange rounded-circle mb-2" data-amount="-1" data-stat="Extraction"><i class="bi bi-mminus"></i></span></div></h3>
+                        <h1 class="mt-0 mb-0 col-12 text-center"><i class="bi bi-scissors"></i></h1>
+                        <label class="form-label mt-0 mb-0 col-12 text-center">Extraction</label>
+                      </div>
+                    </div>
+                    <div class="small-box col-3 py-2 px-4 bg-info">
+                      <span class="info-box-icon"></span>
+                      <div class="info-box-content"> <h3 class="col-12 text-center"><span id="txtCurrentCleanings">5/5</span></h3>
+                        <h1 class="mt-0 mb-0 col-12 text-center"><i class="bi bi-brush"></i></h1>
+                        <label class="form-label mt-0 mb-0 col-12 text-center">Cleanings</label>
+                      </div>
+                    </div>
+                    <div class="small-box col-3 py-2 px-4 bg-warning">
+                      <span class="info-box-icon"></span>
+                      <div class="info-box-content"> <h3 class="col-12 text-center"><span id="txtCurrentFillings">5/5</span></h3>
+                        <h1 class="mt-0 mb-0 col-12 text-center"><i class="bi bi-person-fill"></i></h1>
+                        <label class="form-label mt-0 mb-0 col-12 text-center">Fillings</label>
+                      </div>
+                    </div>
+                    <div class="small-box py-2 px-4 col-3 bg-success">
+                      <span class="info-box-icon"></span>
+                      <div class="info-box-content"> <h3 class="col-12 text-center"><span id="txtCurrentVision">5/5</span></h3>
+                        <h1 class="mt-0 mb-0 col-12 text-center"> <i class="bi bi-eyeglasses"></i></h1>
+                        <label class="form-label mt-0 mb-0 col-12 text-center">Vision</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <form class="card-body">
                   <h3 class="col-12 text-center">Select a Preregistered Participant or Register New Participant</h3>
                     <select id="selectParticipant" class="form-control mt-3">

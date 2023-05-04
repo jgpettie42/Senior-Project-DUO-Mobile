@@ -23,6 +23,28 @@ $(document).ready(function(){
     }
 })
 
+$(document).on('click','.btnStatChange',function(){
+    let strStat = $(this).attr('data-stat');
+    let strChange = $(this).attr('data-amount');
+
+    $.ajax({
+        url: "http://localhost:8000/stat",
+        type: "PUT",
+        dataType:'json',
+        data:{stat:strStat,change:strChange},
+        success:
+        $.getJSON('http://localhost:8000/stat',{strStat,strChange},function(result){
+            $.each(result,function(index,curStat){
+                let strHTML = '';
+                strHTML += curStat.Change;
+            })
+            $('#txtCurrentExtraction').append(strHTML);
+        })
+    })
+    // on success then call getJSON to  /stat and refill the span tags
+
+})
+
 $('.btnDashboardHeader').on('click',function(){
     $(this).siblings('.card-body').slideToggle();
 })

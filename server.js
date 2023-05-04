@@ -558,6 +558,27 @@ app.get('/dashboardpeeps',(req,res,next)=>{
     })
 })
 
+app.get('/stat',(req,res,next)=>{
+    pool.query('Select * from tblStats',function(error,result){
+        if(!error){
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
+    })
+})
+
+app.put('/stat',(req,res,next)=>{
+    let strStat = req.body.stat || req.query.stat;
+    let intChange = req.body.change || req.query.change;
+    pool.query('UPDATE tblStats SET Current = ((SELECT Current FROM tblStats WHERE Stat = ?) + ?) WHERE Stat = ?',[strStat,intChange,strStat],function(error,result){
+        if(!error){
+            res.status(201).send({"Outcome":"Success"});
+        } else {
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
+    })
+})
 
 app.get("/usercheckinfo",(req,res,next)=> {
     let strFirstName = req.query.firstname || req.body.firstname;
