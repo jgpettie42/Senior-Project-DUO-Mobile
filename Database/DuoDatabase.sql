@@ -1,5 +1,5 @@
 CREATE DATABASE `DuoDatabase` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-CREATE TABLE `tblAddresses` (
+CREATE TABLE `tbladdresses` (
   `AddressID` varchar(50) NOT NULL,
   `UserID` varchar(100) NOT NULL,
   `Street1` varchar(100) DEFAULT NULL,
@@ -12,39 +12,39 @@ CREATE TABLE `tblAddresses` (
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`AddressID`)
 );
-CREATE TABLE `tblAddressTypes` (
+CREATE TABLE `tbladdresstypes` (
   `AddressTypeID` varchar(50) NOT NULL,
   `Description` longblob,
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`AddressTypeID`)
 );
-CREATE TABLE `tblContactInfo` (
+CREATE TABLE `tblcontactinfo` (
   `UserID` varchar(100) NOT NULL,
   `EmailID` varchar(50) DEFAULT NULL,
   `PhoneID` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`UserID`)
 );
-CREATE TABLE `tblDashboardNotes` (
+CREATE TABLE `tbldashboardnotes` (
   `NotesID` varchar(50) NOT NULL,
   `UserID` varchar(100) DEFAULT NULL,
   `Note` longblob,
   `CreateDateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`NotesID`)
 );
-CREATE TABLE `tblEmails` (
+CREATE TABLE `tblemails` (
   `EmailID` varchar(50) NOT NULL,
   `EmailTypeID` varchar(50) DEFAULT NULL,
   `EmailAddress` varchar(100) DEFAULT NULL,
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`EmailID`)
 );
-CREATE TABLE `tblEmailTypes` (
+CREATE TABLE `tblemailtypes` (
   `EmailTypeID` varchar(50) NOT NULL,
   `Description` longblob,
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`EmailTypeID`)
 );
-CREATE TABLE `tblEmergencyContacts` (
+CREATE TABLE `tblemergencycontacts` (
   `ContactID` varchar(50) NOT NULL,
   `FirstName` varchar(60) DEFAULT NULL,
   `LastName` varchar(60) DEFAULT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `tblEmergencyContacts` (
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`ContactID`)
 );
-CREATE TABLE `tblEventLocations` (
+CREATE TABLE `tbleventlocations` (
   `LocationID` varchar(50) NOT NULL,
   `LocationName` longblob,
   `Street1` varchar(100) DEFAULT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `tblEventLocations` (
   `ZIP` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`LocationID`)
 );
-CREATE TABLE `tblEvents` (
+CREATE TABLE `tblevents` (
   `EventID` varchar(50) NOT NULL,
   `Description` longblob,
   `LocationID` varchar(50) DEFAULT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE `tblEvents` (
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`EventID`)
 );
-CREATE TABLE `tblEventServices` (
+CREATE TABLE `tbleventservices` (
   `EventServiceID` varchar(50) NOT NULL,
   `EventID` varchar(50) DEFAULT NULL,
   `ServiceID` varchar(50) DEFAULT NULL,
@@ -82,14 +82,14 @@ CREATE TABLE `tblEventServices` (
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`EventServiceID`)
 );
-CREATE TABLE `tblEventVolunteers` (
+CREATE TABLE `tbleventvolunteers` (
   `EventVolunteersID` varchar(50) NOT NULL,
   `EventID` varchar(50) DEFAULT NULL,
   `UserID` varchar(100) DEFAULT NULL,
   `ShiftID` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`EventVolunteersID`)
 );
-CREATE TABLE `tblPhone` (
+CREATE TABLE `tblphone` (
   `PhoneID` varchar(50) NOT NULL,
   `PhoneTypeID` varchar(50) DEFAULT NULL,
   `PhoneNumber` varchar(15) DEFAULT NULL,
@@ -98,13 +98,13 @@ CREATE TABLE `tblPhone` (
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`PhoneID`)
 );
-CREATE TABLE `tblPhoneTypes` (
+CREATE TABLE `tblphonetypes` (
   `PhoneTypeID` varchar(50) NOT NULL,
   `Description` longblob,
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`PhoneTypeID`)
 );
-CREATE TABLE `tblPreRegistration` (
+CREATE TABLE `tblpreregistration` (
   `RegistrationID` varchar(50) NOT NULL,
   `FirstName` varchar(60) NOT NULL,
   `MiddleName` varchar(60) NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE `tblPreRegistration` (
   `Checkin_Status` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`RegistrationID`)
 );
-CREATE TABLE `tblRegistrations` (
+CREATE TABLE `tblregistrations` (
   `RegistrationID` varchar(50) NOT NULL,
   `UserID` varchar(100) DEFAULT NULL,
   `EventID` varchar(50) NOT NULL,
@@ -129,39 +129,39 @@ CREATE TABLE `tblRegistrations` (
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`RegistrationID`)
 );
-CREATE TABLE `tblRegistrationServices` (
+CREATE TABLE `tblregistrationservices` (
   `RegServiceID` varchar(50) NOT NULL,
   `RegistrationID` varchar(50) DEFAULT NULL,
   `ServiceID` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`RegServiceID`)
 );
-CREATE TABLE `tblRelationships` (
+CREATE TABLE `tblrelationships` (
   `RelationshipID` varchar(50) NOT NULL,
   `Description` longblob,
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`RelationshipID`)
 );
-CREATE TABLE `tblRoles` (
+CREATE TABLE `tblroles` (
   `RoleID` varchar(50) NOT NULL,
   `Status` varchar(10) DEFAULT NULL,
   `Description` longblob,
   `Permissions` longblob,
   PRIMARY KEY (`RoleID`)
 );
-CREATE TABLE `tblServices` (
+CREATE TABLE `tblservices` (
   `ServiceID` varchar(50) NOT NULL,
   `Description` longblob,
   `ExpMinutes` int DEFAULT NULL,
   `Status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`ServiceID`)
 );
-CREATE TABLE `tblSession` (
+CREATE TABLE `tblsession` (
   `SessionID` varchar(50) NOT NULL,
   `UserID` varchar(100) DEFAULT NULL,
   `StartDateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`SessionID`)
 );
-CREATE TABLE `tblShifts` (
+CREATE TABLE `tblshifts` (
   `ShiftID` varchar(50) NOT NULL,
   `Description` longblob,
   `StartTime` time DEFAULT NULL,
@@ -169,26 +169,26 @@ CREATE TABLE `tblShifts` (
   `Minutes` int DEFAULT NULL,
   PRIMARY KEY (`ShiftID`)
 );
-CREATE TABLE `tblSkillCategory` (
+CREATE TABLE `tblskillcategory` (
   `CategoryID` varchar(50) NOT NULL,
   `Description` longblob,
   `Status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`CategoryID`)
 );
-CREATE TABLE `tblSkills` (
+CREATE TABLE `tblskills` (
   `SkillID` varchar(50) NOT NULL,
   `Description` longblob,
   `CategoryID` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`SkillID`)
 );
-CREATE TABLE `tblStationAppointment` (
+CREATE TABLE `tblstationappointment` (
   `StationAppointmentID` varchar(50) NOT NULL,
   `ServiceID` varchar(50) DEFAULT NULL,
   `UserID` varchar(100) DEFAULT NULL,
   `Date&Time` datetime DEFAULT NULL,
   PRIMARY KEY (`StationAppointmentID`)
 );
-CREATE TABLE `tblUserHealthInfo` (
+CREATE TABLE `tbluserHealthinfo` (
   `HealthID` varchar(50) NOT NULL,
   `UserID` varchar(100) DEFAULT NULL,
   `Height` varchar(50) DEFAULT NULL,
@@ -208,13 +208,13 @@ CREATE TABLE `tblUserHealthInfo` (
   `ExtraInfo` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`HealthID`)
 );
-CREATE TABLE `tblUserRoles` (
+CREATE TABLE `tbluserroles` (
   `UserRoleID` varchar(50) NOT NULL,
   `UserID` varchar(100) DEFAULT NULL,
   `RoleID` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`UserRoleID`)
 );
-CREATE TABLE `tblUsers` (
+CREATE TABLE `tblusers` (
   `UserID` varchar(100) NOT NULL,
   `FirstName` varchar(60) NOT NULL,
   `MiddleName` varchar(60) NOT NULL,
@@ -235,7 +235,7 @@ CREATE TABLE `tblUsers` (
   `Picture` blob,
   PRIMARY KEY (`UserID`)
 );
-CREATE TABLE `tblUserSkills` (
+CREATE TABLE `tbluserskills` (
   `UserSkillID` varchar(50) NOT NULL,
   `SkillID` varchar(50) DEFAULT NULL,
   `Status` varchar(10) DEFAULT NULL,
