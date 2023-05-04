@@ -6,9 +6,24 @@ $('.btnLang').on('click',function(){
     $('#divPickLang').slideUp(function(){
         $('#divReg-' + strLang).slideDown();
     })
+    if(strLang == 'en'){
+        Swal.fire({
+            icon:'warning',
+            title: 'DISCLAIMER',
+            text:'Due to limited slots, there is NO GUARANTEE that your selected servies will be available.'
+        })
+    } else {
+        Swal.fire({
+            icon:'warning',
+            title: 'Atención',
+            text:'Debido a los espacios limitados, no hay garantía de que los servicios seleccionados estén disponibles.'
+        })
+    }
+
 })
 
 $('.btnRegistar').on('click',function(){
+    
     let strLang = $(this).attr('data-lang');
     let strFirstName = $('#divReg-' + strLang + ' .txtFirstName').val();
     let strMiddleName = $('#divReg-' + strLang + ' .txtMiddleName').val();
@@ -59,9 +74,7 @@ $('.btnRegistar').on('click',function(){
     } else {
         arrServices.forEach(function(item,index){
             strServices += "," +  item
-        })
-        //ceagan i changed it back to index and result for the time being. stack overfolow's example showed that this is the correct format.
-        
+        })        
         $.post('http://localhost:8000/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex, services:strServices})
         .done(function(result){
             let objResult = JSON.parse(result);
