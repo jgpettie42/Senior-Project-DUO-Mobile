@@ -5,8 +5,33 @@ var arrPreReqParts;
 
 var strBaseURL = 'http://localhost:8000';
 
+function fillStats(){
+    $.getJSON('http://localhost:8000/stat',function(result){
+        $.each(result,function(index,curStat){
+            console.log(curStat);
+            if(curStat.Stat=='Extraction'){
+                $('#txtCurrentExtraction').text(curStat.Current);
+                $('#txtCurrentExtractionMax').text(curStat.Max);
+            }if(curStat.Stat=='Hygiene'){
+                $('#txtCurrentCleanings').text(curStat.Current);
+                $('#txtCurrentCleaningsMax').text(curStat.Max);
+            }if(curStat.Stat=='Filling'){
+                $('#txtCurrentFillings').text(curStat.Current);
+                $('#txtCurrentFillingsMax').text(curStat.Max);
+            }if(curStat.Stat=='Vision'){
+                $('#txtCurrentVision').text(curStat.Current);
+                $('#txtCurrentVisionMax').text(curStat.Max);
+            }
+        })
+    })
+}
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
+        $('#divLogin').slideUp(function(){
+            $('#divCheckIn').slideDown(function(){
+                $('#navMain').slideDown();
+            });
+        })
         if(sessionStorage.getItem('SimpleSession')){
             $.getJSON(strBaseURL + '/sessions',{sessionid:sessionStorage.getItem('SimpleSession')},function(result){
                 if(result){
@@ -21,32 +46,26 @@ $(document).ready(function(){
             })
         }
     }
+    fillStats();
+    setInterval(function(){
+        fillStats()},5000);
 })
 
 $(document).on('click','.btnStatChange',function(){
+    $('.btnStatChange').prop('disabled',true);
     let strStat = $(this).attr('data-stat');
     let strChange = $(this).attr('data-amount');
 
-    $.ajax({
+    let objStatUpdate = $.ajax({
         url: "http://localhost:8000/stat",
         type: "PUT",
         dataType:'json',
-        data:{stat:strStat,change:strChange},
-        success:
-        $.getJSON('http://localhost:8000/stat',function(result){
-            $.each(result,function(index,curStat){
-                if(curStat=='Extraction'){
-                    $('#txtCurrentExtraction').text(curStat.Current);
-                }if(curStat=='Hygiene'){
-                    $('#txtCurrentCleanings').text(curStat.Current);
-                }if(curStat=='Filling'){
-                    $('#txtCurrentFillings').text(curStat.Current);
-                }if(curStat=='Vision'){
-                    $('#txtCurrentVision').text(curStat.Current);
-                }
-            })
+        data:{stat:strStat,change:strChange}
+    })
+    $.when(objStatUpdate).done(function(){
+        fillStats();
+        $('.btnStatChange').prop('disabled',false);
             
-        })
     })
 })
 

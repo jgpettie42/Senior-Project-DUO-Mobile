@@ -571,7 +571,7 @@ app.get('/stat',(req,res,next)=>{
 app.put('/stat',(req,res,next)=>{
     let strStat = req.body.stat || req.query.stat;
     let intChange = req.body.change || req.query.change;
-    pool.query('UPDATE tblStats SET Current = ((SELECT Current FROM tblStats WHERE Stat = ?) + ?) WHERE Stat = ?',[strStat,intChange,strStat],function(error,result){
+    pool.query('UPDATE tblStats SET Current = (Current + ?) WHERE Stat = ?',[intChange,strStat],function(error,result){
         if(!error){
             res.status(201).send({"Outcome":"Success"});
         } else {
