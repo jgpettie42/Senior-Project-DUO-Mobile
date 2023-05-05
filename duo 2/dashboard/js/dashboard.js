@@ -3,6 +3,7 @@
  var strBaseURL = 'http://localhost:8000';
 
 sessionStorage.setItem('CheckArray',[])
+sessionStorage.setItem('NoteArray',[])
 /*
 $(document).ready(function(){
     if(localStorage.getItem('DUODeviceID')){
@@ -114,20 +115,32 @@ function fillFields(){
 
 function fillNotes(){
     let struserID =sessionStorage.getItem('UserID');
-                $('#tblNotes tbody').empty();
                 
                 $.get('http://localhost:8000/notes',{userid:struserID},function(result){
                     let arrNotes = result
                     let tblstring = ''
+                    let checkArray = []
+                    let test = sessionStorage.getItem('NoteArray')
                     $.each(arrNotes,function(index,note){
+                        if(test.includes(note.Note)){
+
+                        }else{
+                        let shortD = note.CreateDateTime.split('T')[0]
                         tblstring+='<tr>'
                         tblstring+='<td>'+note.UserID+'</td>'
-                        tblstring+='<td>'+''+'</td>'
                         tblstring+='<td>'+note.NoteType+'</td>'
                         tblstring+='<td>'+note.Note+'</td>'
-                        tblstring+='<td>'+note.CreateDateTime+'</td>'
+                        tblstring+='<td>'+shortD+'</td>'
                         tblstring+='</tr>'
+                        checkArray.push(note.Note)
+                        }
                    })
+                   if(checkArray.length<1){
+
+                   }else{
+                    sessionStorage.setItem('NoteArray',test+=checkArray)
+                   $('#tblNotes tbody').append(tblstring);
+                   }
                 })
 }
 
@@ -206,6 +219,7 @@ $(document).on('click','.btnCheck',function(){
 setInterval(() => {
     fillPeeps()
     fillFields()
+    fillNotes()
 }, 5000);
 
 $('#btnAddAppt').on('click',function(){
@@ -361,7 +375,7 @@ $('#btnSubmitData').on('click',function(){
                 url: 'http://localhost:8000/userhealthinfo',
                 type: 'PUT',
                 dataType: 'json',
-                data: {userid:sessionStorage.getItem('UserID'),bmi:strBMI,gripstrength:strGripStrength,height:strHeight,weight:strWeight,bloodpressure:strBloodPressure,heartrate:strHeartRate,o2:strO2Saturation,temp:strTemp,extrainfo:strextrainfo,allergy:strallergy,medicines:strmedicines,mentalstate:strmentalstate,substances:strsubstanceusage},
+                data: {userid:sessionStorage.getItem('UserID'),a1c:A1C,bmi:strBMI,gripstrength:strGripStrength,height:strHeight,weight:strWeight,bloodpressure:strBloodPressure,heartrate:strHeartRate,o2:strO2Saturation,temp:strTemp,extrainfo:strextrainfo,allergy:strallergy,medicines:strmedicines,mentalstate:strmentalstate,substances:strsubstanceusage},
                 success: function (data, textStatus, xhr) {
                      Swal.fire({
                             icon:'success',
@@ -492,7 +506,7 @@ $('#btnSaveNote').on('click',function(){
         title:'Good to go!',
         text: 'Note Entered',
         })
-        $('#modalAddNote').hide();
+        $('#modalAddNote').slideToggle();
         $('#divDashboardHealth').slideDown();
     } else{
         Swal.fire({

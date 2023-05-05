@@ -24,11 +24,6 @@
                         <input class="form-control" id="txtPassword" type="password" placeholder="Password" aria-label="Password">
                         <button class="btn btn-primary col-12 mt-3" type="button" id="btnLogin">Login</button>
                         <button class="btn btn-outline-primary col-12 mt-1" type="button" id="btnRegister">Register Device</button>
-                        <!--
-                        <button class="btn btn-success col-12 mt-1" type="button" id="btnDental">Dental</button>
-                        <button class="btn btn-secondary col-12" type="button" id="btnVision">Vision</button>
-                        <button class="btn btn-warning col-12" type="button" id="btnHaircut">Haircut</button>
-                        <button class="btn btn-info col-12" type="button" id="btnFood">Food Truck</button>-->
                     </form>
                 </div>
             </div>
@@ -769,8 +764,8 @@
                                     <div class="col-12 fw-bold text-center"><i class="bi bi-heart-pulse text-primary"></i>
                                         <label class="form-label fw-bold" for="selectMentalState">Mental State</label></div>
                                 </div>
-                                <div id="selectMentalState">
-                                    <select class="col-12 form-control" placeholder="Select Mental State...">
+                                <div>
+                                    <select  id="selectMentalState" class="col-12 form-control" placeholder="Select Mental State...">
                                         <option value=""> </option>
                                         <option value="Quality">Quality</option>
                                         <option value="Average">Average</option>
@@ -938,7 +933,6 @@
                                         <thead>
                                           <tr>
                                             <th>User ID</th>
-                                            <th>Inserted By</th>
                                             <th>Note Type</th>
                                             <th>Note Body</th>
                                             <th>Date</th>
@@ -1005,7 +999,7 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnSaveNote">Save</button>
+                    <button type="button" class="btn btn-primary" id="btnSaveNote" data-dismiss="modal">Save</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
               </div>

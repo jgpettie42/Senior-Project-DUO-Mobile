@@ -501,7 +501,7 @@ app.post("/notes",(req,res,next)=>{
     try{
         pool.query('INSERT INTO tbldashboardnotes (NotesID,UserID,Note,CreateDateTime,NoteType) VALUES (?,?,?,SYSDATE(),?)',[strNoteID,strUserID,strNote,strNoteType],function(error,result){
             if(!error){
-                res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
+                res.status(201).send(JSON.stringify({'Outcome':'New Note Created'}))
             } else {
                 res.status(400).send(JSON.stringify({Error:error}));
             }
@@ -679,6 +679,7 @@ app.put('/userhealthinfo',(req,res,next)=>{
     let strMedicines = req.query.medicines || req.body.medicines
     let strMentalState = req.query.mentalstate || req.body.mentalstate
     let strSubstances = req.query.substances || req.body.substances
+    let strA1C = req.query.a1c || req.body.a1c
 
     let strQuery = ""
     let arrInputs = []
@@ -734,6 +735,14 @@ app.put('/userhealthinfo',(req,res,next)=>{
         strQuery += "SubstanceUsage =?,"
         arrInputs.push(strSubstances)
     }
+    if(strA1C.length > 0){
+        strQuery += "A1C =?,"
+        arrInputs.push(strA1C)
+    }
+
+
+
+
     strQuery = strQuery.substring(0, (strQuery.length - 1))
     arrInputs.push(strUserID)
     console.log(strQuery)
