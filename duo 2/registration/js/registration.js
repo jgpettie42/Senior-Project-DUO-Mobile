@@ -33,16 +33,21 @@ $(document).on('click','.btnStatChange',function(){
         dataType:'json',
         data:{stat:strStat,change:strChange},
         success:
-        $.getJSON('http://localhost:8000/stat',{strStat,strChange},function(result){
+        $.getJSON('http://localhost:8000/stat',function(result){
             $.each(result,function(index,curStat){
-                let strHTML = '';
-                strHTML += curStat.Change;
+                if(curStat=='Extraction'){
+                    $('#txtCurrentExtraction').text(curStat.Current);
+                }if(curStat=='Hygiene'){
+                    $('#txtCurrentCleanings').text(curStat.Current);
+                }if(curStat=='Filling'){
+                    $('#txtCurrentFillings').text(curStat.Current);
+                }if(curStat=='Vision'){
+                    $('#txtCurrentVision').text(curStat.Current);
+                }
             })
-            $('#txtCurrentExtraction').append(strHTML);
+            
         })
     })
-    // on success then call getJSON to  /stat and refill the span tags
-
 })
 
 $('.btnDashboardHeader').on('click',function(){
