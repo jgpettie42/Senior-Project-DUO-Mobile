@@ -216,6 +216,38 @@ $(document).on('click','.btnCheck',function(){
 
 */ 
 
+$('#btnReload').on('click',function(){
+    sessionStorage.setItem('CheckArray',[])
+    sessionStorage.setItem('NoteArray',[])
+    $('#ulDashboardParticipants').empty();
+
+    $('#tblNotes tbody').empty();
+
+
+                $('#divBMI').empty();
+                $('#divBMI').empty();
+                $('#divHeight').empty();
+                $('#divWeight').empty();
+                $('#divBP').empty();
+                $('#divHR').empty();
+                $('#divO2Sat').empty();
+                $('#divTemp').empty();
+                $('#divUserID').empty();
+                $('#divExtraInfo').empty();;
+                $('#divAllergies').empty();
+                $('#divMedicines').empty();
+                $('#divA1C').empty();
+                $('#divMentalState').empty();
+                $('#divSubstances').empty();
+
+    fillPeeps()
+    fillFields()
+    fillNotes()
+})
+
+
+
+
 setInterval(() => {
     fillPeeps()
     fillFields()
