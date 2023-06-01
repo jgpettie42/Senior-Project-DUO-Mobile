@@ -80,7 +80,7 @@ $('.btnRegistar').on('click',function(){
             let objResult = JSON.parse(result);
             //this is success
         })
-        $.post('http://localhost:8000/users', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, sex : strSex})
+        $.post('http://localhost:8000/users', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, sex : strSex, phone: strPhone})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success

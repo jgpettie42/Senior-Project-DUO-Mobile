@@ -368,6 +368,9 @@ $('#btnFinishRegistration').on('click', function(){
     } else {
         $.post(strBaseURL + '/users', {firstname: $('#txtRegFirstName').val(), middleinit: $('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), preferredname: $('#txtPreferredName').val(), sex: $('#selectSex').val(), dob: $('#txtRegDateOfBirth').val(), email: $('#txtEmail').val(),signature:dataURL})
         .done(function(result){
+            $.post(strBaseURL+'/img',{signature: dataURL}).done(function(result){
+                
+            })
             let objResult = JSON.parse(result);
             //this is success
             if(objResult.Outcome){

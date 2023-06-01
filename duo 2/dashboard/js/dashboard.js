@@ -206,6 +206,7 @@ $(document).on('click','.btnCheck',function(){
         $(this).text('Check Out');
     } else {
         sessionStorage.removeItem('UserID')
+        $('#tbl')
         $(this).removeClass('btn-danger').addClass('btn-primary');
         $(this).text('Check In');
     }
