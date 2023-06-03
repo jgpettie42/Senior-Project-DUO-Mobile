@@ -75,12 +75,12 @@ $('.btnRegistar').on('click',function(){
         arrServices.forEach(function(item,index){
             strServices += "," +  item
         })        
-        $.post('http://localhost:8000/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex, services:strServices})
+        $.post('http://192.168.0.121:8000/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex, services:strServices})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success
         })
-        $.post('http://localhost:8000/users', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, sex : strSex, phone: strPhone})
+        $.post('http://192.168.0.121:8000/users', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, sex : strSex})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success

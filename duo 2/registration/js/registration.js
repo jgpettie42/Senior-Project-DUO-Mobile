@@ -3,10 +3,10 @@
 var strLang;
 var arrPreReqParts;
 
-var strBaseURL = 'http://localhost:8000';
+var strBaseURL = 'http://192.168.0.121:8000';
 
 function fillStats(){
-    $.getJSON('http://localhost:8000/stat',function(result){
+    $.getJSON('http://192.168.0.121:8000/stat',function(result){
         $.each(result,function(index,curStat){
             console.log(curStat);
             if(curStat.Stat=='Extraction'){
@@ -368,9 +368,6 @@ $('#btnFinishRegistration').on('click', function(){
     } else {
         $.post(strBaseURL + '/users', {firstname: $('#txtRegFirstName').val(), middleinit: $('#txtRegMiddleName').val(), lastname: $('#txtRegLastName').val(), preferredname: $('#txtPreferredName').val(), sex: $('#selectSex').val(), dob: $('#txtRegDateOfBirth').val(), email: $('#txtEmail').val(),signature:dataURL})
         .done(function(result){
-            $.post(strBaseURL+'/img',{signature: dataURL}).done(function(result){
-                
-            })
             let objResult = JSON.parse(result);
             //this is success
             if(objResult.Outcome){
