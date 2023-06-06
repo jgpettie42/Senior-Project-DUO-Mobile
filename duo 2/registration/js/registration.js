@@ -1,4 +1,4 @@
-//const { json } = require("express/lib/response");
+//const { json } = require("express/lib/response");http://192.168.0.121:8000/
 
 var strLang;
 var arrPreReqParts;
@@ -6,7 +6,7 @@ var arrPreReqParts;
 var strBaseURL = 'http://192.168.0.121:8000';
 
 function fillStats(){
-    $.getJSON('http://192.168.0.121:8000/stat',function(result){
+    $.getJSON(strBaseURL+'/stat',function(result){
         $.each(result,function(index,curStat){
             console.log(curStat);
             if(curStat.Stat=='Extraction'){
