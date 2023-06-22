@@ -1,6 +1,7 @@
 var strLang;
+var strBaseURL = 'http://localhost:8000'
+//var strBaseURL = 'http://192.168.0.121:8000';
 
-var strBaseURL = 'http://192.168.0.121:8000';
 
 sessionStorage.setItem('CheckArray',[])
 sessionStorage.setItem('NoteArray',[])
@@ -54,7 +55,7 @@ function fillFields(){
    let struserID =sessionStorage.getItem('UserID');
                
                
-               $.get('http://192.168.0.121:8000/dashboard',{userid:struserID},function(result){
+               $.get(strBaseURL + '/dashboard',{userid:struserID},function(result){
                    console.log(result)
                    console.log("worked")
 
@@ -124,7 +125,7 @@ $('#btnReload').on('click',function(){
 function fillNotes(){
    let struserID =sessionStorage.getItem('UserID');
                
-               $.get('http://192.168.0.121:8000/notes',{userid:struserID},function(result){
+               $.get(strBaseURL + '/notes',{userid:struserID},function(result){
                    let arrNotes = result
                    let tblstring = ''
                    let checkArray = []
@@ -154,7 +155,7 @@ function fillNotes(){
 
 function fillPeeps(){
    console.log(2)
-   $.get('http://192.168.0.121:8000/dashboardpeeps',function(results){
+   $.get(strBaseURL + '/dashboardpeeps',function(results){
        console.log(results)
        let arrUsers = results;
        let strAppendHtml = ''
@@ -380,7 +381,7 @@ $('#btnSubmitData').on('click',function(){
            let strmentalstate= $('#selectMentalState').val();
            let strsubstanceusage = $('#txtDrugs').val();
            $.ajax({
-               url: 'http://192.168.0.121:8000/userhealthinfo',
+               url: strBaseURL + '/userhealthinfo',
                type: 'PUT',
                dataType: 'json',
                data: {userid:sessionStorage.getItem('UserID'),a1c:A1C,bmi:strBMI,gripstrength:strGripStrength,height:strHeight,weight:strWeight,bloodpressure:strBloodPressure,heartrate:strHeartRate,o2:strO2Saturation,temp:strTemp,extrainfo:strextrainfo,allergy:strallergy,medicines:strmedicines,mentalstate:strmentalstate,substances:strsubstanceusage},
@@ -416,7 +417,7 @@ $('#btnSubmitData').on('click',function(){
                $('#divA1C').empty();
                $('#divMentalState').empty();
                $('#divSubstances').empty();
-               $.get('http://192.168.0.121:8000/dashboard',{userid:sessionStorage.getItem('UserID')},function(result){
+               $.get(strBaseURL + '/dashboard',{userid:sessionStorage.getItem('UserID')},function(result){
                    console.log(result)
                    console.log("worked")
 
@@ -495,7 +496,7 @@ $('.nav-link').on('click',function(){
 
 
 
-/*$.post('http://192.168.0.121:8000/users',{APIkeys:apikeys},function(result){
+/*$.post('strBaseURL + "/users',{APIkeys:apikeys},function(result){
    let objResult = JSON.parse(result);
    if(result.Outcome){
        handle success
@@ -507,7 +508,7 @@ $('.nav-link').on('click',function(){
 $('#btnSaveNote').on('click',function(){
    let strNote = $('#txtNotes').val();
    let strNoteType = $('#cboNoteType').val();
-   $.post('http://192.168.0.121:8000/notes?note=' + strNote + '&noteid=' + strNoteType + '&userid=' + sessionStorage.getItem('UserID'),function(result){
+   $.post(strBaseURL + '/notes?note=' + strNote + '&noteid=' + strNoteType + '&userid=' + sessionStorage.getItem('UserID'),function(result){
    if(result){
        Swal.fire({
        icon:'success',
@@ -529,7 +530,7 @@ $('#btnSaveNote').on('click',function(){
    
    
    //load users for the day
-/*$.getJSON('http://192.168.0.121:8000/users',{APPKey:apikey},function(result){
+/*$.getJSON('strBaseURL + "/users',{APPKey:apikey},function(result){
    $.each(result,function(index,curUsers){
        let strHTML = '';
        strHTML += '<p>' + curUsers.SOMETHING + '</p>'
@@ -547,7 +548,7 @@ let HealthIDDental = $('#txtHealthIDDental').val();
 let selectDentalVisit = $('#selectDentalVisit').val();
 let Xray = $('#txtXray').val();
 $('#btnDental').on('click',function(){
-//$.getJSON('http://192.168.0.121:8000/dental',{},function(){
+//$.getJSON('strBaseURL + "/dental',{},function(){
    //$.each(result,function(index,curDental){
        $('#divDashboardDental').slideToggle();
        $('#divLogin').slideToggle();

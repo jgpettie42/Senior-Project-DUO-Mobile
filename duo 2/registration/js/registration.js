@@ -2,8 +2,8 @@
 
 var strLang;
 var arrPreReqParts;
-
-var strBaseURL = 'http://192.168.0.121:8000';
+var strBaseURL = 'http://localhost:8000'
+//var strBaseURL = 'http://192.168.0.121:8000';
 
 function fillStats(){
     $.getJSON(strBaseURL+'/stat',function(result){
@@ -140,6 +140,29 @@ $('#btnCheckVisitor').on('click', function(){
     let strDOB= $('#txtDateOfBirth').val()
     $.getJSON(strBaseURL+"/previoususers",{firstname:strfname,lastname:strlname,dob:strDOB},function(results){
         console.log(results)
+        let strPhone = results.Phone;
+        let strEmail = results.Email;
+        let strLang = results.PreferredLanguage;
+        let strPreferredName = results.PreferredName;
+        let strMiddleName = results.MiddleName;
+        let strServices = results.Services;
+        let strSex = results.Sex
+
+
+        $('#txtPreFirstName').val(strfname);
+        $('#txtPreLastName').val(strlname);
+        $('#txtPreMiddleNameName').val(strMiddleName);
+        $('#txtPreDateOfBirth').val(strDOB);
+        $('#txtPrePhone').val(strPhone);
+        $('#txtPreEmail').val(strEmail);
+        $('#txtPrePreferredName').val(strPreferredName);
+        $('#txtPreServices').val(strServices);
+        $('#txtPreLanguage').val(strLang);
+
+        $("#txtPreSex").val(strSex)
+
+        $('#divPreregisteredFill').slideToggle(function(){
+        });
     })
 })
 
