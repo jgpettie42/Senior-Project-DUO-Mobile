@@ -182,6 +182,7 @@ app.post("/preregistration",(req,res,next)=>{
     let strLastName = req.query.lastname || req.body.lastname;
     let strPreferredName = req.query.preferredname || req.body.preferredname;
     let strEmail = req.query.email || req.body.email;
+    let strPhone = req.query.phone || req.body.phone;
     if(strEmail == null){
         let strEmail = uuidv4();
     }
@@ -198,8 +199,8 @@ app.post("/preregistration",(req,res,next)=>{
         strPassword = hash;
     try{
             let strRegistrationID = uuidv4()
-            pool.query('INSERT INTO tblpreregistration (RegistrationID,Email,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage,CheckIn_Status,Services) VALUES(?,?,?,?,?,?,?,?,?,"NO",?)',[strRegistrationID,strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage,strServices],function(error,result){
-            console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword)
+            pool.query('INSERT INTO tblpreregistration (RegistrationID,Email,FirstName,MiddleName,LastName,Password,Sex,DOB,PreferredLanguage,CheckIn_Status,Services,Phone) VALUES(?,?,?,?,?,?,?,?,?,"NO",?,?)',[strRegistrationID,strEmail,strFirstName,strMiddleName,strLastName,strPassword,strSex,strDOB,strLanguage,strServices,strPhone],function(error,result){
+            console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword,strPhone)
         if(!error){
                     let strRegistrationID = uuidv4();
                     let strEvent = uuidv4();
@@ -308,6 +309,8 @@ app.post("/users", (req,res,next)=>{
     let strEmail = req.query.email || req.body.email;
     let strSex = req.query.sex || req.body.sex;
     let strDOB = req.query.dob || req.body.dob;
+    let strPhone = req.query.phone || req.body.phone;
+    let strpreflang = req.query.preferredlanguage || req.body.preferredlanguage;
     let strPassword = (strDOB.split("-")[0]) + strFirstName.split(0) + strLastName + "!"
 
     console.log(strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword)
@@ -321,7 +324,7 @@ app.post("/users", (req,res,next)=>{
     bcrypt.hash(strPassword,10).then(hash => {
         strPassword = hash;
         try{
-            pool.query('INSERT INTO tblusers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword],function(error,result){
+            pool.query('INSERT INTO tblusers (UserID,FirstName,MiddleName,LastName,PreferredName,DOB,Sex,Password,Phone,PreferredLanguage,CreateDateTime) VALUES (?,?,?,?,?,?,?,?,?,?,SYSDATE())',[strEmail,strFirstName,strMiddleName,strLastName,strPreferredName,strDOB,strSex,strPassword,strPhone,strpreflang],function(error,result){
                 if(!error){
 
                     pool.query('INSERT INTO tbluserroles (UserRoleID,UserID,RoleID) VALUES (?,?,"Patient")',[strUserRoleId,strEmail],function(error,result){

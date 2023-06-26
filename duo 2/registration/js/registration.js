@@ -91,20 +91,21 @@ $('#btnCheckInPreReg').on('click', function(){
         let strData = $("#selectParticipant").val()
         console.log(strData)
         let strfname = objSelectedPart.FirstName
+        let strMiddleName = objSelectedPart.MiddleName;
         let strlname = objSelectedPart.LastName
         let strdob = objSelectedPart.DOB.split('T')[0]
         let strPhone = objSelectedPart.Phone;
         let strEmail = objSelectedPart.Email;
         let strLang = objSelectedPart.PreferredLanguage;
         let strPreferredName = objSelectedPart.PreferredName;
-        let strMiddleName = objSelectedPart.MiddleName;
+        
         let strServices = objSelectedPart.Services;
         let strSex = objSelectedPart.Sex
 
 
         $('#txtPreFirstName').val(strfname);
         $('#txtPreLastName').val(strlname);
-        $('#txtPreMiddleNameName').val(strMiddleName);
+        $('#txtPreMiddleName').val(strMiddleName);
         $('#txtPreDateOfBirth').val(strdob);
         $('#txtPrePhone').val(strPhone);
         $('#txtPreEmail').val(strEmail);

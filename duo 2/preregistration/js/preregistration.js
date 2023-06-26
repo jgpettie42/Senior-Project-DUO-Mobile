@@ -1,6 +1,6 @@
 var strLang;
-//var strBaseURL = 'http://localhost:8000'
-var strBaseURL = 'http://192.168.0.121:8000';
+var strBaseURL = 'http://localhost:8000'
+//var strBaseURL = 'http://192.168.0.121:8000';
 
 let blnError = false;
 $('.btnLang').on('click',function(){
@@ -37,6 +37,7 @@ $('.btnRegistar').on('click',function(){
     let strSex = $('#divReg-' + strLang + ' .selectSex').val();
     let arrServicesInputs = $('.selServices-' + strLang);
     var arrServices = $('.selServices-'+strLang).map((i, e) => e.value).get();
+    
     console.log(arrServices);
     let strServices = ""
     
@@ -78,12 +79,12 @@ $('.btnRegistar').on('click',function(){
         arrServices.forEach(function(item,index){
             strServices += "," +  item
         })        
-        $.post(strBaseURL + '/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex, services:strServices})
+        $.post(strBaseURL + '/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex, services:strServices , language:strLang})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success
         })
-        $.post(strBaseURL + '/users', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, sex : strSex})
+        $.post(strBaseURL + '/users', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, sex : strSex, preferedlanguage: strLang,phone:strPhone})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success
