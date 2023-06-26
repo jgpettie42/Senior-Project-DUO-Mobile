@@ -1,4 +1,7 @@
 var strLang;
+//var strBaseURL = 'http://localhost:8000'
+var strBaseURL = 'http://192.168.0.121:8000';
+
 let blnError = false;
 $('.btnLang').on('click',function(){
     let strLang = $(this).attr('data-lang');
@@ -75,12 +78,12 @@ $('.btnRegistar').on('click',function(){
         arrServices.forEach(function(item,index){
             strServices += "," +  item
         })        
-        $.post('http://192.168.0.121:8000/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex, services:strServices})
+        $.post(strBaseURL + '/preregistration', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, phone: strPhone, sex : strSex, services:strServices})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success
         })
-        $.post('http://192.168.0.121:8000/users', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, sex : strSex})
+        $.post(strBaseURL + '/users', {firstname: strFirstName, middleinit: strMiddleName, lastname:strLastName, dob: strDOB, email: strEmail, sex : strSex})
         .done(function(result){
             let objResult = JSON.parse(result);
             //this is success
