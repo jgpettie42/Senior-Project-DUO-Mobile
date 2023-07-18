@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUO Self-Registration</title>
+    <link href="css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lib/adminlte.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/duologoblack01.png">
+</head>
+<body style="background: url('images/background.jpg');box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.8); background-attachment: fixed; background-size: cover;">
+    <div class="d-flex flex-wrap vh-100 align-items-center justify-content-center col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3" id="divContent">
+        <div class="d-block col-12">
+            <h1 class="col-12 text-center mb-2">DUO Self-Registration</h1>
+            <div id="divPickLang">
+                <button class="btn btn-primary btnLang col-12" data-lang="en">Continue in English</button>
+                <button class="btn btn-primary btnLang col-12 mt-2" data-lang="es">Continuar en Español</button>        
+            </div>
+        </div>
+        <form class="col-11 col-md-7 col-lg-5" id="divReg-en" style="display:none;">
+            <p class="col-12 text-center mb-5">Please complete the following short pre-registration to help us prepare for your visit</p>
+            <label class="form-label mb-0" for="txtFirstName-en">First Name</label>
+            <input class="form-control txtFirstName mb-2" id="txtFirstName-en">
+            <label class="form-label mb-0" for="txtMiddleName-en">Middle Name</label>
+            <input class="form-control txtMiddleName mb-2" id="txtMiddleName-en">
+            <label class="form-label mb-0" for="txtLastName-en">Last Name</label>
+            <input class="form-control txtLastName mb-2" id="txtLastName-en">
+            <label class="form-label mb-0" for="txtDOB-en">Date of Birth</label>
+            <input class="form-control txtDOB mb-2" type="date" id="txtDOB-en">
+            <label class="form-label mb-0" for="selectSex-en">Sex</label>
+            <select class="form-control selectSex mb-2" id="selectSex-en">
+                <option selected>Open This Select Menu</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <h4 class="mt-4">Contact Information</h4>
+            <label class="form-label mb-0" for="txtEmail-en">Email Address</label>
+            <input class="form-control txtEmail mb-2" type="email" id="txtEmail-en">
+            <label class="form-label mb-0" for="txtPhone-en">Phone Number</label>
+            <input class="form-control txtPhone mb-2" name="phone" type="telephone" id="txtPhone-en">
+            <label class="form-label mb-0" for="selServices-en">Services Interested In</label>
+            <div class="row">
+            <card class="card col-6 mt-1 border-primary">
+                <div class="card-header">Dental Cleaning</div>
+                <label class="col justify-content-center services" value="1">Not Interested</label>
+            </card>
+            <card class="card col-6 mt-1 border-primary">
+                <div class="card-header">Dental Extraction</div>
+                <label class="col justify-content-center services"value="2">Not Interested</label>
+            </card>
+            </div>
+            <div class="row">
+                <card class="card  col-6 border-primary">
+                    <label class="col justify-content-center services"value="3">Not Interested</label>
+                </card>
+                <card class="card  col-6 border-primary">
+                    <label class="col justify-content-center services"value="4">Not Interested</label>
+                </card>
+            </div>
+            <div class="row">
+                <card class="card  col-6 order-primary">
+                    <label class="col justify-content-center services"value="5">Not Interested</label>
+                </card>
+                <card class="card  col-6 border-primary">
+                    <label class="col justify-content-center services"value="6">Not Interested</label>
+                </card>
+            </div>
+            <button class="btn btn-primary col-12 btnRegistar mb-3" data-lang="en" type="button">Submit</button> 
+            <button class="btn btn-primary col-12 btnBack mb-3" data-lang="en" type="button">Back/Atrás</button> 
+        </form>
+        <div class="card bg-success col-11 card-primary" style="display:none;" id="divComplete-en">
+            <div class="card-body">
+                <h2 class="col-12 text-center">Thank you for pre-registering.  Please follow the directions to the pre-registration area.</h2>
+            </div>
+        </div>
+        <form class="col-11 col-md-7 col-lg-5" id="divReg-es" style="display:none;">
+            <p class="col-12 text-center mb-5">Complete el siguiente breve registro previo para ayudarnos a preparar su visita</p>
+            <label class="form-label mb-0" for="txtFirstName-es">Nombre de Pila</label>
+            <input class="form-control txtFirstName mb-2" id="txtFirstName-es">
+            <label class="form-label mb-0" for="txtMiddleName-es">Medio Nombre</label>
+            <input class="form-control txtMiddleName mb-2" id="txtMiddleName-es">
+            <label class="form-label mb-0" for="txtLastName-es">Apellido</label>
+            <input class="form-control txtLastName mb-2" id="txtLastName-es">
+            <label class="form-label mb-0" for="txtDOB-es">Fecha de Nacimiento</label>
+            <input class="form-control txtDOB mb-2" type="date" id="txtDOB-es">
+            <label class="form-label mb-0" for="selectSex-es">Sexo</label>
+            <select class="form-control selectSex mb-2" id="selectSex-es">
+                <option selected>Abrir el menu de seleccion</option>
+                <option value="Male">Masculino</option>
+                <option value="Female">Femenina</option>
+                <option value="Other">Otra</option>
+            </select>
+            <h4 class="mt-4">Información del contacto</h4>
+            <label class="form-label mb-0" for="txtEmail-es">Dirección de correo electrónico</label>
+            <input class="form-control txtEmail mb-2" type="email" id="txtEmail-es">
+            <label class="form-label mb-0" for="txtPhone-es">Número de teléfono</label>
+            <input class="form-control txtPhone mb-2" name="phone" type="telephone" id="txtPhone-es">
+            <label class="form-label mb-0" for="selServices-es">Servicios en los que está interesado</label>
+            <div class="form-group" id="selServices-es">
+                <select class="form-control selServices-es mb-2" id="selectDental-es">
+                    <option selected>Seleccionar opciones dentales</option>
+                    <option value="Cleaning">Limpieza dental</option>
+                    <option value="Filling">Empaste dental</option>
+                    <option value="Extraction">Extracción dental</option>
+                    <option value="No Dental needed">No se necesita odontología</option>
+                </select>
+                <div class="form-check">
+                    <input class="form-check-input selServices-es" id="selectDental-es" type="checkbox" value="haircut">
+                    <label class="form-check-label">Corte de pelo</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input selServices-es" id="selectMedical-es" type="checkbox" value="medical">
+                    <label class="form-check-label">Servicios médicos</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input selServices-es" id="selectVision-es" type="checkbox" value="vision">
+                    <label class="form-check-label">Visión</label>
+                </div>
+            </div>
+            <button class="btn btn-primary col-12 btnRegistar mb-3" data-lang="es" type="button">Entregar</button> 
+            <button class="btn btn-primary col-12 btnBack mb-3" data-lang="es" type="button">Back/Atrás</button> 
+        </form>
+        <div class="card bg-success col-11 card-primary" style="display:none;" id="divComplete-es">
+            <div class="card-body">
+                <h2 class="col-12 text-center">Gracias por pre-registrarse. Por favor siga las indicaciones para el área de pre-registro.</h2>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <script src="js/lib/jquery-3.6.3.min.js"></script>
+    <script src="js/lib/bootstrap.bundle.min.js"></script>
+    <script src="js/lib/adminlte.min.js"></script>
+    <script src="js/lib/sweetalert2.min.js"></script>
+    <script src="js/preregistration.js"></script>
+    <script>
+         $("input[name='phone']").keyup(function() {
+                $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d+)$/, "($1)$2-$3"));
+            });
+    </script>
+</body>
+</html>

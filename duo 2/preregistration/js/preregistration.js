@@ -1,6 +1,21 @@
 var strLang;
-var strBaseURL = 'http://localhost:8000'
-//var strBaseURL = 'http://192.168.0.121:8000';
+var strBaseURL = 'http://localhost:8005'
+//var strBaseURL = 'http://192.168.0.121:8005';
+
+
+
+
+$('.services').on('click',function(){
+    let strButtonText = $(this).text();
+    if(strButtonText != 'Interested'){
+        $(this).removeClass('btn-success').addClass('btn-danger');
+        $(this).text('Interested');
+    } else {
+        $(this).removeClass('btn-danger').addClass('btn-success');
+        $(this).text('Not Interested');
+    }
+    
+ })
 
 let blnError = false;
 $('.btnLang').on('click',function(){

@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const bcrypt = require("bcrypt"); 
 const { error } = require('console');
 
+
+
 const pool = mysql.createPool({ 
     host: 'localhost', 
     user:'root', 
@@ -13,7 +15,7 @@ const pool = mysql.createPool({
     database:'duodatabase'
 }); 
 
-const HTTP_PORT = 8000; 
+const HTTP_PORT = 8005; 
 
 
 
