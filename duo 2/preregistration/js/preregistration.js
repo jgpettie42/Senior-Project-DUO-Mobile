@@ -8,10 +8,8 @@ var strBaseURL = 'http://localhost:8005'
 $('.services').on('click',function(){
     let strButtonText = $(this).text();
     if(strButtonText != 'Interested'){
-        $(this).removeClass('btn-success').addClass('btn-danger');
         $(this).text('Interested');
     } else {
-        $(this).removeClass('btn-danger').addClass('btn-success');
         $(this).text('Not Interested');
     }
     
