@@ -9,7 +9,7 @@
     <link href="css/lib/adminlte.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/duologoblack01.png">
 </head>
-<body style="background: url('images/background.jpg');box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.8); background-attachment: fixed; background-size: cover;">
+<body class="bg-dark">
     <div class="d-flex flex-wrap vh-100 align-items-center justify-content-center col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3" id="divContent">
         <div class="d-block col-12">
             <h1 class="col-12 text-center mb-2">DUO Self-Registration</h1>
@@ -28,9 +28,9 @@
             <input class="form-control txtLastName mb-2" id="txtLastName-en">
             <label class="form-label mb-0" for="txtDOB-en">Date of Birth</label>
             <input class="form-control txtDOB mb-2" type="date" id="txtDOB-en">
-            <label class="form-label mb-0" for="selectSex-en">Sex</label>
+            <label class="form-label mb-0" for="selectSex-en">Biological Sex</label>
             <select class="form-control selectSex mb-2" id="selectSex-en">
-                <option selected>Open This Select Menu</option>
+                <option value="N/A" selected>Please Select an Option</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
@@ -40,37 +40,34 @@
             <input class="form-control txtEmail mb-2" type="email" id="txtEmail-en">
             <label class="form-label mb-0" for="txtPhone-en">Phone Number</label>
             <input class="form-control txtPhone mb-2" name="phone" type="telephone" id="txtPhone-en">
-            <label class="form-label mb-0" for="selServices-en">Services Interested In</label>
+            <h4 class="mt-4" for="selServices-en">Services Interested In</h4>
             <div class="row">
-            <card class="card col-6 mt-1 border-primary service">
-                <div class="card-header">Dental Cleaning</div>
-                <label class="col justify-content-center services" value="1">Not Interested</label>
+                <div class="col-6">
+                    <card data-value="hygiene" class="card col-12 mt-1 border-primary services">
+                <div class="card-body text-dark">Dental Cleaning</div>
             </card>
-            <card class="card col-6 mt-1 border-primary">
-                <div class="card-header">Dental Extraction</div>
-                <label class="col justify-content-center services"value="2">Not Interested</label>
+            <card data-value="health" class="card col-12  border-primary services">
+                <div class="card-body text-dark">Health Check-Up</div>
             </card>
-            </div>
-            <div class="row">
-                <card class="card  col-6 border-primary">
-                    <div class="card-header">Medical Checkup</div>
-                    <label class="col justify-content-center services"value="3">Not Interested</label>
-                </card>
-                <card class="card  col-6 border-primary">
-                    <div class="card-header">Vision</div>
-                    <label class="col justify-content-center services"value="4">Not Interested</label>
-                </card>
-            </div>
-            <div class="row">
-                <card class="card  col-6 order-primary">
-                    <div class="card-header">Haircut</div>
-                    <label class="col justify-content-center services"value="5">Not Interested</label>
-                </card>
-                <card class="card  col-6 border-primary">
-                    <div class="card-header">Food</div>
-                    <label class="col justify-content-center services"value="6">Not Interested</label>
-                </card>
-            </div>
+            <card data-value="haircut" class="card col-12  border-primary services">
+                <div class="card-body text-dark">Haircare and Trim</div>
+            </card>
+        </div>
+                <div class="col-6">
+            
+            <card data-value="extraction" class="card col-12 mt-1 border-primary services">
+                <div class="card-body text-dark">Dental Extraction</div>
+            </card>
+            
+            <card data-value="vision" class="card col-12  border-primary services">
+                <div class="card-body text-dark">Vision Exam</div>
+            </card>
+            
+            <card data-value="food" class="card col-12  border-primary services">
+                <div class="card-body text-dark">Food and Drink</div>
+            </card>
+        </div>
+           </div>
             <button class="btn btn-primary col-12 btnRegistar mb-3" data-lang="en" type="button">Submit</button> 
             <button class="btn btn-primary col-12 btnBack mb-3" data-lang="en" type="button">Back/Atrás</button> 
         </form>

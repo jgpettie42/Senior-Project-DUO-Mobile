@@ -1,19 +1,27 @@
 var strLang;
-var strBaseURL = 'http://localhost:8005'
-//var strBaseURL = 'http://192.168.0.121:8005';
+//var strBaseURL = 'http://localhost:8005'
+var strBaseURL = 'http://192.168.0.121:8005';
 
-
-
+var array = []
 
 $('.services').on('click',function(){
-    let strButtonText = $(this).text();
-    if(strButtonText != 'Interested'){
-        $(this).text('Interested');
-    } else {
-        $(this).text('Not Interested');
-    }
+   
     
+    if($(this).hasClass('bg-success')){
+        $(this).removeClass('bg-success');
+        $(this).children().removeClass('text-white');
+        $(this).children().addClass('text-dark');
+        $(this).removeClass('interest');
+    } else {
+        $(this).addClass('bg-success');
+        $(this).children().removeClass('text-dark');
+        $(this).children().addClass('text-white');
+        $(this).addClass('interest');
+       
+    }
+    console.log(($(this).attr('data-value')))
  })
+
 
 let blnError = false;
 $('.btnLang').on('click',function(){
@@ -39,6 +47,8 @@ $('.btnLang').on('click',function(){
 })
 
 $('.btnRegistar').on('click',function(){
+
+    
     
     let strLang = $(this).attr('data-lang');
     let strFirstName = $('#divReg-' + strLang + ' .txtFirstName').val();
