@@ -2,8 +2,8 @@
 
 var strLang;
 var arrPreReqParts;
-//var strBaseURL = 'http://localhost:8005'
-var strBaseURL = 'http://192.168.0.121:8005';
+var strBaseURL = 'http://localhost:8005'
+//var strBaseURL = 'http://192.168.0.121:8005';
 
 function fillStats(){
     $.getJSON(strBaseURL+'/stat',function(result){

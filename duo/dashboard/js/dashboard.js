@@ -1,6 +1,6 @@
 var strLang;
-//var strBaseURL = 'http://localhost:8005'
-var strBaseURL = 'http://192.168.0.121:8005';
+var strBaseURL = 'http://localhost:8005'
+//var strBaseURL = 'http://192.168.0.121:8005';
 
 
 sessionStorage.setItem('CheckArray',[])
@@ -212,11 +212,33 @@ $(document).on('click','.btnCheck',function(){
    if(strButtonText != 'Check Out'){
        sessionStorage.setItem('UserID',strUserID)
        $(this).removeClass('btn-primary').addClass('btn-danger');
+       fillFields()
        $(this).text('Check Out');
+       $('#tblNotes tbody').empty();
+       fillNotes()
    } else {
        sessionStorage.removeItem('UserID')
        $(this).removeClass('btn-danger').addClass('btn-primary');
        $(this).text('Check In');
+       $('#divBMI').empty();
+       $('#divBMI').empty();
+       $('#divHeight').empty();
+       $('#divWeight').empty();
+       $('#divBP').empty();
+       $('#divGripStrength').empty();
+       $('#divHR').empty();
+       $('#divO2Sat').empty();
+       $('#divTemp').empty();
+       $('#divUserID').empty();
+       $('#divExtraInfo').empty();;
+       $('#divAllergies').empty();
+       $('#divMedicines').empty();
+       $('#divA1C').empty();
+       $('#divMentalState').empty();
+       $('#divSubstances').empty();
+       sessionStorage.setItem('NoteArray','')
+       $('#tblNotes tbody').empty();
+
    }
    
 })
@@ -355,10 +377,10 @@ $('#btnSubmitData').on('click',function(){
            let strMedicines = $('#txtMedicines').val();
            let strMentalState= $('#selectMentalState').val();
            let strDrugs= $('#txtDrugs').val();
-   if(strBMI.length < 1 || strGripStrength.length < 1 || strHeight.length < 1 || strWeight < 1 || strBP.length < 1 || strHeartRate.length < 1 || strO2Saturation.length < 1 || strTemp.length < 1 || strExtraInfo.length < 1 || strCondition.length < 1 || strDrugs.length < 1 || strMentalState == '' || strAllergies.length < 1 || strMedicines.length < 1){
+   if(strBMI.length < 1 || strGripStrength.length < 1 || strHeight.length < 1 || strWeight < 1 || strBP.length < 1 || strHeartRate.length < 1 || strO2Saturation.length < 1 || strTemp.length < 1 || strExtraInfo.length < 1 || strCondition.length < 1 || strDrugs.length < 1 || strMentalState == '' || strAllergies.length < 1 || strMedicines.length < 1|| strAllergies.length>1){
        Swal.fire({
            title: 'Are you sure?',
-           text: "Some spaces are blank... do you wish to continue?",
+           text: "Are you sure that all entered data is correct?",
            icon: 'question',
            showCancelButton: true,
            confirmButtonColor: '#3085d6',
@@ -400,6 +422,9 @@ $('#btnSubmitData').on('click',function(){
                        })
                }
            })
+       
+
+
            if (result.isConfirmed) {
 
                $('#divBMI').empty();
