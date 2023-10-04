@@ -140,6 +140,7 @@ function fillNotes(){
                        tblstring+='<td>'+note.NoteType+'</td>'
                        tblstring+='<td>'+note.Note+'</td>'
                        tblstring+='<td>'+shortD+'</td>'
+                       tblstring+='<td>'+'<button type="button" class="btn btn-danger btnDeleteNote" data-noteid="'+note.NotesID+'">Delete</button>'+'</td>'
                        tblstring+='</tr>'
                        checkArray.push(note.Note)
                        }
@@ -152,6 +153,40 @@ function fillNotes(){
                   }
                })
 }
+
+$(document).on('click','.btnDeleteNote',function(){
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            let strNoteID = $(this).attr('data-noteid')
+            $.ajax({
+                url: strBaseURL+"/note",
+                method: "DELETE",
+                data: {noteid:strNoteID},
+                success:function(results){
+                    console.log(results);
+                    $('#tblNotes tbody').empty();
+                    sessionStorage.setItem('NoteArray','')
+                    fillNotes()
+                }
+              })
+          Swal.fire(
+            'Deleted!',
+            'Your note has been deleted.',
+            'success'
+          )
+        }
+      })
+
+      
+})
 
 function fillPeeps(){
    console.log(2)

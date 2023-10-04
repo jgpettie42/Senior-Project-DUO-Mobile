@@ -768,3 +768,19 @@ app.put('/userhealthinfo',(req,res,next)=>{
     }
     
 })
+
+
+app.delete("/note",(req,res,next)=>{
+    try{
+    let strNoteid = req.query.noteid || req.body.noteid
+    pool.query("Delete from tbldashboardnotes part where notesid = ?",strNoteid,function(error,results){
+        if(!error){
+            res.status(201).send(results);
+        }else{
+            res.status(400).send(error);
+        }
+    })
+}catch{
+    console.log(error)
+}
+})
