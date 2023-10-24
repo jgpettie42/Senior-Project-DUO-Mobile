@@ -46,131 +46,6 @@ $('#btnLogin').on('click',function(){
     
 })
 
-$('#linkLogout').on('click',function(){
-    $('#divDashboard').slideUp(function(){
-        $('#divLogin').slideDown(function(){
-            $('#navMain').slideUp();
-            $('#divHome').slideUp();
-            $('#divFeatures').slideUp();
-            $('#divUsers').slideUp();
-            $('#divVolunteer').slideUp();
-            $('#divInventory').slideUp();
-
-
-
-        });
-    })
-})
-$('#linkHome').on('click', function(){
-    $('#divHome').show();
-    $('#divFeatures').hide();
-    $('#divUsers').hide();
-    $('#divVolunteer').hide();
-    $('#divInventory').hide();
-})
-$('#linkFeatures').on('click', function(){
-    $('#divFeatures').show();
-    $('#divHome').hide();
-    $('#divUsers').hide();
-    $('#divVolunteer').hide();
-    $('#divInventory').hide();
-})
-$('#linkUsers').on('click', function(){
-    $('#divUsers').show();
-    $('#divFeatures').hide();
-    $('#divHome').hide();
-    $('#divVolunteer').hide();
-    $('#divInventory').hide();
-})
-$('#linkVolunteer').on('click', function(){
-    $('#divVolunteer').show();
-    $('#divFeatures').hide();
-    $('#divUsers').hide();
-    $('#divHome').hide();
-    $('#divInventory').hide();
-})
-$('#linkInventory').on('click', function(){
-    $('#divInventory').show();
-    $('#divFeatures').hide();
-    $('#divUsers').hide();
-    $('#divVolunteer').hide();
-    $('#divHome').hide();
-})
-
-$('#btnAddVolunteer').on('click',function(){
-    $('#divVolunteerForm').slideUp(function(){
-        $('#divAddVolunteer').slideDown(function(){
-        
-
-           
-        });
-    })
-})
-$('#btnDelVolunteer').on('click',function(){
-    $('#divVolunteerForm').slideUp(function(){
-        $('#divDelVolunteer').slideDown(function(){
-        
-
-           
-        });
-    })
-})
-$('#btnUpdateVolunteer').on('click',function(){
-    $('#divVolunteerForm').slideUp(function(){
-        $('#divUpdateVolunteer').slideDown(function(){
-        
-
-           
-        });
-    })
-})
-$('#btnAddVolunteerGoBack').on('click',function(){
-    $('#divVolunteerForm').slideDown(function(){
-        $('#divAddVolunteer').slideUp(function(){
-        
-
-           
-        });
-    })
-})
-$('#btnDelVolunteerGoBack').on('click',function(){
-    $('#divVolunteerForm').slideDown(function(){
-        $('#divDelVolunteer').slideUp(function(){
-        
-
-           
-        });
-    })
-})
-$('#btnUpdateVolunteerGoBack').on('click',function(){
-    $('#divVolunteerForm').slideDown(function(){
-        $('#divUpdateVolunteer').slideUp(function(){
-        
-
-           
-        });
-    })
-})
-
-$('#btnDelUser').on('click',function(){
-    $('#divDelUserForm').slideDown(function(){
-        $('#divDelUser').slideUp(function(){
-        
-
-           
-        });
-    })
-})
-$('#btnDelUserGoBack').on('click',function(){
-    $('#divDelUserForm').slideUp(function(){
-        $('#divDelUser').slideDown(function(){
-        
-
-           
-        });
-    })
-})
-
 $('#btnRegister').on('click',function(){
     if(localStorage.getItem('DUODeviceID')){
         // call web service to verify ID and get role
@@ -214,9 +89,7 @@ $('#btnRegister').on('click',function(){
                     html: '<p>Your Device ID is TESTDEVICE</p>'
                 }).then((result)=> {
                     $('#divLogin').slideUp(function(){
-                        $('#divDashboard').slideDown(function(){
-                            $('#navMain').slideDown();
-                        });
+                        $('#divHome').slideDown();
                     })
                 })
             }
@@ -225,7 +98,21 @@ $('#btnRegister').on('click',function(){
     
 })
 
-$('.nav-link').on('click',function(){
-    $('.nav-link').removeClass('active');
-    $(this).addClass('active');
+
+
+$('#headingFive').on('click',function(){
+    console.log(1);
 })
+$(document).on('click','.btnSlide1',function(){
+    $(this).siblings('.card-body').slideToggle();
+ })
+ $(document).on('click','.btnSlide2',function(){
+    $(this).siblings('.card-body').slideToggle();
+ })
+ $(document).on('click','.btnHelp',function(){
+    Swal.fire(
+        'Admin Tool Help',
+        'Each of the small cards to the right side of the screen can be clicked. This allows for an interactive interface with customizable options! Just click the header of the card for an uncluttered workspace!',
+        'info'
+      )
+ })
