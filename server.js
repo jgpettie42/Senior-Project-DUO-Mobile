@@ -291,6 +291,13 @@ app.post("/badgenum", (req,res,next)=>{
             if(!error){
                 pool.query('update tblpreregistration set CheckIn_Status = "Yes" WHERE (FirstName,LastName,DOB) = (?,?,?)',[strFirstName,strLastName,strDOB])
                 res.status(201).send(JSON.stringify({'Outcome':'New user Created'}))
+                pool.query("INSERT INTO tbladminval VALUES (?,CURDATE(),?)",[uuidv4(),intBadgeNum],function(errors,results){
+                    if(!errors){
+                    } else {
+                        
+                        res.status(400).send(JSON.stringify({Error:errors}));
+                    }
+                })
             } else {
                 res.status(400).send(JSON.stringify({Error:error}));
             }
@@ -552,6 +559,22 @@ try{
 }
     
 })
+
+app.get("/adminval",(req,res,next)=> {
+    let strdate = req.query.date || req.body.date
+try{
+    pool.query('select count(*)as "Patients" from tbladminval where date = ?',strdate,function(error,result){
+        if(!error){
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(JSON.stringify({Error:error}));
+        }
+    })
+} catch{
+    console.log(error);
+}
+})
+
 
 app.get('/dashboardpeeps',(req,res,next)=>{
     pool.query('Select * from tblusers where BadgeNum IS NOT NULL',function(error,result){

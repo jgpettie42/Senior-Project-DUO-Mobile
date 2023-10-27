@@ -60,47 +60,6 @@
                           </div>
                         </div>
                         <div class="card">
-                          <div class="card-header" id="headingTwo">
-                            <h2 class="mb-0">
-                              <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Volunteers
-                              </button>
-                            </h2>
-                          </div>
-                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="card-body">
-                              <div class="d-flex flex-wrap">
-                               <div class="card col-4">
-                                <div class="card-header">
-                                  <h5>Volunteer Lookup</h5>
-                                </div>
-                                <div class="card-body">
-                                  <label class="form-label" for="txtEmployeeLookup">Volunteer ID</label>
-                                  <input class="form-control" id="txtEmployeeLookup">
-                                  <button class="btn btn-outline-success col-12 mt-2" type="button" id="btnEmployeeLookup">Search</button>
-                                </div>
-                               </div> 
-                               <div class="card col-4">
-                                <div class="card-header">
-                                  <h5>Update Volunteer</h5>
-                                </div>
-                                <div class="card-body">
-                                  <h1>here</h1>
-                                </div>
-                               </div>
-                               <div class="card col-4">
-                                <div class="card-header">
-                                  <h5>Delete Volunteer</h5>
-                                </div>
-                                <div class="card-body">
-                                  <h1>here</h1>
-                                </div>
-                               </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card">
                           <div class="card-header" id="headingThree">
                             <h2 class="mb-0">
                               <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -163,7 +122,19 @@
                   </div>
                   <div class="card col-8">
                     <div class="d-flex flex-wrap">
-                      <div class="card col-4">
+                      <div class="card col-6">
+                        <div class="card-header">
+                          <h2>Attendance Charts</h2>
+                        </div>
+                        <div class="card-body">
+                          <label>Date Search (YYYY-MM-DD):</label>
+                            <input class="form-control" placeholder="2023-10-23" id="txtDate">
+                            <button class="btn btn-primary col-12 mt-3" type="button" id="btnDateClick">Confirm Date</button>
+                          <hr>
+                          <div id="divAppendChart"></div>
+                        </div>
+                      </div>
+                      <div class="card col-6">
                         <div class="card-header" type="button">
                           <div class="text-center">
                             <h2>Recurring Patients</h2>
@@ -171,52 +142,6 @@
                         </div>
                         <div class="card-body">
                           <div id="divRecurringPatients"></div>
-                        </div>
-                      </div>
-                      <div class="card col-4">
-                        <div class="card-header">
-                          <h2>Attendance Charts</h2>
-                        </div>
-                        <div class="card-body">
-                          <div id="divAttendanceChart"></div>
-                        </div>
-                      </div>
-                      <div class="card col-4">
-                        <div class="card-header btnSlide1" type="button">
-                          <div class="text-center">
-                            <h2 class="text-center">Event Planner</h2>
-                          </div>
-                        </div>
-                        <div class="card-body"">
-                          <input class="form-control col-12" id="txtEventDate" placeholder="Event Date">
-                          <input class="form-control col-12 mt-2" id="txtEventTime" placeholder="Event Time">
-                          <input class="form-control col-12 mt-2" id="txtEventLocation" placeholder="Event Location">
-                          <button class="btn btn-outline-primary col-12 mt-2" type="button" id="btnSubmitEventPlanning">Submit</button>
-                          <button class="btn btn-outline-secondary col-12 mt-2" type="button" id="btnSeeEventPlanning">Events Planned</button>
-                        </div>
-                      </div>
-                      <div class="card col-4">
-                        <div class="card-header">
-                          <h1>HI</h1>
-                        </div>
-                        <div class="card-body">
-                          <h3>HELLO</h3>
-                        </div>
-                      </div> 
-                      <div class="card col-4">
-                        <div class="card-header">
-                          <h1>HI</h1>
-                        </div>
-                        <div class="card-body">
-                          <h3>HELLO</h3>
-                        </div>
-                      </div>
-                      <div class="card col-4">
-                        <div class="card-header">
-                          <h1>HI</h1>
-                        </div>
-                        <div class="card-body">
-                          <h3>HELLO</h3>
                         </div>
                       </div>
                     </div>

@@ -9,6 +9,10 @@ var strLang;
         })
     }
 })*/
+
+var strBaseURL = 'http://localhost:8005';
+//var strBaseURL = 'http://192.168.0.121:8005';
+
 $('.btnDashboardHeader').on('click',function(){
     $(this).siblings('.card-body').slideToggle();
 })
@@ -25,26 +29,7 @@ $('.btnCheck').on('click',function(){
     
 })
 
-$('#btnLogin').on('click',function(){
-    strEmail = '';
-    strPassword = '';
-    $.getJson('http://localhost:8000/admin', {email: strEmail, password: strPassword}, function(result){
-    if(insrtgoodOutcome == true){
-        $('#divLogin').slideUp(function(){
-            $('#divDashboard').slideDown(function(){
-                $('#navMain').slideDown();
-                $('#divHome').slideDown();
-            });
-        })
-    } else {
-        swal.fire({
-            icon:'error',
-            html:'<p>Please input the correct login information!</p>'
-        })
-    }
-    })
-    
-})
+
 
 $('#btnRegister').on('click',function(){
     if(localStorage.getItem('DUODeviceID')){
@@ -115,4 +100,62 @@ $(document).on('click','.btnSlide1',function(){
         'Each of the small cards to the right side of the screen can be clicked. This allows for an interactive interface with customizable options! Just click the header of the card for an uncluttered workspace!',
         'info'
       )
+ })
+
+
+ $('#btnLogin').on('click',function(){
+    
+  })
+
+  $('#btnLogin').on('click',function(){
+    let strUsername = $('#txtUsername').val();
+    let strPassword = $('#txtPassword').val();
+    sessionStorage.setItem('SessionUser',strUsername)
+    if(strUsername.length && strPassword.length > 1){
+            console.log(strBaseURL)
+            $.post(strBaseURL + '/sessions?email=' + $('#txtUsername').val() + '&password=' + $('#txtPassword').val())
+            .done(function(sessionData){
+                let objSession = JSON.parse(sessionData);
+                if(objSession.Outcome == 'Bad Username or Password'){
+                    swal.fire({
+                        icon: 'error',
+                        html: '<p>Incorrect Username or Password!</p>'
+                    })
+                } else {
+                    sessionStorage.setItem('SimpleSession',objSession.SessionID);
+                        $('#divLogin').slideToggle(function(){$('#divHome').slideToggle();});
+    
+                }
+            })
+        //if username and password are valid
+    }else{
+ 
+        Swal.fire({
+            icon: 'error',
+            title: 'oops...',
+            text: 'Email and password incorrect'
+        })
+    }
+ })
+
+
+ $('#btnDateClick').on('click',function(){
+    let strdate = $('#txtDate').val();
+    console.log(strdate)
+    $.get(strBaseURL+'/adminval',{date:strdate},function(result){
+        
+        $('#divAppendChart').empty();
+        $.each(result,function(index,curUser){
+            let strHTML = '';
+            strHTML +='<div class="card">';
+            strHTML +='<div class="card-header">';
+            strHTML+="<label>Attendance: " + strdate + "</label>";
+            strHTML+= '</div>';
+            strHTML +='<div class="card-body">';
+            strHTML+='<label> Count: ' + curUser.Patients + '</label>';
+            strHTML+= '</div>';
+            strHTML+= '</div>';
+             $('#divAppendChart').append(strHTML);
+  })
+  })
  })
