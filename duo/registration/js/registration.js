@@ -530,7 +530,7 @@ function fillPreRegs(){
 
 setInterval(function(){
     fillPreRegs()
-}, 30000)
+}, 7000)
 
 $('#btnLogin').on('click',function(){
     console.log(strBaseURL)
