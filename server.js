@@ -807,3 +807,17 @@ app.delete("/note",(req,res,next)=>{
     console.log(error)
 }
 })
+
+app.delete("/start",(req,res,next)=>{
+    try{
+    pool.query("Delete from tblpreregistration part where RegistrationID IS NOT NULL",function(error,results){
+        if(!error){
+            res.status(201).send(results);
+        }else{
+            res.status(400).send(error);
+        }
+    })
+}catch{
+    console.log(error)
+}
+})

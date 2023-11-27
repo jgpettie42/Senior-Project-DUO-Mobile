@@ -102,6 +102,28 @@ $(document).on('click','.btnSlide1',function(){
       )
  })
 
+ $(document).on('click','#btnclrdb',function(){
+    Swal.fire({
+        icon: 'question',
+        html: '<p>Are you sure?</p>',
+        showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            confirmButtonColor: '#0d6efd'
+    }).then((result)=>{
+        if(result.isConfirmed){
+            $.ajax({
+                url: "http://localhost:8005/start",
+                type: "DELETE",
+                dataType:'json'
+            }).then((result)=> {
+
+            })
+        }
+    })
+ })
+
+
 
  $('#btnLogin').on('click',function(){
     
